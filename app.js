@@ -386,6 +386,12 @@ function updateStats(repos) {
 
   // Render Overlapping Language Avatar Stack
   const langStackEl = document.getElementById('stat-languages-stack');
+  const langLabelEl = document.getElementById('stat-languages-label');
+
+  if (langLabelEl) {
+    langLabelEl.textContent = `Tech Stack (${sortedLangs.length})`;
+  }
+
   if (langStackEl) {
     langStackEl.innerHTML = '';
     sortedLangs.forEach((lang, index) => {
@@ -395,12 +401,16 @@ function updateStats(repos) {
       
       circle.className = `lang-circle-avatar ${langClass}`;
       circle.setAttribute('title', `${lang} (${langCounts[lang]} repos) - Click to filter`);
-      circle.style.zIndex = 10 - index;
+      circle.style.zIndex = 20 - index;
       circle.innerHTML = iconHtml;
 
       // Click to filter by language
-      circle.addEventListener('click', () => {
-        const targetBtn = Array.from(filterBtns).find(b => b.dataset.lang === lang || (lang.includes('Objective-C') && b.dataset.lang === 'Objective-C++'));
+      circle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetBtn = Array.from(filterBtns).find(b => 
+          b.dataset.lang.toLowerCase() === lang.toLowerCase() || 
+          (lang.includes('Objective-C') && b.dataset.lang === 'Objective-C++')
+        );
         if (targetBtn) {
           targetBtn.click();
         }
@@ -414,12 +424,12 @@ function updateStats(repos) {
 function getLanguageIconHtml(lang) {
   if (!lang) return '<i class="fa-solid fa-code"></i>';
   const lower = lang.toLowerCase();
-  if (lower.includes('swift')) return '<i class="devicon-swift-plain"></i>';
-  if (lower.includes('ruby')) return '<i class="devicon-ruby-plain"></i>';
-  if (lower.includes('javascript') || lower === 'js') return '<i class="devicon-javascript-plain"></i>';
-  if (lower.includes('c++') || lower.includes('objective-c') || lower.includes('objc')) return '<i class="devicon-cplusplus-plain"></i>';
-  if (lower.includes('html')) return '<i class="devicon-html5-plain"></i>';
-  if (lower.includes('css')) return '<i class="devicon-css3-plain"></i>';
+  if (lower.includes('swift')) return '<i class="fa-brands fa-swift"></i>';
+  if (lower.includes('ruby')) return '<i class="fa-brands fa-ruby"></i>';
+  if (lower.includes('javascript') || lower === 'js') return '<i class="fa-brands fa-js"></i>';
+  if (lower.includes('c++') || lower.includes('objective-c') || lower.includes('objc')) return '<span class="lang-badge-text">C++</span>';
+  if (lower.includes('html')) return '<i class="fa-brands fa-html5"></i>';
+  if (lower.includes('css')) return '<i class="fa-brands fa-css3-alt"></i>';
   return '<i class="fa-solid fa-code"></i>';
 }
 

@@ -350,6 +350,14 @@ body {
   font-size: 0.95rem;
 }
 
+.lang-badge-text {
+  font-size: 0.65rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
 /* Specific Language Circle Gradients */
 .lang-circle-avatar.swift {
   background: linear-gradient(135deg, #F05138 0%, #ff735c 100%);
