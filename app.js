@@ -1,70 +1,82 @@
 /**
  * mrKangHo GitHub Repositories Showcase
- * Dynamic GitHub REST API Loader & Interactive Filtering System
+ * Apple / Linear / Raycast Bespoke UI Loader & Filtering System
  */
 
 const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 
-// Curated metadata enrichment for repos (used when API fields like description/topics are missing)
+// Curated metadata enrichment for repos
 const REPO_ENRICHMENTS = {
   'FloatingTube': {
+    category: 'macOS App',
     description: 'macOS native floating YouTube player with in-app fullscreen, always-on-top, click-through mode and menu bar tray.',
     featured: true,
     topics: ['macOS', 'Swift', 'SwiftUI', 'YouTube', 'Pip']
   },
   'brew-manager': {
+    category: 'macOS App',
     description: 'macOS GUI application for browsing, searching, installing, and updating Homebrew packages with ease.',
     featured: true,
-    topics: ['macOS', 'Swift', 'Homebrew', 'GUI', 'AppStore']
+    topics: ['macOS', 'Swift', 'Homebrew', 'GUI']
   },
   'youtubeDownloader': {
+    category: 'macOS App',
     description: 'macOS GUI video & audio downloader powered by yt-dlp with custom resolution & audio format options.',
     featured: true,
-    topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube', 'Media']
+    topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube']
   },
   'homebrew-ytdownloader': {
+    category: 'Homebrew Tap',
     description: 'Homebrew tap for YTDownloader - simplified formula installation for macOS GUI YTDownloader.',
     featured: true,
     topics: ['Homebrew', 'Tap', 'Ruby', 'yt-dlp']
   },
   'TuistProjectMaker': {
+    category: 'CLI Tool',
     description: 'Automated Tuist Swift project generator for scaffolding modular iOS and macOS app architectures.',
     featured: true,
     topics: ['Swift', 'Tuist', 'Xcode', 'Architecture']
   },
   'clean-arch-checker': {
+    category: 'Audit Tool',
     description: 'Architecture compliance checker script for auditing Clean Architecture boundaries & layer dependencies.',
     featured: true,
-    topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter', 'Audit']
+    topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter']
   },
   'iTorrent': {
+    category: 'iOS App',
     description: 'Feature-rich BitTorrent client written in Swift for iOS 16+ devices.',
     featured: false,
-    topics: ['iOS', 'Swift', 'BitTorrent', 'Mobile']
+    topics: ['iOS', 'Swift', 'BitTorrent']
   },
   'LibTorrent-Swift': {
+    category: 'Library',
     description: 'Swift wrapper and integration layer around the C++ libtorrent library.',
     featured: false,
     topics: ['Objective-C++', 'Swift', 'libtorrent']
   },
   'DesignSystemMake': {
+    category: 'Library',
     description: 'Swift library and utility tool for creating and standardizing design system tokens and components.',
     featured: false,
     topics: ['Swift', 'Design-System', 'SwiftUI']
   },
   'Grassie': {
-    description: 'Swift utility app & tool for system enhancement.',
+    category: 'macOS Tool',
+    description: 'Swift utility application and tool for system automation.',
     featured: false,
     topics: ['Swift', 'macOS']
   },
   'mrKangHo': {
+    category: 'Profile',
     description: 'GitHub profile README configuration and developer background showcase.',
     featured: false,
     topics: ['Profile', 'README']
   },
   'mrKangHo.github.io': {
-    description: 'Personal GitHub Pages showcase website displaying all public repositories and open-source projects.',
+    category: 'Web App',
+    description: 'Personal open source portfolio showcase website built with HTML5, CSS, and GitHub REST API.',
     featured: false,
     topics: ['GitHub-Pages', 'HTML5', 'CSS', 'JavaScript']
   }
@@ -77,6 +89,7 @@ let currentFilter = 'all';
 let currentSearch = '';
 let includeForks = true;
 let currentSort = 'updated';
+let isFallbackActive = false;
 
 // DOM Elements
 const featuredContainer = document.getElementById('featured-container');
@@ -85,12 +98,13 @@ const repoCountBadge = document.getElementById('repo-count-badge');
 const noResults = document.getElementById('no-results');
 const searchInput = document.getElementById('search-input');
 const clearSearchBtn = document.getElementById('clear-search');
-const filterBtns = document.querySelectorAll('.pill-btn');
+const filterBtns = document.querySelectorAll('.segment-btn');
 const toggleForks = document.getElementById('toggle-forks');
 const sortSelect = document.getElementById('sort-select');
 const resetFiltersBtn = document.getElementById('reset-filters-btn');
 const toast = document.getElementById('toast');
 const toastMessage = document.getElementById('toast-message');
+const shortcutTrigger = document.getElementById('shortcut-trigger');
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
@@ -113,6 +127,22 @@ function initEvents() {
     clearSearchBtn.classList.add('hidden');
     render();
   });
+
+  // Global Keyboard Shortcut: '/' or '⌘K' / 'Ctrl+K'
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === '/' && document.activeElement !== searchInput) || 
+        ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
+
+  if (shortcutTrigger) {
+    shortcutTrigger.addEventListener('click', () => {
+      searchInput.focus();
+    });
+  }
 
   // Language filter buttons
   filterBtns.forEach(btn => {
@@ -151,9 +181,7 @@ function initEvents() {
   });
 }
 
-let isFallbackActive = false;
-
-// Fetch Repositories from GitHub API with Static Fallback
+// Fetch Repositories from GitHub API
 async function fetchRepositories() {
   try {
     const response = await fetch(API_URL);
@@ -162,7 +190,7 @@ async function fetchRepositories() {
     }
     const data = await response.json();
     if (!Array.isArray(data)) {
-      throw new Error('GitHub API did not return an array');
+      throw new Error('GitHub API response is not an array');
     }
     processAndSetData(data);
   } catch (error) {
@@ -175,9 +203,7 @@ async function fetchRepositories() {
 function processAndSetData(repos) {
   try {
     if (!Array.isArray(repos) || repos.length === 0) {
-      if (!isFallbackActive) {
-        useFallbackData();
-      }
+      if (!isFallbackActive) useFallbackData();
       return;
     }
 
@@ -191,6 +217,7 @@ function processAndSetData(repos) {
         name: repo.name || 'unnamed',
         fullName: repo.full_name || repo.name || '',
         htmlUrl: repo.html_url || `https://github.com/${GITHUB_USERNAME}/${repo.name}`,
+        category: enrichment.category || (repo.fork ? 'Fork' : 'Open Source'),
         description: repo.description || enrichment.description || 'No description provided.',
         language: repo.language || (enrichment.topics ? enrichment.topics[0] : 'Other'),
         stars: typeof repo.stargazers_count === 'number' ? repo.stargazers_count : 0,
@@ -209,14 +236,13 @@ function processAndSetData(repos) {
     render();
   } catch (err) {
     console.error('Error processing repositories:', err);
-    if (!isFallbackActive) {
-      useFallbackData();
-    }
+    if (!isFallbackActive) useFallbackData();
   }
 }
 
 // Static Fallback Data
 function useFallbackData() {
+  isFallbackActive = true;
   const fallbackList = [
     {
       id: 1,
@@ -229,8 +255,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-09-01T00:00:00Z',
-      topics: ['macOS', 'Swift', 'SwiftUI', 'YouTube', 'Pip'],
-      homepage: null
+      topics: ['macOS', 'Swift', 'SwiftUI', 'YouTube', 'Pip']
     },
     {
       id: 2,
@@ -243,8 +268,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-08-30T00:00:00Z',
-      topics: ['macOS', 'Swift', 'Homebrew', 'GUI'],
-      homepage: null
+      topics: ['macOS', 'Swift', 'Homebrew', 'GUI']
     },
     {
       id: 3,
@@ -257,8 +281,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-09-01T00:00:00Z',
-      topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube'],
-      homepage: null
+      topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube']
     },
     {
       id: 4,
@@ -271,8 +294,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-08-28T00:00:00Z',
-      topics: ['Homebrew', 'Tap', 'Ruby', 'yt-dlp'],
-      homepage: null
+      topics: ['Homebrew', 'Tap', 'Ruby', 'yt-dlp']
     },
     {
       id: 5,
@@ -285,8 +307,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-08-29T00:00:00Z',
-      topics: ['Swift', 'Tuist', 'Xcode', 'Architecture'],
-      homepage: null
+      topics: ['Swift', 'Tuist', 'Xcode', 'Architecture']
     },
     {
       id: 6,
@@ -299,8 +320,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-08-25T00:00:00Z',
-      topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter'],
-      homepage: null
+      topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter']
     },
     {
       id: 7,
@@ -313,8 +333,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: true,
       updated_at: '2026-08-20T00:00:00Z',
-      topics: ['iOS', 'Swift', 'BitTorrent'],
-      homepage: null
+      topics: ['iOS', 'Swift', 'BitTorrent']
     },
     {
       id: 8,
@@ -327,8 +346,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: true,
       updated_at: '2026-08-15T00:00:00Z',
-      topics: ['Objective-C++', 'Swift', 'libtorrent'],
-      homepage: null
+      topics: ['Objective-C++', 'Swift', 'libtorrent']
     },
     {
       id: 9,
@@ -341,8 +359,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-08-10T00:00:00Z',
-      topics: ['Swift', 'Design-System', 'SwiftUI'],
-      homepage: null
+      topics: ['Swift', 'Design-System', 'SwiftUI']
     },
     {
       id: 10,
@@ -355,8 +372,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-08-05T00:00:00Z',
-      topics: ['Swift', 'macOS'],
-      homepage: null
+      topics: ['Swift', 'macOS']
     }
   ];
 
@@ -369,22 +385,19 @@ function updateStats(repos) {
   const totalStars = repos.reduce((sum, r) => sum + r.stars, 0);
   const totalForks = repos.reduce((sum, r) => sum + r.forks, 0);
   
-  // Count frequency of each language
   const langCounts = {};
   repos.forEach(r => {
-    if (r.language && r.language !== 'Other') {
+    if (r.language && r.language !== 'Other' && r.language !== 'None') {
       langCounts[r.language] = (langCounts[r.language] || 0) + 1;
     }
   });
 
-  // Sort languages by repository count
   const sortedLangs = Object.keys(langCounts).sort((a, b) => langCounts[b] - langCounts[a]);
 
   document.getElementById('stat-repos').textContent = totalRepos;
   document.getElementById('stat-stars').textContent = totalStars;
   document.getElementById('stat-forks').textContent = totalForks;
 
-  // Render Overlapping Language Avatar Stack
   const langStackEl = document.getElementById('stat-languages-stack');
   const langLabelEl = document.getElementById('stat-languages-label');
 
@@ -404,7 +417,6 @@ function updateStats(repos) {
       circle.style.zIndex = 20 - index;
       circle.innerHTML = iconHtml;
 
-      // Click to filter by language
       circle.addEventListener('click', (e) => {
         e.stopPropagation();
         const targetBtn = Array.from(filterBtns).find(b => 
@@ -435,48 +447,41 @@ function getLanguageIconHtml(lang) {
 
 // Main Render Function
 function render() {
-  // Filter logic
   let filtered = processedRepos.filter(repo => {
-    // Hide/Show forks
     if (!includeForks && repo.isFork) return false;
 
-    // Language filter
     if (currentFilter !== 'all') {
       if (currentFilter === 'Objective-C++') {
         if (!['Objective-C++', 'C++', 'C'].includes(repo.language)) return false;
-      } else if (repo.language !== currentFilter) {
+      } else if (repo.language.toLowerCase() !== currentFilter.toLowerCase()) {
         return false;
       }
     }
 
-    // Search query filter
     if (currentSearch) {
       const matchName = repo.name.toLowerCase().includes(currentSearch);
       const matchDesc = repo.description.toLowerCase().includes(currentSearch);
       const matchTopic = repo.topics.some(t => t.toLowerCase().includes(currentSearch));
       const matchLang = repo.language.toLowerCase().includes(currentSearch);
-      if (!matchName && !matchDesc && !matchTopic && !matchLang) return false;
+      const matchCategory = repo.category.toLowerCase().includes(currentSearch);
+      if (!matchName && !matchDesc && !matchTopic && !matchLang && !matchCategory) return false;
     }
 
     return true;
   });
 
-  // Sort logic
   filtered.sort((a, b) => {
     if (currentSort === 'stars') {
       return b.stars - a.stars;
     } else if (currentSort === 'name') {
       return a.name.localeCompare(b.name);
     } else {
-      // updated
       return b.updatedAt - a.updatedAt;
     }
   });
 
-  // Render Featured Grid (Only once or on first load)
   renderFeatured();
 
-  // Render Repositories Grid
   repoGrid.innerHTML = '';
   repoCountBadge.textContent = filtered.length;
 
@@ -500,30 +505,28 @@ function renderFeatured() {
     card.className = 'featured-card';
     
     const langDotClass = getLanguageDotClass(repo.language);
-    const topicsHtml = repo.topics.slice(0, 4).map(t => `<span class="topic-tag">${escapeHtml(t)}</span>`).join('');
+    const topicsHtml = repo.topics.slice(0, 4).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
 
     card.innerHTML = `
-      <div class="card-top">
-        <div class="repo-header-row">
-          <div class="repo-title-wrapper">
-            <i class="fa-regular fa-folder-closed repo-icon"></i>
-            <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="repo-name">${escapeHtml(repo.name)}</a>
-          </div>
-          <span class="badge badge-primary"><i class="fa-solid fa-star"></i> Featured</span>
+      <div>
+        <div class="card-badge-row">
+          <span class="category-tag">${escapeHtml(repo.category)}</span>
+          ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
         </div>
-        <p class="repo-description">${escapeHtml(repo.description)}</p>
-        <div class="topics-list">${topicsHtml}</div>
+        <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
+        <p class="card-desc">${escapeHtml(repo.description)}</p>
+        <div class="topics-row">${topicsHtml}</div>
       </div>
-      <div class="card-bottom">
-        <div class="meta-stats">
-          <span class="lang-indicator"><span class="lang-dot ${langDotClass}"></span> ${escapeHtml(repo.language)}</span>
-          <span class="meta-item"><i class="fa-regular fa-star"></i> ${repo.stars}</span>
+      <div class="card-meta-bar">
+        <div class="card-stats">
+          <span class="meta-lang"><span class="meta-dot ${langDotClass}"></span> ${escapeHtml(repo.language)}</span>
+          <span><i class="fa-regular fa-star"></i> ${repo.stars}</span>
         </div>
-        <div class="card-actions">
-          <button class="icon-action-btn" title="Copy Clone Command" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
+        <div class="card-actions-group">
+          <button class="action-icon-btn" title="Copy git clone" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
             <i class="fa-regular fa-copy"></i>
           </button>
-          <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="icon-action-btn" title="View Code on GitHub">
+          <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="View Repository">
             <i class="fa-brands fa-github"></i>
           </a>
         </div>
@@ -539,35 +542,30 @@ function createRepoCard(repo) {
   card.className = 'repo-card';
 
   const langDotClass = getLanguageDotClass(repo.language);
-  const forkBadge = repo.isFork ? `<span class="badge badge-fork"><i class="fa-solid fa-code-fork"></i> Fork</span>` : '';
-  const topicsHtml = repo.topics.slice(0, 3).map(t => `<span class="topic-tag">${escapeHtml(t)}</span>`).join('');
+  const topicsHtml = repo.topics.slice(0, 3).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
   const formattedDate = repo.updatedAt ? repo.updatedAt.toLocaleDateString('ko-KR', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
 
   card.innerHTML = `
-    <div class="card-top">
-      <div class="repo-header-row">
-        <div class="repo-title-wrapper">
-          <i class="fa-regular fa-bookmark repo-icon"></i>
-          <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="repo-name">${escapeHtml(repo.name)}</a>
-        </div>
-        <div class="repo-badges">
-          ${forkBadge}
-        </div>
+    <div>
+      <div class="card-badge-row">
+        <span class="category-tag">${escapeHtml(repo.category)}</span>
+        ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
       </div>
-      <p class="repo-description">${escapeHtml(repo.description)}</p>
-      ${topicsHtml ? `<div class="topics-list">${topicsHtml}</div>` : ''}
+      <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
+      <p class="card-desc">${escapeHtml(repo.description)}</p>
+      ${topicsHtml ? `<div class="topics-row">${topicsHtml}</div>` : ''}
     </div>
-    <div class="card-bottom">
-      <div class="meta-stats">
-        <span class="lang-indicator"><span class="lang-dot ${langDotClass}"></span> ${escapeHtml(repo.language)}</span>
-        <span class="meta-item"><i class="fa-regular fa-star"></i> ${repo.stars}</span>
-        ${formattedDate ? `<span class="meta-item" title="Last Updated"><i class="fa-regular fa-clock"></i> ${formattedDate}</span>` : ''}
+    <div class="card-meta-bar">
+      <div class="card-stats">
+        <span class="meta-lang"><span class="meta-dot ${langDotClass}"></span> ${escapeHtml(repo.language)}</span>
+        <span><i class="fa-regular fa-star"></i> ${repo.stars}</span>
+        ${formattedDate ? `<span title="Updated">${formattedDate}</span>` : ''}
       </div>
-      <div class="card-actions">
-        <button class="icon-action-btn" title="Copy git clone command" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
+      <div class="card-actions-group">
+        <button class="action-icon-btn" title="Copy git clone" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
           <i class="fa-regular fa-copy"></i>
         </button>
-        <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="icon-action-btn" title="View Code">
+        <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="View Code">
           <i class="fa-brands fa-github"></i>
         </a>
       </div>
@@ -597,7 +595,6 @@ function escapeHtml(str) {
             .replace(/'/g, '&#039;');
 }
 
-// Copy clone command to clipboard
 window.copyCloneCommand = function(repoName, cloneUrl) {
   const command = `git clone ${cloneUrl}`;
   navigator.clipboard.writeText(command).then(() => {
