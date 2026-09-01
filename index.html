@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mrKangHo Open Source Projects</title>
+  <meta name="description" content="Explore public GitHub repositories and open-source projects by mrKangHo (macOS & iOS Developer).">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://github.com/mrKangHo.png" type="image/png">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Glow Background -->
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header / Profile Section -->
+    <header class="profile-header">
+      <div class="profile-main">
+        <div class="avatar-container">
+          <img id="user-avatar" src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="mrKangHo Profile Avatar" class="avatar-img">
+          <span class="status-indicator" title="Active Developer"></span>
+        </div>
+        <div class="profile-info">
+          <div class="name-badge">
+            <h1 id="user-name">mrKangHo</h1>
+            <span class="badge badge-primary"><i class="fa-solid fa-code"></i> Developer</span>
+          </div>
+          <p class="bio" id="user-bio">macOS & iOS Developer | Building open-source tools, apps, and Swift libraries.</p>
+          
+          <div class="social-links">
+            <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub Profile
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+          <div class="stat-data">
+            <span class="stat-value" id="stat-repos">--</span>
+            <span class="stat-label">Public Repos</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="stat-data">
+            <span class="stat-value" id="stat-stars">--</span>
+            <span class="stat-label">Total Stars</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-code-fork"></i></div>
+          <div class="stat-data">
+            <span class="stat-value" id="stat-forks">--</span>
+            <span class="stat-label">Forks</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <div class="stat-data">
+            <span class="stat-value" id="stat-languages">--</span>
+            <span class="stat-label">Languages</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- Featured / Pin Section -->
+      <section class="featured-section">
+        <div class="section-title">
+          <h2><i class="fa-solid fa-fire text-gradient"></i> Major Projects</h2>
+          <span class="section-subtitle">Hand-picked open source apps & tools</span>
+        </div>
+        <div class="featured-grid" id="featured-container">
+          <!-- Featured project cards inserted dynamically -->
+        </div>
+      </section>
+
+      <!-- Controls: Search, Filter, Sort -->
+      <section class="controls-section">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="search-input" placeholder="Search repositories by name, tag, or description..." autocomplete="off">
+          <button id="clear-search" class="clear-btn hidden" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="filter-sort-bar">
+          <div class="filter-pills" id="language-filters">
+            <button class="pill-btn active" data-lang="all">All</button>
+            <button class="pill-btn" data-lang="Swift"><span class="lang-dot swift"></span> Swift</button>
+            <button class="pill-btn" data-lang="Ruby"><span class="lang-dot ruby"></span> Ruby</button>
+            <button class="pill-btn" data-lang="JavaScript"><span class="lang-dot js"></span> JavaScript</button>
+            <button class="pill-btn" data-lang="Objective-C++"><span class="lang-dot objc"></span> C / C++</button>
+          </div>
+
+          <div class="options-group">
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-forks" checked>
+              <span class="slider"></span>
+              <span class="toggle-label">Include Forks</span>
+            </label>
+
+            <div class="sort-select-wrapper">
+              <i class="fa-solid fa-arrow-down-short-wide sort-icon"></i>
+              <select id="sort-select">
+                <option value="updated">Recently Updated</option>
+                <option value="stars">Most Stars</option>
+                <option value="name">Alphabetical</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- All Repositories Grid -->
+      <section class="repos-section">
+        <div class="section-header-inline">
+          <h3>All Repositories <span id="repo-count-badge" class="count-badge">0</span></h3>
+        </div>
+
+        <div class="repo-grid" id="repo-grid">
+          <!-- Repo cards inserted dynamically -->
+        </div>
+
+        <!-- Empty / No Results State -->
+        <div id="no-results" class="no-results hidden">
+          <i class="fa-solid fa-folder-open empty-icon"></i>
+          <h3>No matching repositories found</h3>
+          <p>Try adjusting your search query or language filter.</p>
+          <button id="reset-filters-btn" class="btn btn-secondary mt-3">Reset All Filters</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>© <span id="current-year">2026</span> mrKangHo. Built with GitHub Pages & REST API.</p>
+      <div class="footer-links">
+        <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span class="dot">•</span>
+        <a href="https://github.com/mrKangHo/mrKangHo.github.io" target="_blank" rel="noopener noreferrer">Source Code</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden">
+    <i class="fa-solid fa-circle-check"></i> <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
