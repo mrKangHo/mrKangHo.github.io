@@ -17,6 +17,9 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+  <!-- Devicon Icons for Programming Languages -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -74,11 +77,13 @@
             <span class="stat-label">Forks</span>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-card-languages">
           <div class="stat-icon"><i class="fa-solid fa-laptop-code"></i></div>
           <div class="stat-data">
-            <span class="stat-value" id="stat-languages">--</span>
-            <span class="stat-label">Languages</span>
+            <div class="lang-avatar-stack" id="stat-languages-stack">
+              <!-- Overlapping language avatars dynamically loaded -->
+            </div>
+            <span class="stat-label">Tech Stack</span>
           </div>
         </div>
       </div>

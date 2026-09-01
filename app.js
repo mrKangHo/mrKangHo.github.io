@@ -350,12 +350,58 @@ function updateStats(repos) {
   const totalStars = repos.reduce((sum, r) => sum + r.stars, 0);
   const totalForks = repos.reduce((sum, r) => sum + r.forks, 0);
   
-  const languagesSet = new Set(repos.map(r => r.language).filter(l => l && l !== 'Other'));
-  
+  // Count frequency of each language
+  const langCounts = {};
+  repos.forEach(r => {
+    if (r.language && r.language !== 'Other') {
+      langCounts[r.language] = (langCounts[r.language] || 0) + 1;
+    }
+  });
+
+  // Sort languages by repository count
+  const sortedLangs = Object.keys(langCounts).sort((a, b) => langCounts[b] - langCounts[a]);
+
   document.getElementById('stat-repos').textContent = totalRepos;
   document.getElementById('stat-stars').textContent = totalStars;
   document.getElementById('stat-forks').textContent = totalForks;
-  document.getElementById('stat-languages').textContent = languagesSet.size;
+
+  // Render Overlapping Language Avatar Stack
+  const langStackEl = document.getElementById('stat-languages-stack');
+  if (langStackEl) {
+    langStackEl.innerHTML = '';
+    sortedLangs.forEach((lang, index) => {
+      const circle = document.createElement('span');
+      const langClass = getLanguageDotClass(lang);
+      const iconHtml = getLanguageIconHtml(lang);
+      
+      circle.className = `lang-circle-avatar ${langClass}`;
+      circle.setAttribute('title', `${lang} (${langCounts[lang]} repos) - Click to filter`);
+      circle.style.zIndex = 10 - index;
+      circle.innerHTML = iconHtml;
+
+      // Click to filter by language
+      circle.addEventListener('click', () => {
+        const targetBtn = Array.from(filterBtns).find(b => b.dataset.lang === lang || (lang.includes('Objective-C') && b.dataset.lang === 'Objective-C++'));
+        if (targetBtn) {
+          targetBtn.click();
+        }
+      });
+
+      langStackEl.appendChild(circle);
+    });
+  }
+}
+
+function getLanguageIconHtml(lang) {
+  if (!lang) return '<i class="fa-solid fa-code"></i>';
+  const lower = lang.toLowerCase();
+  if (lower.includes('swift')) return '<i class="devicon-swift-plain"></i>';
+  if (lower.includes('ruby')) return '<i class="devicon-ruby-plain"></i>';
+  if (lower.includes('javascript') || lower === 'js') return '<i class="devicon-javascript-plain"></i>';
+  if (lower.includes('c++') || lower.includes('objective-c') || lower.includes('objc')) return '<i class="devicon-cplusplus-plain"></i>';
+  if (lower.includes('html')) return '<i class="devicon-html5-plain"></i>';
+  if (lower.includes('css')) return '<i class="devicon-css3-plain"></i>';
+  return '<i class="fa-solid fa-code"></i>';
 }
 
 // Main Render Function

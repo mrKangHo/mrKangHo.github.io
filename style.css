@@ -311,6 +311,78 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* Overlapping Language Avatar Stack */
+.lang-avatar-stack {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.15rem;
+  height: 32px;
+}
+
+.lang-circle-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #ffffff;
+  border: 2px solid #161c2d;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  margin-left: -9px;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.25s;
+  cursor: pointer;
+}
+
+.lang-circle-avatar:first-child {
+  margin-left: 0;
+}
+
+.lang-circle-avatar:hover {
+  transform: translateY(-4px) scale(1.25);
+  z-index: 30 !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
+}
+
+.lang-circle-avatar i {
+  font-size: 0.95rem;
+}
+
+/* Specific Language Circle Gradients */
+.lang-circle-avatar.swift {
+  background: linear-gradient(135deg, #F05138 0%, #ff735c 100%);
+  color: #ffffff;
+}
+
+.lang-circle-avatar.ruby {
+  background: linear-gradient(135deg, #CC342D 0%, #e11d48 100%);
+  color: #ffffff;
+}
+
+.lang-circle-avatar.javascript,
+.lang-circle-avatar.js {
+  background: linear-gradient(135deg, #F7DF1E 0%, #eab308 100%);
+  color: #000000;
+}
+
+.lang-circle-avatar.objc,
+.lang-circle-avatar.cpp {
+  background: linear-gradient(135deg, #00599C 0%, #2563eb 100%);
+  color: #ffffff;
+}
+
+.lang-circle-avatar.html {
+  background: linear-gradient(135deg, #E34F26 0%, #f97316 100%);
+  color: #ffffff;
+}
+
+.lang-circle-avatar.other {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: #ffffff;
+}
+
 /* ==========================================================================
    Section Headers & Titles
    ========================================================================== */
