@@ -151,6 +151,8 @@ function initEvents() {
   });
 }
 
+let isFallbackActive = false;
+
 // Fetch Repositories from GitHub API with Static Fallback
 async function fetchRepositories() {
   try {
@@ -159,6 +161,9 @@ async function fetchRepositories() {
       throw new Error(`GitHub API HTTP ${response.status}`);
     }
     const data = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error('GitHub API did not return an array');
+    }
     processAndSetData(data);
   } catch (error) {
     console.warn('GitHub API fetch failed or rate limited. Using static fallback data.', error);
@@ -168,32 +173,46 @@ async function fetchRepositories() {
 
 // Process raw GitHub API items and enrich metadata
 function processAndSetData(repos) {
-  rawReposData = repos;
+  try {
+    if (!Array.isArray(repos) || repos.length === 0) {
+      if (!isFallbackActive) {
+        useFallbackData();
+      }
+      return;
+    }
 
-  processedRepos = repos.map(repo => {
-    const enrichment = REPO_ENRICHMENTS[repo.name] || {};
-    
-    return {
-      id: repo.id,
-      name: repo.name,
-      fullName: repo.full_name,
-      htmlUrl: repo.html_url,
-      description: repo.description || enrichment.description || 'No description provided.',
-      language: repo.language || (enrichment.topics ? enrichment.topics[0] : 'Other'),
-      stars: repo.stargazers_count || 0,
-      forks: repo.forks_count || 0,
-      isFork: repo.fork,
-      updatedAt: new Date(repo.updated_at),
-      pushedAt: new Date(repo.pushed_at),
-      topics: (repo.topics && repo.topics.length > 0) ? repo.topics : (enrichment.topics || []),
-      homepage: repo.homepage,
-      featured: enrichment.featured || false,
-      cloneUrl: repo.clone_url
-    };
-  });
+    rawReposData = repos;
 
-  updateStats(processedRepos);
-  render();
+    processedRepos = repos.map(repo => {
+      const enrichment = REPO_ENRICHMENTS[repo.name] || {};
+      
+      return {
+        id: repo.id || Math.random(),
+        name: repo.name || 'unnamed',
+        fullName: repo.full_name || repo.name || '',
+        htmlUrl: repo.html_url || `https://github.com/${GITHUB_USERNAME}/${repo.name}`,
+        description: repo.description || enrichment.description || 'No description provided.',
+        language: repo.language || (enrichment.topics ? enrichment.topics[0] : 'Other'),
+        stars: typeof repo.stargazers_count === 'number' ? repo.stargazers_count : 0,
+        forks: typeof repo.forks_count === 'number' ? repo.forks_count : 0,
+        isFork: Boolean(repo.fork),
+        updatedAt: repo.updated_at ? new Date(repo.updated_at) : new Date(),
+        pushedAt: repo.pushed_at ? new Date(repo.pushed_at) : new Date(),
+        topics: (Array.isArray(repo.topics) && repo.topics.length > 0) ? repo.topics : (enrichment.topics || []),
+        homepage: repo.homepage || null,
+        featured: enrichment.featured || false,
+        cloneUrl: repo.clone_url || (repo.html_url ? repo.html_url + '.git' : '')
+      };
+    });
+
+    updateStats(processedRepos);
+    render();
+  } catch (err) {
+    console.error('Error processing repositories:', err);
+    if (!isFallbackActive) {
+      useFallbackData();
+    }
+  }
 }
 
 // Static Fallback Data
