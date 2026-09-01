@@ -3,9 +3,9 @@
    ========================================================================== */
 
 @font-face {
-  font-family: 'NostalgicDoojundoojun';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2607161334@griun-dujundujun-rg/griun-dujundujun-rg/Griun_DUJUNDUJUN-Rg.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'OmuDaye';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+  font-weight: normal;
   font-display: swap;
 }
 
@@ -30,7 +30,7 @@
   --accent-cyan: #06b6d4;
   --accent-green: #10b981;
   
-  --font-sans: 'NostalgicDoojundoojun', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'OmuDaye', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   
   --radius-sm: 6px;
