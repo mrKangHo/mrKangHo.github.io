@@ -36,7 +36,7 @@ const REPO_ENRICHMENTS = {
   'clean-arch-checker': {
     description: 'Architecture compliance checker script for auditing Clean Architecture boundaries & layer dependencies.',
     featured: true,
-    topics: ['JavaScript', 'Clean-Architecture', 'Linter', 'Audit']
+    topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter', 'Audit']
   },
   'iTorrent': {
     description: 'Feature-rich BitTorrent client written in Swift for iOS 16+ devices.',
@@ -299,7 +299,7 @@ function useFallbackData() {
       forks_count: 0,
       fork: false,
       updated_at: '2026-08-25T00:00:00Z',
-      topics: ['JavaScript', 'Clean-Architecture', 'Linter'],
+      topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter'],
       homepage: null
     },
     {
