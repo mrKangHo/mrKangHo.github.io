@@ -211,7 +211,24 @@ body {
 .bio {
   color: var(--text-secondary);
   font-size: 1.05rem;
-  max-width: 650px;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.25rem 0;
+}
+
+.bio-ko {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+.bio-en {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 
 .social-links {
