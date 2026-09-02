@@ -17,7 +17,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: 'iOS 파트 리더 (웅진컴퍼스 · 2019.07 - 2025.08)',
+    role: '모바일 파트장 (웅진컴퍼스 · 2019.07 - 2025.08)',
     contributions: [
       'Tuist 도입으로 계층별(Feature/Core/UI) 모듈화 설계 및 전체 빌드 속도 30% 이상 개선',
       'TCA 기반 단방향 상태 관리 도입 및 팀 기술 세미나 주도로 런타임 오류 발생률 대폭 감소',
@@ -50,7 +50,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: 'iOS 개발 리드 / 파트장 (페타즈 · 2016.06 - 2018.09)',
+    role: '모바일 파트장 (페타즈 · 2016.06 - 2018.09)',
     contributions: [
       'Objective-C / Swift 기반 대규모 금융 서비스에 MVVM 아키텍처 전면 도입 및 비즈니스 로직 결합도 감소',
       'GitHub 기반 코드 리뷰 프로세스 주도 및 팀 코딩 컨벤션 통일로 코드 품질 및 개발 생산성 향상',
@@ -80,7 +80,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: 'iOS 개발 리드 (페타즈 · 2016.06 - 2018.09)',
+    role: '모바일 파트장 (페타즈 · 2016.06 - 2018.09)',
     contributions: [
       'SMR 광고 시스템을 통합한 커스텀 동영상 플레이어 직접 설계/구현 (자체 광고 제어권 및 수익 모델 확보)',
       'MVVM 아키텍처 도입으로 데이터 흐름 정형화 및 UI-비즈니스 로직 결합도 감소',
@@ -109,7 +109,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: 'iOS 개발 리드 (페타즈 · 2016.06 - 2018.09)',
+    role: '모바일 파트장 (페타즈 · 2016.06 - 2018.09)',
     contributions: [
       '실시간 뉴스 생방송 온에어 & 뉴스 클립 스트리밍 최적화 동영상 플레이어 구조 통합',
       '정치, 경제, 사회 등 분야별 뉴스 실시간 데이터 처리 및 네트워크 예외 처리 강화',
