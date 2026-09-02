@@ -9,50 +9,7 @@ const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
 // Default Curated App Store Portfolio Apps with 100% Fresh Verified Screenshot URLs
 const DEFAULT_APPSTORE_APPS = [
-  // Personal Published Apps by Kangho Lee (Kano)
-  {
-    id: 6801459066,
-    name: '오늘의 냉장고',
-    artist: 'kangho lee',
-    isPersonal: true,
-    type: 'personal',
-    platforms: ['ios', 'android'],
-    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/c1/e4/ddc1e48d-880b-18ed-73cc-edbac37ccabe/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
-    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%83%89%EC%9E%A5%EA%B3%A0/id6801459066',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.todayfridge.chef&hl=ko',
-    genre: '라이프스타일',
-    rating: '5.0',
-    ratingCount: 0,
-    version: '1.0.0',
-    description: '"오늘 저녁, 냉장고에 있는 재료로 뭘 해먹지?" 스마트한 식재료 유통기한 D-Day 관리부터 Google Gemini AI 셰프 기반 맞춤 레시피 추천 및 원터치 장보기까지 해결하는 라이프스타일 서비스.',
-    screenshots: [
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fc/7a/02/fc7a0219-0755-4b8a-29b8-94f74fc5e734/01_fridge.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9b/f5/e6/9bf5e6c4-6d22-d5db-1e74-adf24888802e/02_recipes.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/90/7e/9d907e47-50e9-4c64-75dc-088cbabf67f9/03_favorites.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/41/b1/e6/41b1e655-ccc1-6b37-330b-060b56aa356b/04_shopping.png/320x480bb.jpg'
-    ]
-  },
-  {
-    id: 6763481391,
-    name: '오늘의 응가',
-    artist: 'kangho lee',
-    isPersonal: true,
-    type: 'personal',
-    platforms: ['ios'],
-    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/87/79/a8/8779a868-877f-8aab-599a-8fe54d520796/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
-    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EC%9D%91%EA%B0%80/id6763481391',
-    genre: '건강 및 피트니스',
-    rating: '5.0',
-    ratingCount: 1,
-    version: '1.0.0',
-    description: '단 한 번의 탭으로 초고속 기록하는 배변 트래커! 대시보드 통계와 직관적인 캘린더를 통해 나의 장 건강 흐름과 패턴을 한눈에 파악하세요.',
-    screenshots: [
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ea/a1/7f/eaa17f9c-a9b1-7744-e276-783277ae90c4/1.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e8/e0/42/e8e04276-727b-bd7c-6f85-7bf1ff749f28/2.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/af/7b/1d/af7b1d35-1f88-9e91-193b-05267b29e24e/3.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/46/95/f0/4695f035-9777-9450-59c6-45ca1bd980ea/4.png/320x480bb.jpg'
-    ]
-  },
+  // Commercial Work Projects
   {
     id: 1440611965,
     name: '놀이의발견',
@@ -165,6 +122,50 @@ const DEFAULT_APPSTORE_APPS = [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/6f/cc/c8/6fccc842-7e15-dfd9-732a-199a0079fd29/04.png/392x696bb.png',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/39/ac/5b/39ac5bfe-1b98-3f97-3f24-cb28309aa788/05.png/392x696bb.png',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/37/8c/17/378c1766-ed7f-af0a-57e1-e442353f2f01/06.png/392x696bb.png'
+    ]
+  },
+  // Personal Published Apps by Kangho Lee (Kano)
+  {
+    id: 6801459066,
+    name: '오늘의 냉장고',
+    artist: 'kangho lee',
+    isPersonal: true,
+    type: 'personal',
+    platforms: ['ios', 'android'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/c1/e4/ddc1e48d-880b-18ed-73cc-edbac37ccabe/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%83%89%EC%9E%A5%EA%B3%A0/id6801459066',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.todayfridge.chef&hl=ko',
+    genre: '라이프스타일',
+    rating: '5.0',
+    ratingCount: 0,
+    version: '1.0.0',
+    description: '"오늘 저녁, 냉장고에 있는 재료로 뭘 해먹지?" 스마트한 식재료 유통기한 D-Day 관리부터 Google Gemini AI 셰프 기반 맞춤 레시피 추천 및 원터치 장보기까지 해결하는 라이프스타일 서비스.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fc/7a/02/fc7a0219-0755-4b8a-29b8-94f74fc5e734/01_fridge.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9b/f5/e6/9bf5e6c4-6d22-d5db-1e74-adf24888802e/02_recipes.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/90/7e/9d907e47-50e9-4c64-75dc-088cbabf67f9/03_favorites.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/41/b1/e6/41b1e655-ccc1-6b37-330b-060b56aa356b/04_shopping.png/320x480bb.jpg'
+    ]
+  },
+  {
+    id: 6763481391,
+    name: '오늘의 응가',
+    artist: 'kangho lee',
+    isPersonal: true,
+    type: 'personal',
+    platforms: ['ios'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/87/79/a8/8779a868-877f-8aab-599a-8fe54d520796/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EC%9D%91%EA%B0%80/id6763481391',
+    genre: '건강 및 피트니스',
+    rating: '5.0',
+    ratingCount: 1,
+    version: '1.0.0',
+    description: '단 한 번의 탭으로 초고속 기록하는 배변 트래커! 대시보드 통계와 직관적인 캘린더를 통해 나의 장 건강 흐름과 패턴을 한눈에 파악하세요.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ea/a1/7f/eaa17f9c-a9b1-7744-e276-783277ae90c4/1.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e8/e0/42/e8e04276-727b-bd7c-6f85-7bf1ff749f28/2.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/af/7b/1d/af7b1d35-1f88-9e91-193b-05267b29e24e/3.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/46/95/f0/4695f035-9777-9450-59c6-45ca1bd980ea/4.png/320x480bb.jpg'
     ]
   }
 ];
