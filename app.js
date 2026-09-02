@@ -266,7 +266,7 @@ const DEFAULT_APPSTORE_APPS = [
       'Claude Code, Gemini CLI 등 AI 코딩 도구를 실제 개발 워크플로우에 통합하여 1인 개발로 7개 이상 저장소 및 풀스택 서비스 동시 운영'
     ],
     techStack: ['Flutter', 'Dart', 'NestJS', 'Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Codemagic', 'Claude Code'],
-    icon: 'https://avatars.githubusercontent.com/u/9712872?v=4',
+    icon: 'assets/dotory/icon.png',
     url: 'https://github.com/mrKangHo',
     genre: '커머스 SaaS / 1인 창업',
     rating: '5.0',
@@ -274,7 +274,11 @@ const DEFAULT_APPSTORE_APPS = [
     version: '1.0.0',
     description: '고객사가 코드 없이 5분 만에 iOS/Android 네이티브 쇼핑몰 앱을 생성할 수 있는 화이트라벨 모바일 쇼핑몰 SaaS 플랫폼.',
     screenshots: [
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fc/7a/02/fc7a0219-0755-4b8a-29b8-94f74fc5e734/01_fridge.png/320x480bb.jpg'
+      'assets/dotory/hero-screenshot.png',
+      'assets/dotory/onboarding_portal_final.png',
+      'assets/dotory/crm_dashboard_final.png',
+      'assets/dotory/studio_component_editor.png',
+      'assets/dotory/mobile_app_final.png'
     ]
   },
   {
