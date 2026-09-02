@@ -417,38 +417,57 @@ function closeLightbox() {
   if (modal) modal.classList.add('hidden');
 }
 
-// Initialize View Switching Tabs (All | App Store | Open Source)
-function initViewTabs() {
+// Switch Active Section View (All | App Store Portfolio | Open Source Repos)
+function switchViewMode(view) {
   const viewTabs = document.querySelectorAll('.view-tab-btn');
   const appstoreSection = document.getElementById('appstore-section');
   const featuredSection = document.getElementById('featured-section');
   const reposToolbar = document.getElementById('repos-toolbar-section');
   const reposGridSection = document.getElementById('repos-grid-section');
 
+  viewTabs.forEach(t => {
+    t.classList.toggle('active', t.dataset.view === view);
+  });
+
+  if (view === 'appstore') {
+    if (featuredSection) featuredSection.style.display = 'none';
+    if (reposToolbar) reposToolbar.style.display = 'none';
+    if (reposGridSection) reposGridSection.style.display = 'none';
+    if (appstoreSection) appstoreSection.style.display = 'block';
+  } else if (view === 'opensource') {
+    if (featuredSection) featuredSection.style.display = 'block';
+    if (reposToolbar) reposToolbar.style.display = 'block';
+    if (reposGridSection) reposGridSection.style.display = 'block';
+    if (appstoreSection) appstoreSection.style.display = 'none';
+  } else { // 'all'
+    if (featuredSection) featuredSection.style.display = 'block';
+    if (appstoreSection) appstoreSection.style.display = 'block';
+    if (reposToolbar) reposToolbar.style.display = 'block';
+    if (reposGridSection) reposGridSection.style.display = 'block';
+  }
+}
+
+// Initialize View Switching Tabs (All | App Store Portfolio | Open Source)
+function initViewTabs() {
+  const viewTabs = document.querySelectorAll('.view-tab-btn');
   viewTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      viewTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const view = tab.dataset.view;
-      if (view === 'appstore') {
-        if (featuredSection) featuredSection.style.display = 'none';
-        if (reposToolbar) reposToolbar.style.display = 'none';
-        if (reposGridSection) reposGridSection.style.display = 'none';
-        if (appstoreSection) appstoreSection.style.display = 'block';
-      } else if (view === 'opensource') {
-        if (featuredSection) featuredSection.style.display = 'block';
-        if (reposToolbar) reposToolbar.style.display = 'block';
-        if (reposGridSection) reposGridSection.style.display = 'block';
-        if (appstoreSection) appstoreSection.style.display = 'none';
-      } else { // 'all'
-        if (featuredSection) featuredSection.style.display = 'block';
-        if (appstoreSection) appstoreSection.style.display = 'block';
-        if (reposToolbar) reposToolbar.style.display = 'block';
-        if (reposGridSection) reposGridSection.style.display = 'block';
-      }
+      switchViewMode(tab.dataset.view);
     });
   });
+
+  // Top Nav '포트폴리오' (Portfolio) link click handler: shows ONLY App Store portfolio
+  const navAppstoreLink = document.getElementById('nav-appstore-link');
+  if (navAppstoreLink) {
+    navAppstoreLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchViewMode('appstore');
+      const appstoreSection = document.getElementById('appstore-section');
+      if (appstoreSection) {
+        appstoreSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
 }
 
 // Initialize App Store Search & Quick Tag Events
