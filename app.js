@@ -9,10 +9,56 @@ const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
 // Default Curated App Store Portfolio Apps with 100% Fresh Verified Screenshot URLs
 const DEFAULT_APPSTORE_APPS = [
+  // Personal Published Apps by Kangho Lee (Kano)
+  {
+    id: 6801459066,
+    name: '오늘의 냉장고',
+    artist: 'kangho lee',
+    isPersonal: true,
+    type: 'personal',
+    platforms: ['ios'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/c1/e4/ddc1e48d-880b-18ed-73cc-edbac37ccabe/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%83%89%EC%9E%A5%EA%B3%A0/id6801459066',
+    genre: '라이프스타일',
+    rating: '5.0',
+    ratingCount: 0,
+    version: '1.0.0',
+    description: '"오늘 저녁, 냉장고에 있는 재료로 뭘 해먹지?" 스마트한 식재료 유통기한 D-Day 관리부터 Google Gemini AI 셰프 기반 맞춤 레시피 추천 및 원터치 장보기까지 해결하는 라이프스타일 서비스.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fc/7a/02/fc7a0219-0755-4b8a-29b8-94f74fc5e734/01_fridge.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9b/f5/e6/9bf5e6c4-6d22-d5db-1e74-adf24888802e/02_recipes.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/90/7e/9d907e47-50e9-4c64-75dc-088cbabf67f9/03_favorites.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/41/b1/e6/41b1e655-ccc1-6b37-330b-060b56aa356b/04_shopping.png/320x480bb.jpg'
+    ]
+  },
+  {
+    id: 6763481391,
+    name: '오늘의 응가',
+    artist: 'kangho lee',
+    isPersonal: true,
+    type: 'personal',
+    platforms: ['ios'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/87/79/a8/8779a868-877f-8aab-599a-8fe54d520796/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EC%9D%91%EA%B0%80/id6763481391',
+    genre: '건강 및 피트니스',
+    rating: '5.0',
+    ratingCount: 1,
+    version: '1.0.0',
+    description: '단 한 번의 탭으로 초고속 기록하는 배변 트래커! 대시보드 통계와 직관적인 캘린더를 통해 나의 장 건강 흐름과 패턴을 한눈에 파악하세요.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ea/a1/7f/eaa17f9c-a9b1-7744-e276-783277ae90c4/1.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e8/e0/42/e8e04276-727b-bd7c-6f85-7bf1ff749f28/2.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/af/7b/1d/af7b1d35-1f88-9e91-193b-05267b29e24e/3.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/46/95/f0/4695f035-9777-9450-59c6-45ca1bd980ea/4.png/320x480bb.jpg'
+    ]
+  },
   {
     id: 1440611965,
     name: '놀이의발견',
     artist: 'Woongjin Compass, Co., Ltd.',
+    isPersonal: false,
+    type: 'commercial',
+    platforms: ['ios'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ff/1c/db/ff1cdb92-6a1f-ac30-64cb-f06574412ef5/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EB%86%80%EC%9D%B4%EC%9D%98%EB%B0%9C%EA%B2%AC/id1440611965',
     genre: '라이프스타일',
@@ -33,6 +79,9 @@ const DEFAULT_APPSTORE_APPS = [
     id: 1038288833,
     name: '하나머니(트래블로그)',
     artist: 'Hana Card Co., Ltd.',
+    isPersonal: false,
+    type: 'commercial',
+    platforms: ['ios'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/49/00/b9/4900b978-a047-cb3f-b02d-a899b844bb6d/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%ED%95%98%EB%82%98%EB%A8%B8%EB%8B%88-%ED%8A%B8%EB%9E%98%EB%B8%94%EB%A1%9C%EA%B7%B8/id1038288833',
     genre: '금융',
@@ -53,6 +102,9 @@ const DEFAULT_APPSTORE_APPS = [
     id: 6739484703,
     name: 'TV조선',
     artist: '(주)조선방송',
+    isPersonal: false,
+    type: 'commercial',
+    platforms: ['ios'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/35/f0/d0/35f0d013-e136-1994-a5e6-ecaf0eabe624/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/tv%EC%A1%B0%EC%84%A0/id6739484703',
     genre: '엔터테인먼트',
@@ -72,6 +124,9 @@ const DEFAULT_APPSTORE_APPS = [
     id: 6739484927,
     name: 'TV조선 뉴스',
     artist: '(주)조선방송',
+    isPersonal: false,
+    type: 'commercial',
+    platforms: ['ios'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4f/fa/ec/4ffaeca0-2ca2-5739-7cd4-5cd1502ca8e4/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/tv%EC%A1%B0%EC%84%A0-%EB%89%B4%EC%8A%A4/id6739484927',
     genre: '뉴스',
@@ -92,6 +147,9 @@ const DEFAULT_APPSTORE_APPS = [
     id: 466682252,
     name: '스타벅스',
     artist: '스타벅스 코리아',
+    isPersonal: false,
+    type: 'commercial',
+    platforms: ['ios'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ca/d9/0e/cad90e16-d1a0-9f0b-54f1-b6e61d3237d3/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4/id466682252',
     genre: '음식 및 음료',
@@ -349,13 +407,38 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchRepositories();
   }
 
-  // Page 2: Commercial App Store Portfolio (portfolio.html)
+  // Page 2: Commercial & Personal App Store Portfolio (portfolio.html)
   if (appstoreContainer) {
     initAppStoreEvents();
+    initPortfolioTypeFilters();
     renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
     fetchFeaturedAppStoreApps();
   }
 });
+
+// Initialize Portfolio Type Filters (All | Commercial | Personal)
+function initPortfolioTypeFilters() {
+  const filterContainer = document.getElementById('portfolio-type-filters');
+  if (!filterContainer) return;
+
+  const btns = filterContainer.querySelectorAll('[data-portfolio-type]');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const type = btn.dataset.portfolioType;
+
+      const cards = document.querySelectorAll('.appstore-card');
+      cards.forEach(card => {
+        if (type === 'all' || card.dataset.portfolioType === type) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
 
 // Automatically fetch live fresh App Store metadata & screenshots on portfolio page
 async function fetchFeaturedAppStoreApps() {
