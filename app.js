@@ -352,6 +352,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
   fetchFeaturedAppStoreApps();
   fetchRepositories();
+  // Show ONLY open source repositories on initial page load
+  switchViewMode('opensource');
 });
 
 // Automatically fetch live fresh App Store metadata & screenshots on page load
@@ -455,6 +457,16 @@ function initViewTabs() {
       switchViewMode(tab.dataset.view);
     });
   });
+
+  // Top Nav Brand Link ('Kano') click handler: shows ONLY Open Source Repos
+  const navBrandLink = document.getElementById('nav-brand-link');
+  if (navBrandLink) {
+    navBrandLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchViewMode('opensource');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // Top Nav '포트폴리오' (Portfolio) link click handler: shows ONLY App Store portfolio
   const navAppstoreLink = document.getElementById('nav-appstore-link');
