@@ -1,22 +1,86 @@
 /**
- * mrKangHo GitHub Repositories Showcase
- * Apple / Linear / Raycast Bespoke UI Loader, Filtering & i18n System
+ * mrKangHo GitHub Repositories Showcase & App Store Commercial Portfolio
+ * Apple / Linear / Raycast Bespoke UI Loader, Filtering, iTunes API & i18n System
  */
 
 const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
+// Default Curated App Store Portfolio Apps
+const DEFAULT_APPSTORE_APPS = [
+  {
+    id: 1440611965,
+    name: '놀이의발견',
+    artist: 'Woongjin Compass, Co., Ltd.',
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ff/1c/db/ff1cdb92-6a1f-ac30-64cb-f06574412ef5/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EB%86%80%EC%9D%B4%EC%9D%98%EB%B0%9C%EA%B2%AC/id1440611965',
+    genre: '라이프스타일',
+    rating: '4.5',
+    ratingCount: 1274,
+    version: '4.27.13',
+    description: '국내 1위 가족 여가 플랫폼! 전국 키즈카페부터 워터파크, 테마파크, 체험 학습 및 숙소까지 한 번에 쉽고 저렴하게 예약해보세요.'
+  },
+  {
+    id: 1038288833,
+    name: '하나머니(트래블로그)',
+    artist: 'Hana Card Co., Ltd.',
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/49/00/b9/4900b978-a047-cb3f-b02d-a899b844bb6d/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%ED%95%98%EB%82%98%EB%A8%B8%EB%8B%88-%ED%8A%B8%EB%9E%98%EB%B8%94%EB%A1%9C%EA%B7%B8/id1038288833',
+    genre: '금융',
+    rating: '4.7',
+    ratingCount: 100461,
+    version: '4.0.41',
+    description: '쓸수록 쌓이는 모바일 생활 머니 플랫폼! 하나금융그룹의 혜택과 해외여행 필수 트래블로그 서비스를 손쉽게 이용하세요.'
+  },
+  {
+    id: 6739484703,
+    name: 'TV조선',
+    artist: '(주)조선방송',
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/35/f0/d0/35f0d013-e136-1994-a5e6-ecaf0eabe624/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/tv%EC%A1%B0%EC%84%A0/id6739484703',
+    genre: '엔터테인먼트',
+    rating: '3.0',
+    ratingCount: 8,
+    version: '1.0.7',
+    description: 'TV조선 실시간 온에어 무료 시청, 명장면 클립 서비스 및 예능, 교양, 시사 프로그램 VOD 다시보기 서비스.'
+  },
+  {
+    id: 6739484927,
+    name: 'TV조선 뉴스',
+    artist: '(주)조선방송',
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4f/fa/ec/4ffaeca0-2ca2-5739-7cd4-5cd1502ca8e4/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/tv%EC%A1%B0%EC%84%A0-%EB%89%B4%EC%8A%A4/id6739484927',
+    genre: '뉴스',
+    rating: '5.0',
+    ratingCount: 1,
+    version: '1.0.7',
+    description: '생생한 보도와 정치, 경제, 사회 등 분야별 뉴스 클립, 실시간 속보 및 TV조선 뉴스 생방송 시청 서비스.'
+  },
+  {
+    id: 466682252,
+    name: '스타벅스',
+    artist: '스타벅스 코리아',
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ca/d9/0e/cad90e16-d1a0-9f0b-54f1-b6e61d3237d3/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4/id466682252',
+    genre: '음식 및 음료',
+    rating: '2.0',
+    ratingCount: 2385,
+    version: '26.4.0',
+    description: '스타벅스 코리아 공식 앱. 사이렌 오더 비대면 주문, 모바일 카드 결제, 리워드 별 적립 및 온라인 스토어 서비스 제공.'
+  }
+];
+
 // Internationalization (i18n) UI Dictionary
 const TRANSLATIONS = {
   ko: {
-    statusPill: 'macOS & iOS 오픈 소스 프로젝트 진행 가능',
+    statusPill: 'macOS & iOS 프로젝트 진행 가능',
     bio: '<i class="fa-brands fa-apple"></i> macOS & iOS 개발자 | 네이티브 애플 앱, 시스템 도구 및 스킬(Skills) 개발',
     statRepos: '저장소 수',
     statStars: '총 별 수',
     statForks: '포크 수',
     statTechStack: '기술 스택',
-    featuredHeading: '주요 소프트웨어',
+    featuredHeading: '주요 오픈소스 소프트웨어',
     featuredSubtext: '엄선된 macOS 애플리케이션, CLI 유틸리티 및 오픈 소스 라이브러리',
     searchPlaceholder: '이름, 언어, 주제로 검색...',
     searchHint: '검색',
@@ -25,7 +89,7 @@ const TRANSLATIONS = {
     sortUpdated: '최근 업데이트순',
     sortStars: '별 많은순',
     sortName: '이름순 (A-Z)',
-    allReposTitle: '전체 저장소',
+    allReposTitle: '전체 오픈소스 저장소',
     noResultsTitle: '검색된 저장소가 없습니다',
     noResultsDesc: '검색 키워드를 수정하거나 언어 필터를 변경해 보세요.',
     resetFilters: '필터 초기화',
@@ -35,16 +99,27 @@ const TRANSLATIONS = {
     viewCode: '코드 보기',
     githubProfile: 'GitHub 프로필',
     repositoryLink: '저장소',
-    rights: 'All rights reserved.'
+    rights: 'All rights reserved.',
+    navAppStore: 'App Store',
+    tabAll: '전체 포트폴리오',
+    tabAppStore: 'App Store 출시 앱',
+    tabOpenSource: '오픈소스 저장소',
+    appstoreHeading: 'App Store 프로젝트 포트폴리오',
+    appstoreSubtext: '실제 Apple App Store에 출시되어 서비스 중인 주요 모바일 애플리케이션',
+    appstorePlaceholder: 'App Store 앱 실시간 검색 (예: 놀이의발견, 하나머니, TV조선, 스타벅스...)',
+    appstoreSearchBtn: '앱 검색',
+    appstoreQuickTags: '빠른 탐색:',
+    appstoreViewBtn: 'App Store에서 보기',
+    appstoreReset: '대표 앱 목록'
   },
   en: {
-    statusPill: 'Available for macOS & iOS Open Source Projects',
+    statusPill: 'Available for macOS & iOS Projects',
     bio: '<i class="fa-brands fa-apple"></i> macOS & iOS Engineer | Crafting Native Apple Apps, Developer Tools & AI Agent Skills',
     statRepos: 'Repositories',
     statStars: 'Total Stars',
     statForks: 'Forks',
     statTechStack: 'Tech Stack',
-    featuredHeading: 'Featured Software',
+    featuredHeading: 'Featured Open Source Software',
     featuredSubtext: 'Selected macOS applications, CLI utilities, and open source libraries',
     searchPlaceholder: 'Search by name, language, or topic...',
     searchHint: 'Search',
@@ -53,7 +128,7 @@ const TRANSLATIONS = {
     sortUpdated: 'Recently Updated',
     sortStars: 'Most Stars',
     sortName: 'Name (A-Z)',
-    allReposTitle: 'All Repositories',
+    allReposTitle: 'All Open Source Repositories',
     noResultsTitle: 'No matching repositories found',
     noResultsDesc: 'Try refining your search keyword or switching language filters.',
     resetFilters: 'Reset Filters',
@@ -63,7 +138,18 @@ const TRANSLATIONS = {
     viewCode: 'View Code',
     githubProfile: 'GitHub Profile',
     repositoryLink: 'Repository',
-    rights: 'All rights reserved.'
+    rights: 'All rights reserved.',
+    navAppStore: 'App Store',
+    tabAll: 'All Portfolio',
+    tabAppStore: 'App Store Apps',
+    tabOpenSource: 'Open Source Repos',
+    appstoreHeading: 'App Store Commercial Portfolio',
+    appstoreSubtext: 'Featured mobile applications published on Apple App Store',
+    appstorePlaceholder: 'Search App Store live (e.g. Nori Discovery, Hana Money, TV Chosun, Starbucks...)',
+    appstoreSearchBtn: 'Search App',
+    appstoreQuickTags: 'Quick View:',
+    appstoreViewBtn: 'View on App Store',
+    appstoreReset: 'Show Featured'
   }
 };
 
@@ -209,12 +295,184 @@ const toast = document.getElementById('toast');
 const toastMessage = document.getElementById('toast-message');
 const shortcutTrigger = document.getElementById('shortcut-trigger');
 
+// App Store DOM Elements
+const appstoreContainer = document.getElementById('appstore-container');
+const appstoreSearchInput = document.getElementById('appstore-search-input');
+const appstoreSearchBtn = document.getElementById('appstore-search-btn');
+const btnResetAppStore = document.getElementById('btn-reset-appstore');
+
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
   updateUIStrings();
   initEvents();
+  initViewTabs();
+  initAppStoreEvents();
+  renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
   fetchRepositories();
 });
+
+// Initialize View Switching Tabs (All | App Store | Open Source)
+function initViewTabs() {
+  const viewTabs = document.querySelectorAll('.view-tab-btn');
+  const appstoreSection = document.getElementById('appstore-section');
+  const featuredSection = document.getElementById('featured-section');
+  const reposToolbar = document.getElementById('repos-toolbar-section');
+  const reposGridSection = document.getElementById('repos-grid-section');
+
+  viewTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      viewTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const view = tab.dataset.view;
+      if (view === 'appstore') {
+        if (featuredSection) featuredSection.style.display = 'none';
+        if (reposToolbar) reposToolbar.style.display = 'none';
+        if (reposGridSection) reposGridSection.style.display = 'none';
+        if (appstoreSection) appstoreSection.style.display = 'block';
+      } else if (view === 'opensource') {
+        if (featuredSection) featuredSection.style.display = 'block';
+        if (reposToolbar) reposToolbar.style.display = 'block';
+        if (reposGridSection) reposGridSection.style.display = 'block';
+        if (appstoreSection) appstoreSection.style.display = 'none';
+      } else { // 'all'
+        if (featuredSection) featuredSection.style.display = 'block';
+        if (appstoreSection) appstoreSection.style.display = 'block';
+        if (reposToolbar) reposToolbar.style.display = 'block';
+        if (reposGridSection) reposGridSection.style.display = 'block';
+      }
+    });
+  });
+}
+
+// Initialize App Store Search & Quick Tag Events
+function initAppStoreEvents() {
+  if (appstoreSearchBtn && appstoreSearchInput) {
+    appstoreSearchBtn.addEventListener('click', () => {
+      const q = appstoreSearchInput.value.trim();
+      if (q) {
+        searchAppStore(q);
+        if (btnResetAppStore) btnResetAppStore.style.display = 'inline-flex';
+      }
+    });
+
+    appstoreSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const q = appstoreSearchInput.value.trim();
+        if (q) {
+          searchAppStore(q);
+          if (btnResetAppStore) btnResetAppStore.style.display = 'inline-flex';
+        }
+      }
+    });
+  }
+
+  // Quick tag buttons (#놀이의발견, #하나머니, #TV조선, #스타벅스...)
+  const quickTagBtns = document.querySelectorAll('[data-app-query]');
+  quickTagBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      quickTagBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const query = btn.dataset.appQuery;
+      if (appstoreSearchInput) appstoreSearchInput.value = query;
+      searchAppStore(query);
+      if (btnResetAppStore) btnResetAppStore.style.display = 'inline-flex';
+    });
+  });
+
+  if (btnResetAppStore) {
+    btnResetAppStore.addEventListener('click', () => {
+      if (appstoreSearchInput) appstoreSearchInput.value = '';
+      quickTagBtns.forEach(b => b.classList.remove('active'));
+      btnResetAppStore.style.display = 'none';
+      renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+    });
+  }
+}
+
+// Live App Store API Search via iTunes Search API
+async function searchAppStore(query) {
+  if (!query || query.trim() === '') {
+    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+    if (btnResetAppStore) btnResetAppStore.style.display = 'none';
+    return;
+  }
+
+  if (!appstoreContainer) return;
+  appstoreContainer.innerHTML = `<div class="loading-box"><i class="fa-solid fa-spinner fa-spin"></i> Searching App Store for "${escapeHtml(query)}"...</div>`;
+
+  try {
+    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&country=kr&entity=software&limit=12`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.results && data.results.length > 0) {
+      const apps = data.results.map(app => ({
+        id: app.trackId,
+        name: app.trackName,
+        artist: app.artistName,
+        icon: app.artworkUrl512 || app.artworkUrl100,
+        url: app.trackViewUrl,
+        genre: app.primaryGenreName || 'App',
+        rating: app.averageUserRating ? app.averageUserRating.toFixed(1) : 'N/A',
+        ratingCount: app.userRatingCount || 0,
+        version: app.version || '1.0',
+        description: app.description || 'App Store application'
+      }));
+      renderAppStoreGrid(apps);
+    } else {
+      appstoreContainer.innerHTML = `
+        <div class="no-results-box" style="grid-column: 1 / -1;">
+          <div class="no-results-icon"><i class="fa-brands fa-app-store-ios"></i></div>
+          <h4>App Store 검색 결과가 없습니다</h4>
+          <p>"${escapeHtml(query)}" 키워드로 검색된 앱이 없습니다.</p>
+        </div>`;
+    }
+  } catch (err) {
+    console.error('App Store API Search failed', err);
+    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+  }
+}
+
+// Render App Store Portfolio Cards
+function renderAppStoreGrid(apps) {
+  if (!appstoreContainer) return;
+  appstoreContainer.innerHTML = '';
+
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+
+  apps.forEach(app => {
+    const card = document.createElement('div');
+    card.className = 'appstore-card';
+
+    const ratingDisplay = app.rating !== 'N/A' ? `★ ${app.rating}` : '★ NEW';
+    const ratingCountStr = app.ratingCount > 0 ? ` (${app.ratingCount.toLocaleString()})` : '';
+
+    card.innerHTML = `
+      <div>
+        <div class="appstore-card-header">
+          <img src="${app.icon}" alt="${escapeHtml(app.name)} Icon" class="appstore-icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
+          <div class="appstore-meta">
+            <div class="appstore-badge-row">
+              <span class="category-tag appstore-genre">${escapeHtml(app.genre)}</span>
+              <span class="appstore-rating-pill" title="${ratingDisplay}${ratingCountStr}"><i class="fa-solid fa-star"></i> ${ratingDisplay}</span>
+            </div>
+            <h3 class="appstore-title">${escapeHtml(app.name)}</h3>
+            <p class="appstore-developer">${escapeHtml(app.artist)}</p>
+          </div>
+        </div>
+        <p class="appstore-desc">${escapeHtml(app.description)}</p>
+      </div>
+      <div class="appstore-footer">
+        <span class="appstore-version">v${escapeHtml(app.version)}</span>
+        <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn-appstore">
+          <i class="fa-brands fa-apple"></i> <span>${t.appstoreViewBtn}</span>
+        </a>
+      </div>
+    `;
+    appstoreContainer.appendChild(card);
+  });
+}
 
 // Event Listeners Setup
 function initEvents() {
@@ -245,7 +503,7 @@ function initEvents() {
 
   // Global Keyboard Shortcut: '/' or '⌘K' / 'Ctrl+K'
   document.addEventListener('keydown', (e) => {
-    if ((e.key === '/' && document.activeElement !== searchInput) || 
+    if ((e.key === '/' && document.activeElement !== searchInput && document.activeElement !== appstoreSearchInput) || 
         ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) {
       e.preventDefault();
       searchInput.focus();
@@ -304,6 +562,7 @@ function setLanguage(lang) {
   if (processedRepos.length > 0) {
     updateStats(processedRepos);
     render();
+    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
   }
 }
 
@@ -380,6 +639,36 @@ function updateUIStrings() {
 
   const footerLinkRepoEl = document.getElementById('footer-link-repo');
   if (footerLinkRepoEl) footerLinkRepoEl.textContent = t.repositoryLink;
+
+  // App Store i18n
+  const lblNavAppStoreEl = document.getElementById('lbl-nav-appstore');
+  if (lblNavAppStoreEl) lblNavAppStoreEl.textContent = t.navAppStore;
+
+  const lblTabAllEl = document.getElementById('lbl-tab-all');
+  if (lblTabAllEl) lblTabAllEl.textContent = t.tabAll;
+
+  const lblTabAppStoreEl = document.getElementById('lbl-tab-appstore');
+  if (lblTabAppStoreEl) lblTabAppStoreEl.textContent = t.tabAppStore;
+
+  const lblTabOpenSourceEl = document.getElementById('lbl-tab-opensource');
+  if (lblTabOpenSourceEl) lblTabOpenSourceEl.textContent = t.tabOpenSource;
+
+  const appstoreHeadingEl = document.getElementById('appstore-heading');
+  if (appstoreHeadingEl) appstoreHeadingEl.textContent = t.appstoreHeading;
+
+  const appstoreSubtextEl = document.getElementById('appstore-subtext');
+  if (appstoreSubtextEl) appstoreSubtextEl.textContent = t.appstoreSubtext;
+
+  if (appstoreSearchInput) appstoreSearchInput.placeholder = t.appstorePlaceholder;
+
+  const lblAppStoreSearchBtnEl = document.getElementById('lbl-appstore-search-btn');
+  if (lblAppStoreSearchBtnEl) lblAppStoreSearchBtnEl.textContent = t.appstoreSearchBtn;
+
+  const lblQuickTagsEl = document.getElementById('lbl-quick-tags');
+  if (lblQuickTagsEl) lblQuickTagsEl.textContent = t.appstoreQuickTags;
+
+  const lblResetAppStoreEl = document.getElementById('lbl-reset-appstore');
+  if (lblResetAppStoreEl) lblResetAppStoreEl.textContent = t.appstoreReset;
 }
 
 // Fetch Repositories from GitHub API

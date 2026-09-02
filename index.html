@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
       <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-brand">
         <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="nav-avatar">
         <span class="nav-title">Kano</span>
-        <span class="nav-tag">Open Source</span>
+        <span class="nav-tag">Portfolio</span>
       </a>
       <div class="nav-actions">
         <!-- Language Switcher -->
@@ -43,6 +43,11 @@
         <div class="shortcut-hint" id="shortcut-trigger" title="Press / or ⌘K to search">
           <kbd>/</kbd> <span class="hint-text" id="lbl-search-hint">Search</span>
         </div>
+
+        <a href="#appstore-section" class="nav-btn nav-btn-appstore" id="nav-appstore-link">
+          <i class="fa-brands fa-app-store-ios"></i> <span id="lbl-nav-appstore">App Store</span>
+        </a>
+
         <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-btn">
           <i class="fa-brands fa-github"></i> <span>GitHub</span>
         </a>
@@ -57,10 +62,10 @@
     <header class="hero-section">
       <div class="hero-header-row">
         <div class="hero-profile-card">
-          <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="mrKangHo Profile Picture" class="hero-avatar">
+          <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Profile Picture" class="hero-avatar">
           <div class="hero-profile-info">
             <div class="status-pill" id="status-pill">
-              <span class="status-dot"></span> <span id="status-pill-text">Available for macOS & iOS Open Source Projects</span>
+              <span class="status-dot"></span> <span id="status-pill-text">Available for macOS & iOS Projects</span>
             </div>
             <h1 class="hero-name">Kano <span class="username">(@mrKangHo)</span></h1>
             <div class="hero-bio">
@@ -94,11 +99,59 @@
       </div>
     </header>
 
+    <!-- Main Section View Switcher Tabs -->
+    <div class="view-switch-bar">
+      <button type="button" class="view-tab-btn active" data-view="all">
+        <i class="fa-solid fa-layer-group"></i> <span id="lbl-tab-all">All Portfolio</span>
+      </button>
+      <button type="button" class="view-tab-btn" data-view="appstore">
+        <i class="fa-brands fa-app-store-ios"></i> <span id="lbl-tab-appstore">App Store Apps</span>
+      </button>
+      <button type="button" class="view-tab-btn" data-view="opensource">
+        <i class="fa-solid fa-code-branch"></i> <span id="lbl-tab-opensource">Open Source Repos</span>
+      </button>
+    </div>
+
     <!-- Main Content Grid -->
     <main>
 
+      <!-- App Store Portfolio Section -->
+      <section class="section-block" id="appstore-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-heading" id="appstore-heading">App Store Commercial Portfolio</h2>
+            <p class="section-subtext" id="appstore-subtext">Featured mobile applications published on Apple App Store</p>
+          </div>
+        </div>
+
+        <!-- App Store Live Search Bar -->
+        <div class="appstore-search-bar">
+          <div class="search-input-wrapper">
+            <i class="fa-brands fa-app-store-ios search-icon"></i>
+            <input type="text" id="appstore-search-input" placeholder="Search App Store (e.g., 놀이의발견, 하나머니, TV조선, 스타벅스...)" autocomplete="off">
+            <button id="appstore-search-btn" class="appstore-search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i> <span id="lbl-appstore-search-btn">Search App</span>
+            </button>
+          </div>
+          <div class="appstore-quick-tags" id="appstore-quick-tags">
+            <span class="quick-tag-label" id="lbl-quick-tags">Quick View:</span>
+            <button class="quick-tag-btn" data-app-query="놀이의발견">#놀이의발견</button>
+            <button class="quick-tag-btn" data-app-query="하나머니">#하나머니</button>
+            <button class="quick-tag-btn" data-app-query="TV조선">#TV조선</button>
+            <button class="quick-tag-btn" data-app-query="TV조선 뉴스">#TV조선 뉴스</button>
+            <button class="quick-tag-btn" data-app-query="스타벅스">#스타벅스</button>
+            <button class="quick-tag-btn reset-tag" id="btn-reset-appstore" style="display:none;"><i class="fa-solid fa-rotate-left"></i> <span id="lbl-reset-appstore">Show Featured</span></button>
+          </div>
+        </div>
+
+        <!-- App Store Grid -->
+        <div class="appstore-grid" id="appstore-container">
+          <!-- App Store project cards inserted dynamically -->
+        </div>
+      </section>
+
       <!-- Featured / Flagship Applications Section -->
-      <section class="section-block">
+      <section class="section-block" id="featured-section">
         <div class="section-header">
           <div>
             <h2 class="section-heading" id="featured-heading">Featured Software</h2>
@@ -112,7 +165,7 @@
       </section>
 
       <!-- Repositories Filter Bar & Control -->
-      <section class="section-block">
+      <section class="section-block" id="repos-toolbar-section">
         <div class="search-filter-toolbar">
           <div class="search-input-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -150,7 +203,7 @@
       </section>
 
       <!-- Repositories Grid Section -->
-      <section class="section-block">
+      <section class="section-block" id="repos-grid-section">
         <div class="repo-list-header">
           <h3 class="list-title"><span id="all-repos-title-text">All Repositories</span> <span id="repo-count-badge" class="count-pill">0</span></h3>
         </div>
@@ -189,6 +242,6 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
