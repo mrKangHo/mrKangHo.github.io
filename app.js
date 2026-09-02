@@ -732,7 +732,9 @@ function renderAppStoreGrid(apps) {
     }
 
     let platformBadgesHtml = '';
-    if (app.isPersonal) {
+    if (app.isFreelance || app.type === 'freelance') {
+      platformBadgesHtml += `<span class="category-tag" style="background: rgba(20, 184, 166, 0.15); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3);">외주 / 프리랜서</span>`;
+    } else if (app.isPersonal) {
       platformBadgesHtml += `<span class="category-tag" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3);">개인 프로젝트</span>`;
     }
     if (app.platforms && app.platforms.includes('ios')) {
