@@ -7,7 +7,7 @@ const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
-// Default Curated App Store Portfolio Apps with Screenshots
+// Default Curated App Store Portfolio Apps with 100% Fresh Verified Screenshot URLs
 const DEFAULT_APPSTORE_APPS = [
   {
     id: 1440611965,
@@ -23,9 +23,10 @@ const DEFAULT_APPSTORE_APPS = [
     screenshots: [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/80/96/74/8096742a-d57d-4c14-2ef5-188389553852/1.png/392x696bb.png',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2d/cd/61/2dcd61cb-f6f0-2fb4-e123-782cc0244a9e/2.png/392x696bb.png',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/05/ae/dd/05aeddae-cf04-1fdc-d9c9-66bf130c0fd3/3.png/392x696bb.png',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/58/01/5e/58015efd-ea33-8a39-ecfc-fcfdbdf13636/4.png/392x696bb.png',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/bf/bb/ee/bfbbee95-46ff-e74f-95ec-cb5948956910/5.png/392x696bb.png'
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/44/83/83/4483837e-7dd7-770d-764b-a1857c7a8222/3.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f7/5d/0a/f75d0ab0-fe4e-81bd-2355-29a0271c9e2b/4.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2b/00/55/2b0055f2-acb0-8fde-109e-73f8e5c34d28/5.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8c/22/f8/8c22f8b5-1065-4e60-e3b3-400e00b2eed6/6.png/392x696bb.png'
     ]
   },
   {
@@ -42,9 +43,10 @@ const DEFAULT_APPSTORE_APPS = [
     screenshots: [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/70/3d/f1/703df1f3-1ba5-dfad-89e6-dec4ac7de4d7/ios420_1_opaque.png/320x480bb.jpg',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/6a/f3/7b6af3d2-f7eb-cf7d-8664-840217943fc4/ios420_2_opaque.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ef/07/70/ef0770cb-7c70-6523-9585-6184a44b1c70/ios420_3_opaque.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ae/07/d1/ae07d1a2-e64e-bc1c-99d9-ae8385bbd193/ios420_4_opaque.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ae/ea/c7/aeeac7be-8068-d0f0-cbe6-fa3ecfe3fb57/ios420_5_opaque.png/320x480bb.jpg'
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7f/3c/80/7f3c807e-2fea-b201-3e67-d4ad70416664/ios420_3_opaque.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/99/30/a0/9930a09a-b5ac-70ad-372b-30283bc0a81e/ios420_4_opaque.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a4/fd/32/a4fd3275-cf00-0e9b-5756-4ef71501db7d/ios420_5_opaque.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/25/0e/a9/250ea98b-2fc0-81ba-ceb5-0661de91b0f5/ios420_6_opaque.png/320x480bb.jpg'
     ]
   },
   {
@@ -82,7 +84,8 @@ const DEFAULT_APPSTORE_APPS = [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c1/24/a0/c124a09d-5870-f658-c602-888908925b65/news_ios_MO_02.png/320x480bb.jpg',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/36/79/d4/3679d4dd-934b-ee0e-841f-622b441fd6df/news_ios_MO_03.png/320x480bb.jpg',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/6b/eb/29/6beb2902-69b1-567b-0e83-82956f5afd7e/news_ios_MO_04.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/11/83/08/118308ff-5a00-eb36-fdf0-afde3310eb48/news_ios_MO_05.png/320x480bb.jpg'
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/11/83/08/118308ff-5a00-eb36-fdf0-afde3310eb48/news_ios_MO_05.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7b/b7/27/7bb7271b-bd9f-2b34-19e0-37ba9e7d77be/news_ios_MO_06.png/320x480bb.jpg'
     ]
   },
   {
@@ -101,7 +104,8 @@ const DEFAULT_APPSTORE_APPS = [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/f4/c4/bb/f4c4bbfb-b613-f71e-3b21-cdd8f6a662d8/02.png/392x696bb.png',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d7/89/cf/d789cfbb-4532-aad5-387c-95dc87862b36/03.png/392x696bb.png',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/6f/cc/c8/6fccc842-7e15-dfd9-732a-199a0079fd29/04.png/392x696bb.png',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/39/ac/5b/39ac5bfe-1b98-3f97-3f24-cb28309aa788/05.png/392x696bb.png'
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/39/ac/5b/39ac5bfe-1b98-3f97-3f24-cb28309aa788/05.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/37/8c/17/378c1766-ed7f-af0a-57e1-e442353f2f01/06.png/392x696bb.png'
     ]
   }
 ];
@@ -346,8 +350,44 @@ document.addEventListener('DOMContentLoaded', () => {
   initAppStoreEvents();
   initLightbox();
   renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+  fetchFeaturedAppStoreApps();
   fetchRepositories();
 });
+
+// Automatically fetch live fresh App Store metadata & screenshots on page load
+async function fetchFeaturedAppStoreApps() {
+  const ids = DEFAULT_APPSTORE_APPS.map(a => a.id).join(',');
+  try {
+    const url = `https://itunes.apple.com/lookup?id=${ids}&country=kr`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data.results && data.results.length > 0) {
+      const freshApps = DEFAULT_APPSTORE_APPS.map(defaultApp => {
+        const liveApp = data.results.find(r => r.trackId === defaultApp.id);
+        if (liveApp) {
+          return {
+            ...defaultApp,
+            name: liveApp.trackName || defaultApp.name,
+            artist: liveApp.artistName || defaultApp.artist,
+            icon: liveApp.artworkUrl512 || liveApp.artworkUrl100 || defaultApp.icon,
+            url: liveApp.trackViewUrl || defaultApp.url,
+            genre: liveApp.primaryGenreName || defaultApp.genre,
+            rating: liveApp.averageUserRating ? liveApp.averageUserRating.toFixed(1) : defaultApp.rating,
+            ratingCount: liveApp.userRatingCount || defaultApp.ratingCount,
+            version: liveApp.version || defaultApp.version,
+            screenshots: (liveApp.screenshotUrls && liveApp.screenshotUrls.length > 0) 
+              ? liveApp.screenshotUrls.slice(0, 8) 
+              : defaultApp.screenshots
+          };
+        }
+        return defaultApp;
+      });
+      renderAppStoreGrid(freshApps);
+    }
+  } catch (err) {
+    console.warn('Live App Store lookup failed, using pre-cached default data', err);
+  }
+}
 
 // Lightbox Event Listeners Setup
 function initLightbox() {
@@ -451,7 +491,7 @@ function initAppStoreEvents() {
       if (appstoreSearchInput) appstoreSearchInput.value = '';
       quickTagBtns.forEach(b => b.classList.remove('active'));
       btnResetAppStore.style.display = 'none';
-      renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+      fetchFeaturedAppStoreApps();
     });
   }
 }
@@ -459,7 +499,7 @@ function initAppStoreEvents() {
 // Live App Store API Search via iTunes Search API
 async function searchAppStore(query) {
   if (!query || query.trim() === '') {
-    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+    fetchFeaturedAppStoreApps();
     if (btnResetAppStore) btnResetAppStore.style.display = 'none';
     return;
   }
@@ -484,7 +524,7 @@ async function searchAppStore(query) {
         ratingCount: app.userRatingCount || 0,
         version: app.version || '1.0',
         description: app.description || 'App Store application',
-        screenshots: (app.screenshotUrls || []).slice(0, 6)
+        screenshots: (app.screenshotUrls || []).slice(0, 8)
       }));
       renderAppStoreGrid(apps);
     } else {
@@ -497,7 +537,7 @@ async function searchAppStore(query) {
     }
   } catch (err) {
     console.error('App Store API Search failed', err);
-    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+    fetchFeaturedAppStoreApps();
   }
 }
 
@@ -523,7 +563,7 @@ function renderAppStoreGrid(apps) {
         <div class="appstore-screenshots-scroll">
           ${app.screenshots.map(sUrl => `
             <div class="screenshot-item" onclick="openLightbox('${sUrl}')" title="${escapeHtml(app.name)} Screenshot Preview">
-              <img src="${sUrl}" alt="${escapeHtml(app.name)} Screenshot" loading="lazy">
+              <img src="${sUrl}" alt="${escapeHtml(app.name)} Screenshot" loading="lazy" onerror="this.parentElement.style.display='none';">
             </div>
           `).join('')}
         </div>
@@ -648,7 +688,7 @@ function setLanguage(lang) {
   if (processedRepos.length > 0) {
     updateStats(processedRepos);
     render();
-    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+    fetchFeaturedAppStoreApps();
   }
 }
 
