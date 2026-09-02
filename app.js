@@ -7,7 +7,7 @@ const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
-// Default Curated App Store Portfolio Apps with 100% Fresh Verified Screenshot URLs
+// Default Curated App Store Portfolio Apps with Resume Roles, Contributions & Tech Stack
 const DEFAULT_APPSTORE_APPS = [
   // Commercial Work Projects
   {
@@ -17,6 +17,16 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
+    role: 'iOS 파트 리더 (웅진컴퍼스 · 2019.07 - 2025.08)',
+    contributions: [
+      'Tuist 도입으로 계층별(Feature/Core/UI) 모듈화 설계 및 전체 빌드 속도 30% 이상 개선',
+      'TCA 기반 단방향 상태 관리 도입 및 팀 기술 세미나 주도로 런타임 오류 발생률 대폭 감소',
+      '전사 공통 디자인 시스템 설계 (FlexLayout/PinLayout으로 프레임 드랍 없는 리스트 구현, 신규 UI 구현 시간 40% 단축)',
+      'Crashlytics → AI 우선순위 판정 → JIRA 자동 등록 → Slack 알림으로 이어지는 QA 자동화 파이프라인 직접 설계 및 구축',
+      'PR 생성 시 Claude Code 1차 자동 리뷰 도입, 레거시 기술부채 개선과 신규 기능 개발에 AI 코딩 도구 적극 활용',
+      'Braze, Amplitude, AirBridge 연동으로 데이터 기반 성장 지표 수집 체계 완성'
+    ],
+    techStack: ['Swift', 'TCA', 'Tuist', 'Clean Architecture', 'FlexLayout', 'PinLayout', 'Firebase', 'Claude Code', 'Braze', 'Amplitude'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ff/1c/db/ff1cdb92-6a1f-ac30-64cb-f06574412ef5/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EB%86%80%EC%9D%B4%EC%9D%98%EB%B0%9C%EA%B2%AC/id1440611965',
     genre: '라이프스타일',
@@ -40,6 +50,13 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
+    role: 'iOS 개발 리드 / 파트장 (페타즈 · 2016.06 - 2018.09)',
+    contributions: [
+      'Objective-C / Swift 기반 대규모 금융 서비스에 MVVM 아키텍처 전면 도입 및 비즈니스 로직 결합도 감소',
+      'GitHub 기반 코드 리뷰 프로세스 주도 및 팀 코딩 컨벤션 통일로 코드 품질 및 개발 생산성 향상',
+      '하나금융그룹 혜택 및 트래블로그 결제/환전 네트워크 연동 시 예외 처리 강화로 결제 데이터 정합성 확보'
+    ],
+    techStack: ['Swift', 'Objective-C', 'MVVM', 'CocoaPods', 'Financial Core', 'Git'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/49/00/b9/4900b978-a047-cb3f-b02d-a899b844bb6d/AppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%ED%95%98%EB%82%98%EB%A8%B8%EB%8B%88-%ED%8A%B8%EB%9E%98%EB%B8%94%EB%A1%9C%EA%B7%B8/id1038288833',
     genre: '금융',
@@ -63,6 +80,13 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
+    role: 'iOS 개발 리드 (페타즈 · 2016.06 - 2018.09)',
+    contributions: [
+      'SMR 광고 시스템을 통합한 커스텀 동영상 플레이어 직접 설계/구현 (자체 광고 제어권 및 수익 모델 확보)',
+      'MVVM 아키텍처 도입으로 데이터 흐름 정형화 및 UI-비즈니스 로직 결합도 감소',
+      'CocoaPods 기반 라이브러리 관리 체계화로 대규모 리뉴얼 과정의 기술적 충돌 방지 및 미디어 재생 최적화'
+    ],
+    techStack: ['Objective-C', 'MVVM', 'SMR AD Player', 'Video Streaming', 'CocoaPods'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/35/f0/d0/35f0d013-e136-1994-a5e6-ecaf0eabe624/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/tv%EC%A1%B0%EC%84%A0/id6739484703',
     genre: '엔터테인먼트',
@@ -85,6 +109,13 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
+    role: 'iOS 개발 리드 (페타즈 · 2016.06 - 2018.09)',
+    contributions: [
+      '실시간 뉴스 생방송 온에어 & 뉴스 클립 스트리밍 최적화 동영상 플레이어 구조 통합',
+      '정치, 경제, 사회 등 분야별 뉴스 실시간 데이터 처리 및 네트워크 예외 처리 강화',
+      '대규모 트래픽 방송 미디어 환경에서 UI 렌더링 최적화 및 안정적 미디어 서빙'
+    ],
+    techStack: ['Objective-C', 'MVVM', 'Live Stream', 'CocoaPods'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4f/fa/ec/4ffaeca0-2ca2-5739-7cd4-5cd1502ca8e4/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/tv%EC%A1%B0%EC%84%A0-%EB%89%B4%EC%8A%A4/id6739484927',
     genre: '뉴스',
@@ -108,6 +139,14 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
+    role: 'iOS 선임연구원 (미플즈 · 2015.05 - 2016.05)',
+    contributions: [
+      '수만 명 동시 접속 환경에서 이벤트 및 메뉴 탐색 화면 렌더링 최적화 수행',
+      '거대해진 UIViewController 로직을 MVVM 아키텍처로 재구조화하여 단위 테스트 가능한 기반 마련',
+      '사이렌 오더 · 리워드 결제/주문 데이터 정합성을 위한 네트워크 예외 처리 및 트랜잭션 강화',
+      'GitHub 기반 코드 리뷰 프로세스 주도 및 공통 UI 컴포넌트화로 개발 생산성 향상'
+    ],
+    techStack: ['Objective-C', 'MVVM', 'Siren Order', 'CocoaPods', 'Git'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ca/d9/0e/cad90e16-d1a0-9f0b-54f1-b6e61d3237d3/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4/id466682252',
     genre: '음식 및 음료',
@@ -132,6 +171,13 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: true,
     type: 'personal',
     platforms: ['ios', 'android'],
+    role: '기획 · 설계 · 개발 100% (개인 서비스)',
+    contributions: [
+      '보관실별(냉장실, 냉동실, 실온) 식재료 유통기한 D-Day 스마트 감지 및 자동 알림 시스템 구축',
+      'Google Gemini AI 셰프 연동으로 보유 식재료 조합 기반 실시간 맞춤 레시피 무한 생성 알고리즘 구현',
+      '조리 시 부족한 재료를 마트 구매 규격 단위(1병, 1팩 등)로 자동 변환하여 원터치 장바구니 담기 및 냉장고 즉시 입고 시스템 설계'
+    ],
+    techStack: ['Swift', 'SwiftUI', 'Google Gemini AI', 'Firebase', 'Clean Architecture'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/c1/e4/ddc1e48d-880b-18ed-73cc-edbac37ccabe/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%83%89%EC%9E%A5%EA%B3%A0/id6801459066',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.todayfridge.chef&hl=ko',
@@ -154,6 +200,13 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: true,
     type: 'personal',
     platforms: ['ios'],
+    role: '기획 · 설계 · 개발 100% (개인 서비스)',
+    contributions: [
+      '앱을 열고 단 한 번의 탭으로 1초 만에 오늘의 활동을 기록하는 초고속 인터페이스 구현',
+      '주간/월간 대시보드 통계 및 직관적인 캘린더 시각화를 통해 장 건강 패턴 및 흐름 파악 연동',
+      '복잡한 과정 없는 0-latency 로컬 데이터 퍼스트 구조 설계'
+    ],
+    techStack: ['Swift', 'SwiftUI', 'Firebase', 'Local First'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/87/79/a8/8779a868-877f-8aab-599a-8fe54d520796/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EC%9D%91%EA%B0%80/id6763481391',
     genre: '건강 및 피트니스',
@@ -595,7 +648,7 @@ async function searchAppStore(query) {
   }
 }
 
-// Render App Store & Google Play Portfolio Cards with Screenshots (Full Width List)
+// Render App Store & Google Play Portfolio Cards with Screenshots & Resume Contributions
 function renderAppStoreGrid(apps) {
   if (!appstoreContainer) return;
   appstoreContainer.innerHTML = '';
@@ -652,6 +705,23 @@ function renderAppStoreGrid(apps) {
       platformBadgesHtml += `<span class="platform-badge android"><i class="fa-brands fa-google-play"></i> Android</span>`;
     }
 
+    let detailsHtml = '';
+    if (app.role || (app.contributions && app.contributions.length > 0)) {
+      const contribListHtml = (app.contributions || []).map(c => `<li>${escapeHtml(c)}</li>`).join('');
+      const techListHtml = (app.techStack || []).map(t => `<span class="tech-tag-pill">${escapeHtml(t)}</span>`).join('');
+      
+      detailsHtml = `
+        <div class="appstore-details-block">
+          <div class="details-heading">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>${escapeHtml(app.role || '주요 수행 성과 및 담당 역할')}</span>
+          </div>
+          ${contribListHtml ? `<ul class="details-list">${contribListHtml}</ul>` : ''}
+          ${techListHtml ? `<div class="details-tech-row">${techListHtml}</div>` : ''}
+        </div>
+      `;
+    }
+
     card.innerHTML = `
       <div class="appstore-card-header">
         <img src="${app.icon}" alt="${escapeHtml(app.name)} Icon" class="appstore-icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
@@ -671,6 +741,7 @@ function renderAppStoreGrid(apps) {
         </div>
       </div>
       <p class="appstore-desc">${escapeHtml(app.description)}</p>
+      ${detailsHtml}
       ${screenshotsHtml}
       <div class="appstore-footer">
         <span class="appstore-version">v${escapeHtml(app.version)}</span>

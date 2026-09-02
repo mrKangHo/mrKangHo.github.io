@@ -1388,6 +1388,73 @@ body {
   border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
+/* App Details & Resume Contributions */
+.appstore-details-block {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  margin: 1.1rem 0;
+}
+
+.details-heading {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.details-heading i {
+  color: #60a5fa;
+}
+
+.details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.85rem 0;
+}
+
+.details-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.45rem;
+}
+
+.details-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0.35rem;
+  top: 0;
+  color: #60a5fa;
+  font-weight: bold;
+}
+
+.details-tech-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  padding-top: 0.6rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.tech-tag-pill {
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(0, 113, 227, 0.12);
+  color: #93c5fd;
+  border: 1px solid rgba(0, 113, 227, 0.25);
+}
+
 .loading-box {
   text-align: center;
   padding: 3rem 1rem;
