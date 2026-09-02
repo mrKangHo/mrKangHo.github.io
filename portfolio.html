@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kano — Commercial App Portfolio</title>
+  <meta name="description" content="Commercial Mobile Applications & App Store Portfolio by Kano (macOS & iOS Developer).">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://github.com/mrKangHo.png" type="image/png">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Devicon Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="nav-avatar">
+        <span class="nav-title">Kano</span>
+        <span class="nav-tag">Portfolio</span>
+      </a>
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher" id="lang-switcher">
+          <button type="button" class="lang-btn" data-lang-switch="ko" title="한국어로 전환">KO</button>
+          <button type="button" class="lang-btn" data-lang-switch="en" title="Switch to English">EN</button>
+        </div>
+
+        <!-- Link back to Open Source index -->
+        <a href="index.html" class="nav-btn">
+          <i class="fa-solid fa-code-branch"></i> <span id="lbl-nav-opensource">Open Source</span>
+        </a>
+
+        <!-- Active Portfolio Button -->
+        <a href="portfolio.html" class="nav-btn nav-btn-appstore active" id="nav-appstore-link">
+          <i class="fa-brands fa-app-store-ios"></i> <span id="lbl-nav-appstore">포트폴리오</span>
+        </a>
+
+        <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-btn">
+          <i class="fa-brands fa-github"></i> <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Profile Hero Section -->
+    <header class="hero-section">
+      <div class="hero-header-row">
+        <div class="hero-profile-card">
+          <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Profile Picture" class="hero-avatar">
+          <div class="hero-profile-info">
+            <div class="status-pill" id="status-pill">
+              <span class="status-dot"></span> <span id="status-pill-text">Available for macOS & iOS Projects</span>
+            </div>
+            <h1 class="hero-name">Kano <span class="username">(@mrKangHo)</span></h1>
+            <div class="hero-bio">
+              <p class="bio-text" id="hero-bio-text"><i class="fa-brands fa-apple"></i> macOS & iOS Engineer | Crafting Native Apple Apps, Developer Tools & AI Agent Skills</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Counter Badges -->
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <span class="metric-val">5+</span>
+            <span class="metric-lbl">Featured Apps</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-val">100k+</span>
+            <span class="metric-lbl">App Reviews</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-val">iOS / macOS</span>
+            <span class="metric-lbl">Target Platforms</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main>
+
+      <!-- App Store Commercial Portfolio Section -->
+      <section class="section-block" id="appstore-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-heading" id="appstore-heading">실무 프로젝트 포트폴리오</h2>
+            <p class="section-subtext" id="appstore-subtext">Apple App Store에 공식 출시하여 서비스 중인 주요 모바일 애플리케이션 실무 경력</p>
+          </div>
+        </div>
+
+        <!-- App Store Live Search Bar -->
+        <div class="appstore-search-bar">
+          <div class="search-input-wrapper">
+            <i class="fa-brands fa-app-store-ios search-icon"></i>
+            <input type="text" id="appstore-search-input" placeholder="App Store 앱 실시간 검색 (예: 놀이의발견, 하나머니, TV조선, 스타벅스...)" autocomplete="off">
+            <button id="appstore-search-btn" class="appstore-search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i> <span id="lbl-appstore-search-btn">앱 검색</span>
+            </button>
+          </div>
+          <div class="appstore-quick-tags" id="appstore-quick-tags">
+            <span class="quick-tag-label" id="lbl-quick-tags">빠른 탐색:</span>
+            <button class="quick-tag-btn" data-app-query="놀이의발견">#놀이의발견</button>
+            <button class="quick-tag-btn" data-app-query="하나머니">#하나머니</button>
+            <button class="quick-tag-btn" data-app-query="TV조선">#TV조선</button>
+            <button class="quick-tag-btn" data-app-query="TV조선 뉴스">#TV조선 뉴스</button>
+            <button class="quick-tag-btn" data-app-query="스타벅스">#스타벅스</button>
+            <button class="quick-tag-btn reset-tag" id="btn-reset-appstore" style="display:none;"><i class="fa-solid fa-rotate-left"></i> <span id="lbl-reset-appstore">대표 앱 목록</span></button>
+          </div>
+        </div>
+
+        <!-- App Store Grid -->
+        <div class="appstore-grid" id="appstore-container">
+          <!-- App Store project cards inserted dynamically -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© <span id="current-year">2026</span> Kano. <span id="footer-rights">All rights reserved.</span></span>
+        <div class="footer-links">
+          <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" id="footer-link-github">GitHub Profile</a>
+          <span class="sep">•</span>
+          <a href="https://github.com/mrKangHo/mrKangHo.github.io" target="_blank" rel="noopener noreferrer" id="footer-link-repo">Repository</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden">
+    <i class="fa-solid fa-check"></i> <span id="toast-message">Copied to clipboard</span>
+  </div>
+
+  <!-- Screenshot Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox-modal hidden">
+    <div class="lightbox-overlay" id="lightbox-overlay"></div>
+    <div class="lightbox-container">
+      <button type="button" class="lightbox-close" id="lightbox-close" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      <img id="lightbox-img" src="" alt="App Store Screenshot Preview">
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js?v=9"></script>
+</body>
+</html>

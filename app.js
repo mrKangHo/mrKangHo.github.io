@@ -139,10 +139,8 @@ const TRANSLATIONS = {
     githubProfile: 'GitHub 프로필',
     repositoryLink: '저장소',
     rights: 'All rights reserved.',
+    navOpenSource: '오픈소스',
     navAppStore: '포트폴리오',
-    tabAll: '전체 포트폴리오',
-    tabAppStore: '실무 포트폴리오',
-    tabOpenSource: '오픈소스 저장소',
     appstoreHeading: '실무 프로젝트 포트폴리오',
     appstoreSubtext: 'Apple App Store에 공식 출시하여 서비스 중인 주요 모바일 애플리케이션 실무 경력',
     appstorePlaceholder: 'App Store 앱 실시간 검색 (예: 놀이의발견, 하나머니, TV조선, 스타벅스...)',
@@ -179,10 +177,8 @@ const TRANSLATIONS = {
     githubProfile: 'GitHub Profile',
     repositoryLink: 'Repository',
     rights: 'All rights reserved.',
+    navOpenSource: 'Open Source',
     navAppStore: 'Portfolio',
-    tabAll: 'All Portfolio',
-    tabAppStore: 'Work Portfolio',
-    tabOpenSource: 'Open Source Repos',
     appstoreHeading: 'Commercial Work Portfolio',
     appstoreSubtext: 'Featured commercial mobile applications published on Apple App Store',
     appstorePlaceholder: 'Search App Store live (e.g. Nori Discovery, Hana Money, TV Chosun, Starbucks...)',
@@ -342,21 +338,26 @@ const appstoreSearchInput = document.getElementById('appstore-search-input');
 const appstoreSearchBtn = document.getElementById('appstore-search-btn');
 const btnResetAppStore = document.getElementById('btn-reset-appstore');
 
-// Initialize Application
+// Initialize Application (Modular per page)
 document.addEventListener('DOMContentLoaded', () => {
   updateUIStrings();
-  initEvents();
-  initViewTabs();
-  initAppStoreEvents();
   initLightbox();
-  renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
-  fetchFeaturedAppStoreApps();
-  fetchRepositories();
-  // Show ONLY open source repositories on initial page load
-  switchViewMode('opensource');
+
+  // Page 1: Open Source Repositories (index.html)
+  if (repoGrid) {
+    initEvents();
+    fetchRepositories();
+  }
+
+  // Page 2: Commercial App Store Portfolio (portfolio.html)
+  if (appstoreContainer) {
+    initAppStoreEvents();
+    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+    fetchFeaturedAppStoreApps();
+  }
 });
 
-// Automatically fetch live fresh App Store metadata & screenshots on page load
+// Automatically fetch live fresh App Store metadata & screenshots on portfolio page
 async function fetchFeaturedAppStoreApps() {
   const ids = DEFAULT_APPSTORE_APPS.map(a => a.id).join(',');
   try {
@@ -417,69 +418,6 @@ window.openLightbox = function(imgUrl) {
 function closeLightbox() {
   const modal = document.getElementById('lightbox-modal');
   if (modal) modal.classList.add('hidden');
-}
-
-// Switch Active Section View (All | App Store Portfolio | Open Source Repos)
-function switchViewMode(view) {
-  const viewTabs = document.querySelectorAll('.view-tab-btn');
-  const appstoreSection = document.getElementById('appstore-section');
-  const featuredSection = document.getElementById('featured-section');
-  const reposToolbar = document.getElementById('repos-toolbar-section');
-  const reposGridSection = document.getElementById('repos-grid-section');
-
-  viewTabs.forEach(t => {
-    t.classList.toggle('active', t.dataset.view === view);
-  });
-
-  if (view === 'appstore') {
-    if (featuredSection) featuredSection.style.display = 'none';
-    if (reposToolbar) reposToolbar.style.display = 'none';
-    if (reposGridSection) reposGridSection.style.display = 'none';
-    if (appstoreSection) appstoreSection.style.display = 'block';
-  } else if (view === 'opensource') {
-    if (featuredSection) featuredSection.style.display = 'block';
-    if (reposToolbar) reposToolbar.style.display = 'block';
-    if (reposGridSection) reposGridSection.style.display = 'block';
-    if (appstoreSection) appstoreSection.style.display = 'none';
-  } else { // 'all'
-    if (featuredSection) featuredSection.style.display = 'block';
-    if (appstoreSection) appstoreSection.style.display = 'block';
-    if (reposToolbar) reposToolbar.style.display = 'block';
-    if (reposGridSection) reposGridSection.style.display = 'block';
-  }
-}
-
-// Initialize View Switching Tabs (All | App Store Portfolio | Open Source)
-function initViewTabs() {
-  const viewTabs = document.querySelectorAll('.view-tab-btn');
-  viewTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      switchViewMode(tab.dataset.view);
-    });
-  });
-
-  // Top Nav Brand Link ('Kano') click handler: shows ONLY Open Source Repos
-  const navBrandLink = document.getElementById('nav-brand-link');
-  if (navBrandLink) {
-    navBrandLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      switchViewMode('opensource');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // Top Nav '포트폴리오' (Portfolio) link click handler: shows ONLY App Store portfolio
-  const navAppstoreLink = document.getElementById('nav-appstore-link');
-  if (navAppstoreLink) {
-    navAppstoreLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      switchViewMode('appstore');
-      const appstoreSection = document.getElementById('appstore-section');
-      if (appstoreSection) {
-        appstoreSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
 }
 
 // Initialize App Store Search & Quick Tag Events
@@ -631,8 +569,10 @@ function renderAppStoreGrid(apps) {
   });
 }
 
-// Event Listeners Setup
+// Event Listeners Setup for index.html
 function initEvents() {
+  if (!searchInput) return;
+
   // Language Switcher Buttons
   const langBtns = document.querySelectorAll('[data-lang-switch]');
   langBtns.forEach(btn => {
@@ -647,28 +587,32 @@ function initEvents() {
   // Search input
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value.toLowerCase().trim();
-    clearSearchBtn.classList.toggle('hidden', currentSearch === '');
+    if (clearSearchBtn) clearSearchBtn.classList.toggle('hidden', currentSearch === '');
     render();
   });
 
-  clearSearchBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    currentSearch = '';
-    clearSearchBtn.classList.add('hidden');
-    render();
-  });
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      currentSearch = '';
+      clearSearchBtn.classList.add('hidden');
+      render();
+    });
+  }
 
   // Global Keyboard Shortcut: '/' or '⌘K' / 'Ctrl+K'
   document.addEventListener('keydown', (e) => {
     if ((e.key === '/' && document.activeElement !== searchInput && document.activeElement !== appstoreSearchInput) || 
         ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k')) {
       e.preventDefault();
-      searchInput.focus();
-      searchInput.select();
+      if (searchInput) {
+        searchInput.focus();
+        searchInput.select();
+      }
     }
   });
 
-  if (shortcutTrigger) {
+  if (shortcutTrigger && searchInput) {
     shortcutTrigger.addEventListener('click', () => {
       searchInput.focus();
     });
@@ -685,30 +629,36 @@ function initEvents() {
   });
 
   // Toggle Forks
-  toggleForks.addEventListener('change', (e) => {
-    includeForks = e.target.checked;
-    render();
-  });
+  if (toggleForks) {
+    toggleForks.addEventListener('change', (e) => {
+      includeForks = e.target.checked;
+      render();
+    });
+  }
 
   // Sort dropdown
-  sortSelect.addEventListener('change', (e) => {
-    currentSort = e.target.value;
-    render();
-  });
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+      currentSort = e.target.value;
+      render();
+    });
+  }
 
   // Reset button
-  resetFiltersBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    currentSearch = '';
-    clearSearchBtn.classList.add('hidden');
-    currentFilter = 'all';
-    filterBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === 'all'));
-    includeForks = true;
-    toggleForks.checked = true;
-    currentSort = 'updated';
-    sortSelect.value = 'updated';
-    render();
-  });
+  if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      currentSearch = '';
+      if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
+      currentFilter = 'all';
+      filterBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === 'all'));
+      includeForks = true;
+      if (toggleForks) toggleForks.checked = true;
+      currentSort = 'updated';
+      if (sortSelect) sortSelect.value = 'updated';
+      render();
+    });
+  }
 }
 
 // Switch Active Language and Update UI
@@ -719,6 +669,8 @@ function setLanguage(lang) {
   if (processedRepos.length > 0) {
     updateStats(processedRepos);
     render();
+  }
+  if (appstoreContainer) {
     fetchFeaturedAppStoreApps();
   }
 }
@@ -798,17 +750,11 @@ function updateUIStrings() {
   if (footerLinkRepoEl) footerLinkRepoEl.textContent = t.repositoryLink;
 
   // App Store i18n
+  const lblNavOpenSourceEl = document.getElementById('lbl-nav-opensource');
+  if (lblNavOpenSourceEl) lblNavOpenSourceEl.textContent = t.navOpenSource;
+
   const lblNavAppStoreEl = document.getElementById('lbl-nav-appstore');
   if (lblNavAppStoreEl) lblNavAppStoreEl.textContent = t.navAppStore;
-
-  const lblTabAllEl = document.getElementById('lbl-tab-all');
-  if (lblTabAllEl) lblTabAllEl.textContent = t.tabAll;
-
-  const lblTabAppStoreEl = document.getElementById('lbl-tab-appstore');
-  if (lblTabAppStoreEl) lblTabAppStoreEl.textContent = t.tabAppStore;
-
-  const lblTabOpenSourceEl = document.getElementById('lbl-tab-opensource');
-  if (lblTabOpenSourceEl) lblTabOpenSourceEl.textContent = t.tabOpenSource;
 
   const appstoreHeadingEl = document.getElementById('appstore-heading');
   if (appstoreHeadingEl) appstoreHeadingEl.textContent = t.appstoreHeading;
@@ -1053,9 +999,14 @@ function updateStats(repos) {
 
   const sortedLangs = Object.keys(langCounts).sort((a, b) => langCounts[b] - langCounts[a]);
 
-  document.getElementById('stat-repos').textContent = totalRepos;
-  document.getElementById('stat-stars').textContent = totalStars;
-  document.getElementById('stat-forks').textContent = totalForks;
+  const statReposEl = document.getElementById('stat-repos');
+  if (statReposEl) statReposEl.textContent = totalRepos;
+
+  const statStarsEl = document.getElementById('stat-stars');
+  if (statStarsEl) statStarsEl.textContent = totalStars;
+
+  const statForksEl = document.getElementById('stat-forks');
+  if (statForksEl) statForksEl.textContent = totalForks;
 
   const langStackEl = document.getElementById('stat-languages-stack');
   const langLabelEl = document.getElementById('stat-languages-label');
@@ -1105,8 +1056,10 @@ function getLanguageIconHtml(lang) {
   return '<i class="fa-solid fa-code"></i>';
 }
 
-// Main Render Function
+// Main Render Function for index.html
 function render() {
+  if (!repoGrid) return;
+
   let filtered = processedRepos.filter(repo => {
     if (!includeForks && repo.isFork) return false;
 
@@ -1145,12 +1098,12 @@ function render() {
   renderFeatured();
 
   repoGrid.innerHTML = '';
-  repoCountBadge.textContent = filtered.length;
+  if (repoCountBadge) repoCountBadge.textContent = filtered.length;
 
   if (filtered.length === 0) {
-    noResults.classList.remove('hidden');
+    if (noResults) noResults.classList.remove('hidden');
   } else {
-    noResults.classList.add('hidden');
+    if (noResults) noResults.classList.add('hidden');
     filtered.forEach(repo => {
       repoGrid.appendChild(createRepoCard(repo));
     });
@@ -1168,6 +1121,7 @@ function getRepoIcon(repo) {
 
 // Render Featured Projects Section
 function renderFeatured() {
+  if (!featuredContainer) return;
   const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
   const featuredRepos = processedRepos.filter(r => r.featured);
   featuredContainer.innerHTML = '';
@@ -1299,6 +1253,7 @@ window.copyCloneCommand = function(repoName, cloneUrl) {
 };
 
 function showToast(msg) {
+  if (!toastMessage || !toast) return;
   toastMessage.textContent = msg;
   toast.classList.remove('hidden');
   setTimeout(() => {
