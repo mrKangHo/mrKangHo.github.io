@@ -7,7 +7,7 @@ const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
-// Default Curated App Store Portfolio Apps
+// Default Curated App Store Portfolio Apps with Screenshots
 const DEFAULT_APPSTORE_APPS = [
   {
     id: 1440611965,
@@ -19,7 +19,14 @@ const DEFAULT_APPSTORE_APPS = [
     rating: '4.5',
     ratingCount: 1274,
     version: '4.27.13',
-    description: '국내 1위 가족 여가 플랫폼! 전국 키즈카페부터 워터파크, 테마파크, 체험 학습 및 숙소까지 한 번에 쉽고 저렴하게 예약해보세요.'
+    description: '국내 1위 가족 여가 플랫폼! 전국 키즈카페부터 워터파크, 테마파크, 체험 학습 및 숙소까지 한 번에 쉽고 저렴하게 예약해보세요.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/80/96/74/8096742a-d57d-4c14-2ef5-188389553852/1.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2d/cd/61/2dcd61cb-f6f0-2fb4-e123-782cc0244a9e/2.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/05/ae/dd/05aeddae-cf04-1fdc-d9c9-66bf130c0fd3/3.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/58/01/5e/58015efd-ea33-8a39-ecfc-fcfdbdf13636/4.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/bf/bb/ee/bfbbee95-46ff-e74f-95ec-cb5948956910/5.png/392x696bb.png'
+    ]
   },
   {
     id: 1038288833,
@@ -31,7 +38,14 @@ const DEFAULT_APPSTORE_APPS = [
     rating: '4.7',
     ratingCount: 100461,
     version: '4.0.41',
-    description: '쓸수록 쌓이는 모바일 생활 머니 플랫폼! 하나금융그룹의 혜택과 해외여행 필수 트래블로그 서비스를 손쉽게 이용하세요.'
+    description: '쓸수록 쌓이는 모바일 생활 머니 플랫폼! 하나금융그룹의 혜택과 해외여행 필수 트래블로그 서비스를 손쉽게 이용하세요.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/70/3d/f1/703df1f3-1ba5-dfad-89e6-dec4ac7de4d7/ios420_1_opaque.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/7b/6a/f3/7b6af3d2-f7eb-cf7d-8664-840217943fc4/ios420_2_opaque.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ef/07/70/ef0770cb-7c70-6523-9585-6184a44b1c70/ios420_3_opaque.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ae/07/d1/ae07d1a2-e64e-bc1c-99d9-ae8385bbd193/ios420_4_opaque.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ae/ea/c7/aeeac7be-8068-d0f0-cbe6-fa3ecfe3fb57/ios420_5_opaque.png/320x480bb.jpg'
+    ]
   },
   {
     id: 6739484703,
@@ -43,7 +57,14 @@ const DEFAULT_APPSTORE_APPS = [
     rating: '3.0',
     ratingCount: 8,
     version: '1.0.7',
-    description: 'TV조선 실시간 온에어 무료 시청, 명장면 클립 서비스 및 예능, 교양, 시사 프로그램 VOD 다시보기 서비스.'
+    description: 'TV조선 실시간 온에어 무료 시청, 명장면 클립 서비스 및 예능, 교양, 시사 프로그램 VOD 다시보기 서비스.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/82/f6/24/82f62411-6926-3e2f-9d65-4f1c5ab6a903/bc_ios_MO_01.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/f1/ea/27/f1ea27e0-7983-8d19-2c18-895b43d16265/bc_ios_MO_02.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/26/87/38/2687385d-7a73-5651-fec8-370d12ac7bcc/bc_ios_MO_03.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/6a/9d/2e/6a9d2ee7-ae55-0b8e-23a8-0dc2b43ec3f5/bc_ios_MO_04.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/f0/80/f5/f080f50e-214e-a7a2-c49d-70d797418d36/bc_ios_MO_05.png/320x480bb.jpg'
+    ]
   },
   {
     id: 6739484927,
@@ -55,7 +76,14 @@ const DEFAULT_APPSTORE_APPS = [
     rating: '5.0',
     ratingCount: 1,
     version: '1.0.7',
-    description: '생생한 보도와 정치, 경제, 사회 등 분야별 뉴스 클립, 실시간 속보 및 TV조선 뉴스 생방송 시청 서비스.'
+    description: '생생한 보도와 정치, 경제, 사회 등 분야별 뉴스 클립, 실시간 속보 및 TV조선 뉴스 생방송 시청 서비스.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dc/33/e7/dc33e7a3-a85a-a13a-03b2-e29580bec338/news_ios_MO_01.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c1/24/a0/c124a09d-5870-f658-c602-888908925b65/news_ios_MO_02.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/36/79/d4/3679d4dd-934b-ee0e-841f-622b441fd6df/news_ios_MO_03.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/6b/eb/29/6beb2902-69b1-567b-0e83-82956f5afd7e/news_ios_MO_04.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/11/83/08/118308ff-5a00-eb36-fdf0-afde3310eb48/news_ios_MO_05.png/320x480bb.jpg'
+    ]
   },
   {
     id: 466682252,
@@ -67,7 +95,14 @@ const DEFAULT_APPSTORE_APPS = [
     rating: '2.0',
     ratingCount: 2385,
     version: '26.4.0',
-    description: '스타벅스 코리아 공식 앱. 사이렌 오더 비대면 주문, 모바일 카드 결제, 리워드 별 적립 및 온라인 스토어 서비스 제공.'
+    description: '스타벅스 코리아 공식 앱. 사이렌 오더 비대면 주문, 모바일 카드 결제, 리워드 별 적립 및 온라인 스토어 서비스 제공.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/fa/09/47/fa094771-5fcb-3ddf-64c6-220d17c77752/01.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/f4/c4/bb/f4c4bbfb-b613-f71e-3b21-cdd8f6a662d8/02.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d7/89/cf/d789cfbb-4532-aad5-387c-95dc87862b36/03.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/6f/cc/c8/6fccc842-7e15-dfd9-732a-199a0079fd29/04.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/39/ac/5b/39ac5bfe-1b98-3f97-3f24-cb28309aa788/05.png/392x696bb.png'
+    ]
   }
 ];
 
@@ -100,17 +135,18 @@ const TRANSLATIONS = {
     githubProfile: 'GitHub 프로필',
     repositoryLink: '저장소',
     rights: 'All rights reserved.',
-    navAppStore: 'App Store',
+    navAppStore: '포트폴리오',
     tabAll: '전체 포트폴리오',
-    tabAppStore: 'App Store 출시 앱',
+    tabAppStore: '실무 포트폴리오',
     tabOpenSource: '오픈소스 저장소',
-    appstoreHeading: 'App Store 프로젝트 포트폴리오',
-    appstoreSubtext: '실제 Apple App Store에 출시되어 서비스 중인 주요 모바일 애플리케이션',
+    appstoreHeading: '실무 프로젝트 포트폴리오',
+    appstoreSubtext: 'Apple App Store에 공식 출시하여 서비스 중인 주요 모바일 애플리케이션 실무 경력',
     appstorePlaceholder: 'App Store 앱 실시간 검색 (예: 놀이의발견, 하나머니, TV조선, 스타벅스...)',
     appstoreSearchBtn: '앱 검색',
     appstoreQuickTags: '빠른 탐색:',
     appstoreViewBtn: 'App Store에서 보기',
-    appstoreReset: '대표 앱 목록'
+    appstoreReset: '대표 앱 목록',
+    appstoreScreenshots: 'App Store 스크린샷'
   },
   en: {
     statusPill: 'Available for macOS & iOS Projects',
@@ -139,17 +175,18 @@ const TRANSLATIONS = {
     githubProfile: 'GitHub Profile',
     repositoryLink: 'Repository',
     rights: 'All rights reserved.',
-    navAppStore: 'App Store',
+    navAppStore: 'Portfolio',
     tabAll: 'All Portfolio',
-    tabAppStore: 'App Store Apps',
+    tabAppStore: 'Work Portfolio',
     tabOpenSource: 'Open Source Repos',
-    appstoreHeading: 'App Store Commercial Portfolio',
-    appstoreSubtext: 'Featured mobile applications published on Apple App Store',
+    appstoreHeading: 'Commercial Work Portfolio',
+    appstoreSubtext: 'Featured commercial mobile applications published on Apple App Store',
     appstorePlaceholder: 'Search App Store live (e.g. Nori Discovery, Hana Money, TV Chosun, Starbucks...)',
     appstoreSearchBtn: 'Search App',
     appstoreQuickTags: 'Quick View:',
     appstoreViewBtn: 'View on App Store',
-    appstoreReset: 'Show Featured'
+    appstoreReset: 'Show Featured',
+    appstoreScreenshots: 'App Screenshots'
   }
 };
 
@@ -307,9 +344,38 @@ document.addEventListener('DOMContentLoaded', () => {
   initEvents();
   initViewTabs();
   initAppStoreEvents();
+  initLightbox();
   renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
   fetchRepositories();
 });
+
+// Lightbox Event Listeners Setup
+function initLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  const overlay = document.getElementById('lightbox-overlay');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  if (overlay) overlay.addEventListener('click', closeLightbox);
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+}
+
+window.openLightbox = function(imgUrl) {
+  const modal = document.getElementById('lightbox-modal');
+  const img = document.getElementById('lightbox-img');
+  if (modal && img) {
+    img.src = imgUrl;
+    modal.classList.remove('hidden');
+  }
+};
+
+function closeLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  if (modal) modal.classList.add('hidden');
+}
 
 // Initialize View Switching Tabs (All | App Store | Open Source)
 function initViewTabs() {
@@ -417,7 +483,8 @@ async function searchAppStore(query) {
         rating: app.averageUserRating ? app.averageUserRating.toFixed(1) : 'N/A',
         ratingCount: app.userRatingCount || 0,
         version: app.version || '1.0',
-        description: app.description || 'App Store application'
+        description: app.description || 'App Store application',
+        screenshots: (app.screenshotUrls || []).slice(0, 6)
       }));
       renderAppStoreGrid(apps);
     } else {
@@ -434,7 +501,7 @@ async function searchAppStore(query) {
   }
 }
 
-// Render App Store Portfolio Cards
+// Render App Store Portfolio Cards with Screenshots
 function renderAppStoreGrid(apps) {
   if (!appstoreContainer) return;
   appstoreContainer.innerHTML = '';
@@ -447,6 +514,19 @@ function renderAppStoreGrid(apps) {
 
     const ratingDisplay = app.rating !== 'N/A' ? `★ ${app.rating}` : '★ NEW';
     const ratingCountStr = app.ratingCount > 0 ? ` (${app.ratingCount.toLocaleString()})` : '';
+
+    const screenshotsHtml = (app.screenshots && app.screenshots.length > 0) ? `
+      <div class="appstore-screenshots-wrapper">
+        <div class="appstore-screenshots-title"><i class="fa-solid fa-mobile-screen-button"></i> ${t.appstoreScreenshots}</div>
+        <div class="appstore-screenshots-scroll">
+          ${app.screenshots.map(sUrl => `
+            <div class="screenshot-item" onclick="openLightbox('${sUrl}')" title="${escapeHtml(app.name)} Screenshot Preview">
+              <img src="${sUrl}" alt="${escapeHtml(app.name)} Screenshot" loading="lazy">
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : '';
 
     card.innerHTML = `
       <div>
@@ -462,6 +542,7 @@ function renderAppStoreGrid(apps) {
           </div>
         </div>
         <p class="appstore-desc">${escapeHtml(app.description)}</p>
+        ${screenshotsHtml}
       </div>
       <div class="appstore-footer">
         <span class="appstore-version">v${escapeHtml(app.version)}</span>
