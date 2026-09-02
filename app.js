@@ -5,6 +5,7 @@
 
 const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
+const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
 // Curated metadata enrichment for repos
 const REPO_ENRICHMENTS = {
@@ -219,9 +220,10 @@ function processAndSetData(repos) {
       return;
     }
 
-    rawReposData = repos;
+    const filteredRaw = repos.filter(r => !EXCLUDED_REPOS.includes(r.name));
+    rawReposData = filteredRaw;
 
-    processedRepos = repos.map(repo => {
+    processedRepos = filteredRaw.map(repo => {
       const enrichment = REPO_ENRICHMENTS[repo.name] || {};
       
       return {
