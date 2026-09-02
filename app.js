@@ -510,7 +510,7 @@ async function searchAppStore(query) {
   }
 }
 
-// Render App Store Portfolio Cards with Screenshots (Full Width List)
+// Render App Store & Google Play Portfolio Cards with Screenshots (Full Width List)
 function renderAppStoreGrid(apps) {
   if (!appstoreContainer) return;
   appstoreContainer.innerHTML = '';
@@ -520,6 +520,7 @@ function renderAppStoreGrid(apps) {
   apps.forEach(app => {
     const card = document.createElement('div');
     card.className = 'appstore-card';
+    if (app.type) card.dataset.portfolioType = app.type;
 
     const ratingDisplay = app.rating !== 'N/A' ? `★ ${app.rating}` : '★ NEW';
     const ratingCountStr = app.ratingCount > 0 ? ` (${app.ratingCount.toLocaleString()})` : '';
@@ -539,6 +540,33 @@ function renderAppStoreGrid(apps) {
       </div>
     ` : '';
 
+    let actionButtonsHtml = '';
+    if (app.url || app.appStoreUrl) {
+      actionButtonsHtml += `
+        <a href="${app.url || app.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-appstore" title="App Store에서 보기">
+          <i class="fa-brands fa-apple"></i> <span>App Store</span>
+        </a>
+      `;
+    }
+    if (app.playStoreUrl) {
+      actionButtonsHtml += `
+        <a href="${app.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-playstore" title="Google Play에서 보기">
+          <i class="fa-brands fa-google-play"></i> <span>Google Play</span>
+        </a>
+      `;
+    }
+
+    let platformBadgesHtml = '';
+    if (app.isPersonal) {
+      platformBadgesHtml += `<span class="category-tag" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3);">개인 프로젝트</span>`;
+    }
+    if (app.platforms && app.platforms.includes('ios')) {
+      platformBadgesHtml += `<span class="platform-badge ios"><i class="fa-brands fa-apple"></i> iOS</span>`;
+    }
+    if (app.platforms && app.platforms.includes('android')) {
+      platformBadgesHtml += `<span class="platform-badge android"><i class="fa-brands fa-google-play"></i> Android</span>`;
+    }
+
     card.innerHTML = `
       <div class="appstore-card-header">
         <img src="${app.icon}" alt="${escapeHtml(app.name)} Icon" class="appstore-icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
@@ -546,15 +574,14 @@ function renderAppStoreGrid(apps) {
           <div class="appstore-title-area">
             <div class="appstore-badge-row">
               <span class="category-tag appstore-genre">${escapeHtml(app.genre)}</span>
+              ${platformBadgesHtml}
               <span class="appstore-rating-pill" title="${ratingDisplay}${ratingCountStr}"><i class="fa-solid fa-star"></i> ${ratingDisplay}</span>
             </div>
             <h3 class="appstore-title">${escapeHtml(app.name)}</h3>
             <p class="appstore-developer">${escapeHtml(app.artist)}</p>
           </div>
           <div class="appstore-action-area">
-            <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn-appstore">
-              <i class="fa-brands fa-apple"></i> <span>${t.appstoreViewBtn}</span>
-            </a>
+            ${actionButtonsHtml}
           </div>
         </div>
       </div>
