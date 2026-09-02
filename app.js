@@ -232,7 +232,6 @@ const DEFAULT_APPSTORE_APPS = [
     role: '프리랜서 iOS 개발자 (외주 프로젝트 · 2021.06)',
     contributions: [
       '조선미디어그룹의 금융 · 자본시장 전문 미디어 InvestChosun iOS 네이티브 앱 신규 개발 및 구축',
-      'M&A, IPO, 자금조달 등 금융 자본시장 데이터 파싱 및 비동기 실시간 기사 렌더링 최적화',
       '사용자 친화적 기사 스크랩, 모바일 인터페이스 및 백그라운드 푸시 알림 연동'
     ],
     techStack: ['Swift', 'SwiftUI', 'MVVM', 'REST API', 'Firebase'],
