@@ -296,7 +296,8 @@ const DEFAULT_APPSTORE_APPS = [
     ],
     techStack: ['Flutter', 'Dart', 'NestJS', 'Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Codemagic', 'Claude Code'],
     icon: 'assets/dotory/icon.svg',
-    url: 'https://github.com/mrKangHo',
+    websiteUrl: 'https://dotory.cloud',
+    url: 'https://dotory.cloud',
     genre: '커머스 SaaS / 1인 창업',
     rating: '5.0',
     ratingCount: 0,
@@ -809,7 +810,13 @@ function renderAppStoreGrid(apps) {
     ` : '';
 
     let actionButtonsHtml = '';
-    if (app.url || app.appStoreUrl) {
+    if (app.websiteUrl) {
+      actionButtonsHtml += `
+        <a href="${app.websiteUrl}" target="_blank" rel="noopener noreferrer" class="btn-appstore btn-website" title="공식 홈페이지 방문">
+          <i class="fa-solid fa-globe"></i> <span>홈페이지</span>
+        </a>
+      `;
+    } else if (app.url || app.appStoreUrl) {
       actionButtonsHtml += `
         <a href="${app.url || app.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-appstore" title="App Store에서 보기">
           <i class="fa-brands fa-apple"></i> <span>App Store</span>
