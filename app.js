@@ -173,11 +173,12 @@ const DEFAULT_APPSTORE_APPS = [
     platforms: ['ios', 'android'],
     role: '기획 · 설계 · 개발 100% (개인 서비스)',
     contributions: [
+      'React Native 크로스플랫폼 아키텍처 기반으로 iOS 및 Android 단일 코드베이스 고성능 앱 설계',
       '보관실별(냉장실, 냉동실, 실온) 식재료 유통기한 D-Day 스마트 감지 및 자동 알림 시스템 구축',
       'Google Gemini AI 셰프 연동으로 보유 식재료 조합 기반 실시간 맞춤 레시피 무한 생성 알고리즘 구현',
       '조리 시 부족한 재료를 마트 구매 규격 단위(1병, 1팩 등)로 자동 변환하여 원터치 장바구니 담기 및 냉장고 즉시 입고 시스템 설계'
     ],
-    techStack: ['Swift', 'SwiftUI', 'Google Gemini AI', 'Firebase', 'Clean Architecture'],
+    techStack: ['React Native', 'TypeScript', 'Google Gemini AI', 'Firebase', 'Clean Architecture'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/c1/e4/ddc1e48d-880b-18ed-73cc-edbac37ccabe/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%83%89%EC%9E%A5%EA%B3%A0/id6801459066',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.todayfridge.chef&hl=ko',
