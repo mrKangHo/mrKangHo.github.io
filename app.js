@@ -1042,6 +1042,50 @@ function getLocalizedField(field, lang) {
   return String(field);
 }
 
+// Helper to derive category tag from GitHub Topics or repo metadata dynamically
+function getCategoryFromRepo(repo, enrichment) {
+  // 1. If explicit enrichment category is set in REPO_ENRICHMENTS, use it
+  if (enrichment && enrichment.category) {
+    return enrichment.category;
+  }
+  
+  // 2. If repository has GitHub topics set on GitHub.com, use the primary topic
+  const topics = (Array.isArray(repo.topics) && repo.topics.length > 0) 
+    ? repo.topics 
+    : (enrichment && enrichment.topics ? enrichment.topics : []);
+
+  if (topics.length > 0) {
+    const formattedTopic = formatTopicCategory(topics[0]);
+    return { ko: formattedTopic, en: formattedTopic };
+  }
+
+  // 3. Fallback: repo language or Fork / Open Source
+  if (repo.isFork || repo.fork) {
+    return { ko: '포크', en: 'Fork' };
+  }
+  if (repo.language && repo.language !== 'Other' && repo.language !== 'None') {
+    return { ko: `${repo.language} 프로젝트`, en: `${repo.language} Project` };
+  }
+
+  return { ko: '오픈 소스', en: 'Open Source' };
+}
+
+// Format GitHub Topic string into a clean UI category badge
+function formatTopicCategory(topic) {
+  if (!topic) return '오픈 소스';
+  const t = topic.toLowerCase();
+  if (t === 'macos' || t === 'macos-app' || t === 'mac-app') return 'macOS App';
+  if (t === 'ios' || t === 'ios-app') return 'iOS App';
+  if (t === 'cli' || t === 'cli-tool' || t === 'cli-utility') return 'CLI Tool';
+  if (t === 'audit' || t === 'audit-tool' || t === 'linter') return 'Audit Tool';
+  if (t === 'library' || t === 'framework' || t === 'package') return 'Library';
+  if (t === 'homebrew' || t === 'tap' || t === 'homebrew-tap') return 'Homebrew Tap';
+  if (t === 'skills' || t === 'skill') return 'Agent Skill';
+  
+  // Capitalize words (e.g. clean-architecture -> Clean Architecture)
+  return topic.split(/[-_]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
 // Process raw GitHub API items and enrich metadata
 function processAndSetData(repos) {
   try {
@@ -1055,21 +1099,22 @@ function processAndSetData(repos) {
 
     processedRepos = filteredRaw.map(repo => {
       const enrichment = REPO_ENRICHMENTS[repo.name] || {};
+      const topicsList = (Array.isArray(repo.topics) && repo.topics.length > 0) ? repo.topics : (enrichment.topics || []);
       
       return {
         id: repo.id || Math.random(),
         name: repo.name || 'unnamed',
         fullName: repo.full_name || repo.name || '',
         htmlUrl: repo.html_url || `https://github.com/${GITHUB_USERNAME}/${repo.name}`,
-        category: enrichment.category || (repo.fork ? { ko: '포크', en: 'Fork' } : { ko: '오픈 소스', en: 'Open Source' }),
+        category: getCategoryFromRepo(repo, enrichment),
         description: enrichment.description || repo.description || { ko: '설명이 없습니다.', en: 'No description provided.' },
-        language: repo.language || (enrichment.topics ? enrichment.topics[0] : 'Other'),
+        language: repo.language || (topicsList[0] ? topicsList[0] : 'Other'),
         stars: typeof repo.stargazers_count === 'number' ? repo.stargazers_count : 0,
         forks: typeof repo.forks_count === 'number' ? repo.forks_count : 0,
         isFork: Boolean(repo.fork),
         updatedAt: repo.updated_at ? new Date(repo.updated_at) : new Date(),
         pushedAt: repo.pushed_at ? new Date(repo.pushed_at) : new Date(),
-        topics: (Array.isArray(repo.topics) && repo.topics.length > 0) ? repo.topics : (enrichment.topics || []),
+        topics: topicsList,
         homepage: repo.homepage || null,
         featured: enrichment.featured || false,
         cloneUrl: repo.clone_url || (repo.html_url ? repo.html_url + '.git' : ''),
