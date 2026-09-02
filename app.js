@@ -1,101 +1,191 @@
 /**
  * mrKangHo GitHub Repositories Showcase
- * Apple / Linear / Raycast Bespoke UI Loader & Filtering System
+ * Apple / Linear / Raycast Bespoke UI Loader, Filtering & i18n System
  */
 
 const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
-// Curated metadata enrichment for repos
+// Internationalization (i18n) UI Dictionary
+const TRANSLATIONS = {
+  ko: {
+    statusPill: 'macOS & iOS 오픈 소스 프로젝트 진행 가능',
+    bio: '<i class="fa-brands fa-apple"></i> macOS & iOS 개발자 | 네이티브 애플 앱, 시스템 도구 및 스킬(Skills) 개발',
+    statRepos: '저장소 수',
+    statStars: '총 별 수',
+    statForks: '포크 수',
+    statTechStack: '기술 스택',
+    featuredHeading: '주요 소프트웨어',
+    featuredSubtext: '엄선된 macOS 애플리케이션, CLI 유틸리티 및 오픈 소스 라이브러리',
+    searchPlaceholder: '이름, 언어, 주제로 검색...',
+    searchHint: '검색',
+    allLang: '전체',
+    forksCheckbox: '포크 포함',
+    sortUpdated: '최근 업데이트순',
+    sortStars: '별 많은순',
+    sortName: '이름순 (A-Z)',
+    allReposTitle: '전체 저장소',
+    noResultsTitle: '검색된 저장소가 없습니다',
+    noResultsDesc: '검색 키워드를 수정하거나 언어 필터를 변경해 보세요.',
+    resetFilters: '필터 초기화',
+    copyToast: '클립보드에 복사되었습니다:',
+    copyTooltip: 'git clone 명령어 복사',
+    viewRepo: '저장소 보기',
+    viewCode: '코드 보기',
+    githubProfile: 'GitHub 프로필',
+    repositoryLink: '저장소',
+    rights: 'All rights reserved.'
+  },
+  en: {
+    statusPill: 'Available for macOS & iOS Open Source Projects',
+    bio: '<i class="fa-brands fa-apple"></i> macOS & iOS Engineer | Crafting Native Apple Apps, Developer Tools & AI Agent Skills',
+    statRepos: 'Repositories',
+    statStars: 'Total Stars',
+    statForks: 'Forks',
+    statTechStack: 'Tech Stack',
+    featuredHeading: 'Featured Software',
+    featuredSubtext: 'Selected macOS applications, CLI utilities, and open source libraries',
+    searchPlaceholder: 'Search by name, language, or topic...',
+    searchHint: 'Search',
+    allLang: 'All',
+    forksCheckbox: 'Forks',
+    sortUpdated: 'Recently Updated',
+    sortStars: 'Most Stars',
+    sortName: 'Name (A-Z)',
+    allReposTitle: 'All Repositories',
+    noResultsTitle: 'No matching repositories found',
+    noResultsDesc: 'Try refining your search keyword or switching language filters.',
+    resetFilters: 'Reset Filters',
+    copyToast: 'Copied to clipboard:',
+    copyTooltip: 'Copy git clone',
+    viewRepo: 'View Repository',
+    viewCode: 'View Code',
+    githubProfile: 'GitHub Profile',
+    repositoryLink: 'Repository',
+    rights: 'All rights reserved.'
+  }
+};
+
+// Curated metadata enrichment for repos (Bilingual)
 const REPO_ENRICHMENTS = {
   'FloatingTube': {
-    category: 'macOS App',
-    description: 'macOS native floating YouTube player with in-app fullscreen, always-on-top, click-through mode and menu bar tray.',
+    category: { ko: 'macOS 앱', en: 'macOS App' },
+    description: {
+      ko: 'macOS 네이티브 플로팅 유튜브 플레이어 (인앱 전체화면, 최상단 고정, 클릭 투과 모드 및 메뉴바 트레이 지원).',
+      en: 'macOS native floating YouTube player with in-app fullscreen, always-on-top, click-through mode and menu bar tray.'
+    },
     featured: true,
     topics: ['macOS', 'Swift', 'SwiftUI', 'YouTube', 'Pip'],
     icon: 'assets/icons/floatingtube.png'
   },
   'brew-manager': {
-    category: 'macOS App',
-    description: 'macOS GUI application for browsing, searching, installing, and updating Homebrew packages with ease.',
+    category: { ko: 'macOS 앱', en: 'macOS App' },
+    description: {
+      ko: 'Homebrew 패키지를 편리하게 탐색, 검색, 설치 및 업데이트할 수 있는 macOS GUI 애플리케이션.',
+      en: 'macOS GUI application for browsing, searching, installing, and updating Homebrew packages with ease.'
+    },
     featured: true,
     topics: ['macOS', 'Swift', 'Homebrew', 'GUI'],
     icon: 'assets/icons/brew-manager.png'
   },
   'youtubeDownloader': {
-    category: 'macOS App',
-    description: 'macOS GUI video & audio downloader powered by yt-dlp with custom resolution & audio format options.',
+    category: { ko: 'macOS 앱', en: 'macOS App' },
+    description: {
+      ko: 'yt-dlp 기반의 macOS GUI 비디오 & 오디오 다운로더 (사용자 정의 해상도 및 음원 포맷 옵션 지원).',
+      en: 'macOS GUI video & audio downloader powered by yt-dlp with custom resolution & audio format options.'
+    },
     featured: true,
     topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube'],
     icon: 'assets/icons/youtubedownloader.png'
   },
   'homebrew-ytdownloader': {
-    category: 'Homebrew Tap',
-    description: 'Homebrew tap for YTDownloader - simplified formula installation for macOS GUI YTDownloader.',
+    category: { ko: 'Homebrew 탭', en: 'Homebrew Tap' },
+    description: {
+      ko: 'YTDownloader를 위한 Homebrew tap - macOS GUI YTDownloader 간편 포뮬러 설치 지원.',
+      en: 'Homebrew tap for YTDownloader - simplified formula installation for macOS GUI YTDownloader.'
+    },
     featured: true,
     topics: ['Homebrew', 'Tap', 'Ruby', 'yt-dlp'],
     icon: 'assets/icons/homebrew-ytdownloader.svg'
   },
   'TuistProjectMaker': {
-    category: 'CLI Tool',
-    description: 'Automated Tuist Swift project generator for scaffolding modular iOS and macOS app architectures.',
+    category: { ko: 'CLI 도구', en: 'CLI Tool' },
+    description: {
+      ko: '모듈식 iOS 및 macOS 앱 아키텍처 스캐폴딩을 위한 자동화된 Tuist Swift 프로젝트 생성기.',
+      en: 'Automated Tuist Swift project generator for scaffolding modular iOS and macOS app architectures.'
+    },
     featured: true,
     topics: ['Swift', 'Tuist', 'Xcode', 'Architecture'],
     icon: 'assets/icons/tuistprojectmaker.svg'
   },
   'clean-arch-checker': {
-    category: 'Audit Tool',
-    description: 'Architecture compliance checker script for auditing Clean Architecture boundaries & layer dependencies.',
+    category: { ko: '감사 도구', en: 'Audit Tool' },
+    description: {
+      ko: '클린 아키텍처 경계 및 레이어 의존성을 검사하고 감사하는 가이드 스크립트 도구.',
+      en: 'Architecture compliance checker script for auditing Clean Architecture boundaries & layer dependencies.'
+    },
     featured: true,
     topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter'],
     icon: 'assets/icons/clean-arch-checker.svg'
   },
   'iTorrent': {
-    category: 'iOS App',
-    description: 'Feature-rich BitTorrent client written in Swift for iOS 16+ devices.',
+    category: { ko: 'iOS 앱', en: 'iOS App' },
+    description: {
+      ko: 'iOS 16+ 기기를 위해 Swift로 작성된 기능 풍부한 BitTorrent 클라이언트.',
+      en: 'Feature-rich BitTorrent client written in Swift for iOS 16+ devices.'
+    },
     featured: false,
     topics: ['iOS', 'Swift', 'BitTorrent'],
     icon: 'assets/icons/itorrent.svg'
   },
   'LibTorrent-Swift': {
-    category: 'Library',
-    description: 'Swift wrapper and integration layer around the C++ libtorrent library.',
+    category: { ko: '라이브러리', en: 'Library' },
+    description: {
+      ko: 'C++ libtorrent 라이브러리를 위한 Swift 래퍼 및 통합 레이어.',
+      en: 'Swift wrapper and integration layer around the C++ libtorrent library.'
+    },
     featured: false,
     topics: ['Objective-C++', 'Swift', 'libtorrent'],
     icon: 'assets/icons/libtorrent-swift.svg'
   },
   'DesignSystemMake': {
-    category: 'Library',
-    description: 'Swift library and utility tool for creating and standardizing design system tokens and components.',
+    category: { ko: '라이브러리', en: 'Library' },
+    description: {
+      ko: '디자인 시스템 토큰과 컴포넌트를 표준화하고 구축하기 위한 Swift 라이브러리 및 유틸리티 도구.',
+      en: 'Swift library and utility tool for creating and standardizing design system tokens and components.'
+    },
     featured: false,
     topics: ['Swift', 'Design-System', 'SwiftUI'],
     icon: 'assets/icons/designsystemmake.png'
   },
   'Grassie': {
-    category: 'macOS Tool',
-    description: 'Swift utility application and tool for system automation.',
+    category: { ko: 'macOS 도구', en: 'macOS Tool' },
+    description: {
+      ko: '시스템 자동화를 위한 Swift 유틸리티 애플리케이션 및 도구.',
+      en: 'Swift utility application and tool for system automation.'
+    },
     featured: false,
     topics: ['Swift', 'macOS'],
     icon: 'assets/icons/grassie.svg'
-  },
-  'mrKangHo': {
-    category: 'Profile',
-    description: 'GitHub profile README configuration and developer background showcase.',
-    featured: false,
-    topics: ['Profile', 'README'],
-    icon: 'https://avatars.githubusercontent.com/u/9712872?v=4'
-  },
-  'mrKangHo.github.io': {
-    category: 'Web App',
-    description: 'Personal open source portfolio showcase website built with HTML5, CSS, and GitHub REST API.',
-    featured: false,
-    topics: ['GitHub-Pages', 'HTML5', 'CSS', 'JavaScript'],
-    icon: 'assets/icons/portfolio.svg'
   }
 };
 
+// Automatic Language Detection (System / Browser / Saved Preference)
+function detectInitialLanguage() {
+  const saved = localStorage.getItem('preferred_lang');
+  if (saved === 'ko' || saved === 'en') {
+    return saved;
+  }
+  const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  if (navLang.startsWith('ko')) {
+    return 'ko';
+  }
+  return 'en';
+}
+
 // Application State
+let currentLang = detectInitialLanguage();
 let rawReposData = [];
 let processedRepos = [];
 let currentFilter = 'all';
@@ -121,12 +211,24 @@ const shortcutTrigger = document.getElementById('shortcut-trigger');
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
+  updateUIStrings();
   initEvents();
   fetchRepositories();
 });
 
 // Event Listeners Setup
 function initEvents() {
+  // Language Switcher Buttons
+  const langBtns = document.querySelectorAll('[data-lang-switch]');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetLang = btn.dataset.langSwitch;
+      if (targetLang !== currentLang) {
+        setLanguage(targetLang);
+      }
+    });
+  });
+
   // Search input
   searchInput.addEventListener('input', (e) => {
     currentSearch = e.target.value.toLowerCase().trim();
@@ -194,6 +296,92 @@ function initEvents() {
   });
 }
 
+// Switch Active Language and Update UI
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('preferred_lang', lang);
+  updateUIStrings();
+  if (processedRepos.length > 0) {
+    updateStats(processedRepos);
+    render();
+  }
+}
+
+// Update all UI elements based on current language
+function updateUIStrings() {
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+
+  document.documentElement.lang = currentLang;
+
+  // Active state on switch buttons
+  document.querySelectorAll('[data-lang-switch]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.langSwitch === currentLang);
+  });
+
+  const statusTextEl = document.getElementById('status-pill-text');
+  if (statusTextEl) statusTextEl.textContent = t.statusPill;
+
+  const bioTextEl = document.getElementById('hero-bio-text');
+  if (bioTextEl) bioTextEl.innerHTML = t.bio;
+
+  const lblReposEl = document.getElementById('lbl-stat-repos');
+  if (lblReposEl) lblReposEl.textContent = t.statRepos;
+
+  const lblStarsEl = document.getElementById('lbl-stat-stars');
+  if (lblStarsEl) lblStarsEl.textContent = t.statStars;
+
+  const lblForksEl = document.getElementById('lbl-stat-forks');
+  if (lblForksEl) lblForksEl.textContent = t.statForks;
+
+  const featuredHeadingEl = document.getElementById('featured-heading');
+  if (featuredHeadingEl) featuredHeadingEl.textContent = t.featuredHeading;
+
+  const featuredSubtextEl = document.getElementById('featured-subtext');
+  if (featuredSubtextEl) featuredSubtextEl.textContent = t.featuredSubtext;
+
+  const searchInputEl = document.getElementById('search-input');
+  if (searchInputEl) searchInputEl.placeholder = t.searchPlaceholder;
+
+  const searchHintEl = document.getElementById('lbl-search-hint');
+  if (searchHintEl) searchHintEl.textContent = t.searchHint;
+
+  const btnAllEl = document.getElementById('btn-lang-all');
+  if (btnAllEl) btnAllEl.textContent = t.allLang;
+
+  const lblForksCheckboxEl = document.getElementById('lbl-forks');
+  if (lblForksCheckboxEl) lblForksCheckboxEl.textContent = t.forksCheckbox;
+
+  const optUpdatedEl = document.getElementById('opt-sort-updated');
+  if (optUpdatedEl) optUpdatedEl.textContent = t.sortUpdated;
+
+  const optStarsEl = document.getElementById('opt-sort-stars');
+  if (optStarsEl) optStarsEl.textContent = t.sortStars;
+
+  const optNameEl = document.getElementById('opt-sort-name');
+  if (optNameEl) optNameEl.textContent = t.sortName;
+
+  const allReposTitleEl = document.getElementById('all-repos-title-text');
+  if (allReposTitleEl) allReposTitleEl.textContent = t.allReposTitle;
+
+  const noResultsTitleEl = document.getElementById('no-results-title');
+  if (noResultsTitleEl) noResultsTitleEl.textContent = t.noResultsTitle;
+
+  const noResultsDescEl = document.getElementById('no-results-desc');
+  if (noResultsDescEl) noResultsDescEl.textContent = t.noResultsDesc;
+
+  const resetFiltersBtnEl = document.getElementById('reset-filters-btn');
+  if (resetFiltersBtnEl) resetFiltersBtnEl.textContent = t.resetFilters;
+
+  const footerRightsEl = document.getElementById('footer-rights');
+  if (footerRightsEl) footerRightsEl.textContent = t.rights;
+
+  const footerLinkGithubEl = document.getElementById('footer-link-github');
+  if (footerLinkGithubEl) footerLinkGithubEl.textContent = t.githubProfile;
+
+  const footerLinkRepoEl = document.getElementById('footer-link-repo');
+  if (footerLinkRepoEl) footerLinkRepoEl.textContent = t.repositoryLink;
+}
+
 // Fetch Repositories from GitHub API
 async function fetchRepositories() {
   try {
@@ -210,6 +398,16 @@ async function fetchRepositories() {
     console.warn('GitHub API fetch failed or rate limited. Using static fallback data.', error);
     useFallbackData();
   }
+}
+
+// Helper to extract localized text from field (string or object)
+function getLocalizedField(field, lang) {
+  if (!field) return '';
+  if (typeof field === 'string') return field;
+  if (typeof field === 'object') {
+    return field[lang] || field.en || field.ko || '';
+  }
+  return String(field);
 }
 
 // Process raw GitHub API items and enrich metadata
@@ -231,8 +429,8 @@ function processAndSetData(repos) {
         name: repo.name || 'unnamed',
         fullName: repo.full_name || repo.name || '',
         htmlUrl: repo.html_url || `https://github.com/${GITHUB_USERNAME}/${repo.name}`,
-        category: enrichment.category || (repo.fork ? 'Fork' : 'Open Source'),
-        description: repo.description || enrichment.description || 'No description provided.',
+        category: enrichment.category || (repo.fork ? { ko: '포크', en: 'Fork' } : { ko: '오픈 소스', en: 'Open Source' }),
+        description: enrichment.description || repo.description || { ko: '설명이 없습니다.', en: 'No description provided.' },
         language: repo.language || (enrichment.topics ? enrichment.topics[0] : 'Other'),
         stars: typeof repo.stargazers_count === 'number' ? repo.stargazers_count : 0,
         forks: typeof repo.forks_count === 'number' ? repo.forks_count : 0,
@@ -416,8 +614,9 @@ function updateStats(repos) {
   const langStackEl = document.getElementById('stat-languages-stack');
   const langLabelEl = document.getElementById('stat-languages-label');
 
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
   if (langLabelEl) {
-    langLabelEl.textContent = `Tech Stack (${sortedLangs.length})`;
+    langLabelEl.textContent = `${t.statTechStack} (${sortedLangs.length})`;
   }
 
   if (langStackEl) {
@@ -474,11 +673,13 @@ function render() {
     }
 
     if (currentSearch) {
+      const categoryStr = getLocalizedField(repo.category, currentLang).toLowerCase();
+      const descStr = getLocalizedField(repo.description, currentLang).toLowerCase();
       const matchName = repo.name.toLowerCase().includes(currentSearch);
-      const matchDesc = repo.description.toLowerCase().includes(currentSearch);
+      const matchDesc = descStr.includes(currentSearch);
       const matchTopic = repo.topics.some(t => t.toLowerCase().includes(currentSearch));
       const matchLang = repo.language.toLowerCase().includes(currentSearch);
-      const matchCategory = repo.category.toLowerCase().includes(currentSearch);
+      const matchCategory = categoryStr.includes(currentSearch);
       if (!matchName && !matchDesc && !matchTopic && !matchLang && !matchCategory) return false;
     }
 
@@ -521,6 +722,7 @@ function getRepoIcon(repo) {
 
 // Render Featured Projects Section
 function renderFeatured() {
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
   const featuredRepos = processedRepos.filter(r => r.featured);
   featuredContainer.innerHTML = '';
 
@@ -531,6 +733,8 @@ function renderFeatured() {
     const langDotClass = getLanguageDotClass(repo.language);
     const topicsHtml = repo.topics.slice(0, 4).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
     const iconSrc = getRepoIcon(repo);
+    const categoryStr = getLocalizedField(repo.category, currentLang);
+    const descStr = getLocalizedField(repo.description, currentLang);
 
     card.innerHTML = `
       <div>
@@ -540,13 +744,13 @@ function renderFeatured() {
           </div>
           <div class="card-title-group">
             <div class="card-badge-row">
-              <span class="category-tag">${escapeHtml(repo.category)}</span>
+              <span class="category-tag">${escapeHtml(categoryStr)}</span>
               ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
             </div>
             <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
           </div>
         </div>
-        <p class="card-desc">${escapeHtml(repo.description)}</p>
+        <p class="card-desc">${escapeHtml(descStr)}</p>
         <div class="topics-row">${topicsHtml}</div>
       </div>
       <div class="card-meta-bar">
@@ -555,10 +759,10 @@ function renderFeatured() {
           <span><i class="fa-regular fa-star"></i> ${repo.stars}</span>
         </div>
         <div class="card-actions-group">
-          <button class="action-icon-btn" title="Copy git clone" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
+          <button class="action-icon-btn" title="${t.copyTooltip}" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
             <i class="fa-regular fa-copy"></i>
           </button>
-          <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="View Repository">
+          <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="${t.viewRepo}">
             <i class="fa-brands fa-github"></i>
           </a>
         </div>
@@ -570,13 +774,16 @@ function renderFeatured() {
 
 // Create Card Element for standard repo grid
 function createRepoCard(repo) {
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
   const card = document.createElement('div');
   card.className = 'repo-card';
 
   const langDotClass = getLanguageDotClass(repo.language);
   const topicsHtml = repo.topics.slice(0, 3).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
-  const formattedDate = repo.updatedAt ? repo.updatedAt.toLocaleDateString('ko-KR', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+  const formattedDate = repo.updatedAt ? repo.updatedAt.toLocaleDateString(currentLang === 'ko' ? 'ko-KR' : 'en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
   const iconSrc = getRepoIcon(repo);
+  const categoryStr = getLocalizedField(repo.category, currentLang);
+  const descStr = getLocalizedField(repo.description, currentLang);
 
   card.innerHTML = `
     <div>
@@ -586,13 +793,13 @@ function createRepoCard(repo) {
         </div>
         <div class="card-title-group">
           <div class="card-badge-row">
-            <span class="category-tag">${escapeHtml(repo.category)}</span>
+            <span class="category-tag">${escapeHtml(categoryStr)}</span>
             ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
           </div>
           <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
         </div>
       </div>
-      <p class="card-desc">${escapeHtml(repo.description)}</p>
+      <p class="card-desc">${escapeHtml(descStr)}</p>
       ${topicsHtml ? `<div class="topics-row">${topicsHtml}</div>` : ''}
     </div>
     <div class="card-meta-bar">
@@ -602,10 +809,10 @@ function createRepoCard(repo) {
         ${formattedDate ? `<span title="Updated">${formattedDate}</span>` : ''}
       </div>
       <div class="card-actions-group">
-        <button class="action-icon-btn" title="Copy git clone" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
+        <button class="action-icon-btn" title="${t.copyTooltip}" onclick="copyCloneCommand('${repo.name}', '${repo.cloneUrl || repo.htmlUrl + '.git'}')">
           <i class="fa-regular fa-copy"></i>
         </button>
-        <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="View Code">
+        <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="${t.viewCode}">
           <i class="fa-brands fa-github"></i>
         </a>
       </div>
@@ -636,9 +843,10 @@ function escapeHtml(str) {
 }
 
 window.copyCloneCommand = function(repoName, cloneUrl) {
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
   const command = `git clone ${cloneUrl}`;
   navigator.clipboard.writeText(command).then(() => {
-    showToast(`Copied: "git clone ${repoName}"`);
+    showToast(`${t.copyToast} "git clone ${repoName}"`);
   }).catch(err => {
     console.error('Failed to copy', err);
   });

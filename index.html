@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -34,8 +34,14 @@
         <span class="nav-tag">Open Source</span>
       </a>
       <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher" id="lang-switcher">
+          <button type="button" class="lang-btn" data-lang-switch="ko" title="한국어로 전환">KO</button>
+          <button type="button" class="lang-btn" data-lang-switch="en" title="Switch to English">EN</button>
+        </div>
+
         <div class="shortcut-hint" id="shortcut-trigger" title="Press / or ⌘K to search">
-          <kbd>/</kbd> <span class="hint-text">Search</span>
+          <kbd>/</kbd> <span class="hint-text" id="lbl-search-hint">Search</span>
         </div>
         <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-btn">
           <i class="fa-brands fa-github"></i> <span>GitHub</span>
@@ -53,13 +59,12 @@
         <div class="hero-profile-card">
           <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="mrKangHo Profile Picture" class="hero-avatar">
           <div class="hero-profile-info">
-            <div class="status-pill">
-              <span class="status-dot"></span> Available for macOS & iOS Open Source Projects
+            <div class="status-pill" id="status-pill">
+              <span class="status-dot"></span> <span id="status-pill-text">Available for macOS & iOS Open Source Projects</span>
             </div>
             <h1 class="hero-name">Kano <span class="username">(@mrKangHo)</span></h1>
             <div class="hero-bio">
-              <p class="bio-ko"><i class="fa-brands fa-apple"></i> macOS & iOS 개발자 | 네이티브 애플 앱, 시스템 도구 및 스킬(Skills) 개발</p>
-              <p class="bio-en"><i class="fa-brands fa-apple"></i> macOS & iOS Engineer | Crafting Native Apple Apps, Developer Tools & AI Agent Skills</p>
+              <p class="bio-text" id="hero-bio-text"><i class="fa-brands fa-apple"></i> macOS & iOS Engineer | Crafting Native Apple Apps, Developer Tools & AI Agent Skills</p>
             </div>
           </div>
         </div>
@@ -67,18 +72,18 @@
         <!-- Metric Counter Badges -->
         <div class="hero-metrics">
           <div class="metric-item">
-            <span class="metric-val" id="stat-repos">12</span>
-            <span class="metric-lbl">Repositories</span>
+            <span class="metric-val" id="stat-repos">0</span>
+            <span class="metric-lbl" id="lbl-stat-repos">Repositories</span>
           </div>
           <div class="metric-divider"></div>
           <div class="metric-item">
-            <span class="metric-val" id="stat-stars">2</span>
-            <span class="metric-lbl">Total Stars</span>
+            <span class="metric-val" id="stat-stars">0</span>
+            <span class="metric-lbl" id="lbl-stat-stars">Total Stars</span>
           </div>
           <div class="metric-divider"></div>
           <div class="metric-item">
-            <span class="metric-val" id="stat-forks">2</span>
-            <span class="metric-lbl">Forks</span>
+            <span class="metric-val" id="stat-forks">0</span>
+            <span class="metric-lbl" id="lbl-stat-forks">Forks</span>
           </div>
           <div class="metric-divider"></div>
           <div class="metric-item metric-stack">
@@ -96,8 +101,8 @@
       <section class="section-block">
         <div class="section-header">
           <div>
-            <h2 class="section-heading">Featured Software</h2>
-            <p class="section-subtext">Selected macOS applications, CLI utilities, and open source libraries</p>
+            <h2 class="section-heading" id="featured-heading">Featured Software</h2>
+            <p class="section-subtext" id="featured-subtext">Selected macOS applications, CLI utilities, and open source libraries</p>
           </div>
         </div>
 
@@ -118,7 +123,7 @@
 
           <div class="toolbar-controls">
             <div class="segment-tabs" id="language-filters">
-              <button class="segment-btn active" data-lang="all">All</button>
+              <button class="segment-btn active" data-lang="all" id="btn-lang-all">All</button>
               <button class="segment-btn" data-lang="Swift"><span class="dot swift"></span> Swift</button>
               <button class="segment-btn" data-lang="Ruby"><span class="dot ruby"></span> Ruby</button>
               <button class="segment-btn" data-lang="JavaScript"><span class="dot js"></span> JS</button>
@@ -129,14 +134,14 @@
               <label class="custom-checkbox">
                 <input type="checkbox" id="toggle-forks" checked>
                 <span class="checkmark"></span>
-                <span class="checkbox-label">Forks</span>
+                <span class="checkbox-label" id="lbl-forks">Forks</span>
               </label>
 
               <div class="select-box">
                 <select id="sort-select">
-                  <option value="updated">Recently Updated</option>
-                  <option value="stars">Most Stars</option>
-                  <option value="name">Name (A-Z)</option>
+                  <option value="updated" id="opt-sort-updated">Recently Updated</option>
+                  <option value="stars" id="opt-sort-stars">Most Stars</option>
+                  <option value="name" id="opt-sort-name">Name (A-Z)</option>
                 </select>
               </div>
             </div>
@@ -147,7 +152,7 @@
       <!-- Repositories Grid Section -->
       <section class="section-block">
         <div class="repo-list-header">
-          <h3 class="list-title">All Repositories <span id="repo-count-badge" class="count-pill">0</span></h3>
+          <h3 class="list-title"><span id="all-repos-title-text">All Repositories</span> <span id="repo-count-badge" class="count-pill">0</span></h3>
         </div>
 
         <div class="repo-grid" id="repo-grid">
@@ -157,8 +162,8 @@
         <!-- No Results Fallback -->
         <div id="no-results" class="no-results-box hidden">
           <div class="no-results-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-          <h4>No matching repositories found</h4>
-          <p>Try refining your search keyword or switching language filters.</p>
+          <h4 id="no-results-title">No matching repositories found</h4>
+          <p id="no-results-desc">Try refining your search keyword or switching language filters.</p>
           <button id="reset-filters-btn" class="btn btn-secondary mt-3">Reset Filters</button>
         </div>
       </section>
@@ -167,11 +172,11 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-inner">
-        <span>© <span id="current-year">2026</span> mrKangHo. All rights reserved.</span>
+        <span>© <span id="current-year">2026</span> mrKangHo. <span id="footer-rights">All rights reserved.</span></span>
         <div class="footer-links">
-          <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+          <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" id="footer-link-github">GitHub Profile</a>
           <span class="sep">•</span>
-          <a href="https://github.com/mrKangHo/mrKangHo.github.io" target="_blank" rel="noopener noreferrer">Repository</a>
+          <a href="https://github.com/mrKangHo/mrKangHo.github.io" target="_blank" rel="noopener noreferrer" id="footer-link-repo">Repository</a>
         </div>
       </div>
     </footer>
@@ -184,6 +189,6 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>
