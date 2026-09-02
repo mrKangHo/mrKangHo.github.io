@@ -192,6 +192,63 @@ const DEFAULT_APPSTORE_APPS = [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/37/8c/17/378c1766-ed7f-af0a-57e1-e442353f2f01/06.png/392x696bb.png'
     ]
   },
+  // Freelance & Outsourcing Projects
+  {
+    id: 1574689419,
+    name: 'InvestChosun',
+    artist: 'CHOSUN M&D',
+    isFreelance: true,
+    type: 'freelance',
+    platforms: ['ios'],
+    role: '프리랜서 iOS 개발자 (외주 프로젝트 · 2021.06)',
+    contributions: [
+      '조선미디어그룹의 금융 · 자본시장 전문 미디어 InvestChosun iOS 네이티브 앱 신규 개발 및 구축',
+      'M&A, IPO, 자금조달 등 금융 자본시장 데이터 파싱 및 비동기 실시간 기사 렌더링 최적화',
+      '사용자 친화적 기사 스크랩, 모바일 인터페이스 및 백그라운드 푸시 알림 연동'
+    ],
+    techStack: ['Swift', 'UIKit', 'MVVM', 'REST API', 'Firebase'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d9/73/82/d973825d-47f3-cf82-9028-8f1a7af406dd/AppIcon-0-0-1x_U007ephone-0-1-85-220.jpeg/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/investchosun/id1574689419',
+    genre: '뉴스',
+    rating: '5.0',
+    ratingCount: 2,
+    version: '1.1',
+    description: '인베스트조선(InvestChosun)은 조선미디어그룹의 금융·자본시장 전문 미디어 서비스입니다. 기업의 자금조달부터 M&A, IPO, 투자 분석 콘텐츠를 실시간으로 제공합니다.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/5c/21/cd/5c21cd9a-76bf-5586-ee06-8846fc1c8522/559f5a69-528c-4660-87d7-1b7d36ec7b56_5.5__Uc2a4_Ud06c_Ub9b0_Uc0f7_01.jpg/392x696bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/63/93/51/6393519b-68a1-b4b5-4db2-bd66f51c7808/dbb79c23-4123-48ae-9913-13ea253a9670_5.5__Uc2a4_Ud06c_Ub9b0_Uc0f7_02.jpg/392x696bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e2/68/0e/e2680e7c-e631-25fc-894a-6c61dbe18dac/f5a0eb4f-0654-48c9-942b-092b53878be0_5.5__Uc2a4_Ud06c_Ub9b0_Uc0f7_03.jpg/392x696bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e2/8d/49/e28d4903-ee2a-aece-73ab-0dd13f24585e/daabe724-574e-4b3a-b6e8-83e12f98f8e3_5.5__Uc2a4_Ud06c_Ub9b0_Uc0f7_04.jpg/392x696bb.jpg'
+    ]
+  },
+  {
+    id: 664973122,
+    name: '레진코믹스',
+    artist: 'Lezhin Entertainment',
+    isFreelance: true,
+    type: 'freelance',
+    platforms: ['ios'],
+    role: '프리랜서 iOS 개발자 (외주 프로젝트)',
+    contributions: [
+      '국내 대표 프리미엄 웹툰 플랫폼 레진코믹스 iOS 네이티브 모듈 외주 개발 및 서비스 개선',
+      '대용량 웹툰 이미지 컷 렌더링 프레임 드랍 최소화, 이미지 메모리 캐싱 모듈 성능 최적화',
+      '무료대여권, 매매무(기다리면 무료), 실시간 랭킹 및 취향 템플릿 맞춤 UX 기능 연동'
+    ],
+    techStack: ['Swift', 'Objective-C', 'UIKit', 'MVVM', 'SDWebImage', 'REST API'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/be/76/7b/be767bb7-dc2f-fd40-c1fa-82f5e8426b4b/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EB%A0%88%EC%A7%84%EC%BD%94%EB%AF%B9%EC%8A%A4-%EC%86%94%EC%A7%81%ED%95%9C-%EC%9E%AC%EB%AF%B8-%EB%8C%80%ED%8F%AD%EB%B0%9C/id664973122',
+    genre: '도서 / 웹툰',
+    rating: '3.2',
+    ratingCount: 948,
+    version: '2026.8.1',
+    description: '국내 대표 오리지널 웹툰 플랫폼 레진코믹스 공식 iOS 앱. 실시간 웹툰 랭킹, 기다리면 무료, 취향 템플릿 등 맞춤 콘텐츠 서비스를 제공합니다.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ae/c7/63/aec76354-519f-fe4a-5e5f-ee3a39443ed0/6.5-7.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/79/a5/e0/79a5e0e3-b9f0-022f-0ea5-e8d182346078/6.5-6.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/6f/c8/93/6fc89348-482a-d4b5-dbdf-603d4c5bed4b/6.5-5.png/320x480bb.jpg',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/5d/e3/57/5de35717-6100-9601-be64-bc21f49151b6/6.5-2.png/320x480bb.jpg'
+    ]
+  },
   // Personal Published Apps & 1-Person SaaS Startup by Kangho Lee (Kano)
   {
     id: 1000000001,
