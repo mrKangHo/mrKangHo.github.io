@@ -249,6 +249,34 @@ const DEFAULT_APPSTORE_APPS = [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/5d/e3/57/5de35717-6100-9601-be64-bc21f49151b6/6.5-2.png/320x480bb.jpg'
     ]
   },
+  {
+    id: 1600621238,
+    name: 'Thinking MeMe',
+    artist: 'CREVERSE, Inc.',
+    isFreelance: true,
+    type: 'freelance',
+    platforms: ['ios'],
+    role: '프리랜서 iOS 개발자 (외주 프로젝트)',
+    contributions: [
+      '크레버스(CREVERSE) 에듀테크 학습 전용 iOS 애플리케이션 외주 개발 및 서비스 구축',
+      'AR MeMe 기반 디지털 포트폴리오 제작 및 수학 일기/오답노트 과제 제출 모듈 연동',
+      '학습 복습 비디오 스트리밍 렌더링 및 인터랙티브 갤러리 UX 기능 최적화'
+    ],
+    techStack: ['Swift', 'UIKit', 'ARKit', 'AVFoundation', 'MVVM', 'REST API'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7a/b5/11/7ab5117d-1507-8493-3694-41986178cde1/AppIcon-1x_U007emarketing-0-10-0-0-sRGB-85-220-0.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/thinking-meme/id1600621238',
+    genre: '교육',
+    rating: '2.9',
+    ratingCount: 193,
+    version: '1.0.33',
+    description: 'Thinking MeMe는 과제 제출을 도와주고, AR MeMe 형태의 디지털 포트폴리오를 제작할 수 있는 에듀테크 학습 애플리케이션입니다.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/07/bf/c8/07bfc860-86b1-b6d7-adae-ea30052e2bb7/61b8e3a5-f361-49d6-a17c-d5b2fc2c81d8_01.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/90/df/6a/90df6a7f-b449-7752-e5cf-ca320a526317/789b444a-4030-4d08-ae0e-911563531ede_02.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/0f/f8/a0/0ff8a015-5941-23b6-d4f8-625f015048b6/90db011a-221f-4c03-87a0-25824a9d6d15_03.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/e4/92/27/e492279a-cf07-6455-0fe6-dbe461a56f64/d1d9b5a2-8eaa-4dd3-b61f-e6222a937c20_04.png/392x696bb.png'
+    ]
+  },
   // Personal Published Apps & 1-Person SaaS Startup by Kangho Lee (Kano)
   {
     id: 1000000001,
