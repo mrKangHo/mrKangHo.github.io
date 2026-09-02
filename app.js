@@ -363,103 +363,83 @@ const TRANSLATIONS = {
 // Curated metadata enrichment for repos (Bilingual)
 const REPO_ENRICHMENTS = {
   'FloatingTube': {
-    category: { ko: 'macOS 앱', en: 'macOS App' },
     description: {
       ko: 'macOS 네이티브 플로팅 유튜브 플레이어 (인앱 전체화면, 최상단 고정, 클릭 투과 모드 및 메뉴바 트레이 지원).',
       en: 'macOS native floating YouTube player with in-app fullscreen, always-on-top, click-through mode and menu bar tray.'
     },
     featured: true,
-    topics: ['macOS', 'Swift', 'SwiftUI', 'YouTube', 'Pip'],
     icon: 'assets/icons/floatingtube.png'
   },
   'brew-manager': {
-    category: { ko: 'macOS 앱', en: 'macOS App' },
     description: {
       ko: 'Homebrew 패키지를 편리하게 탐색, 검색, 설치 및 업데이트할 수 있는 macOS GUI 애플리케이션.',
       en: 'macOS GUI application for browsing, searching, installing, and updating Homebrew packages with ease.'
     },
     featured: true,
-    topics: ['macOS', 'Swift', 'Homebrew', 'GUI'],
     icon: 'assets/icons/brew-manager.png'
   },
   'youtubeDownloader': {
-    category: { ko: 'macOS 앱', en: 'macOS App' },
     description: {
       ko: 'yt-dlp 기반의 macOS GUI 비디오 & 오디오 다운로더 (사용자 정의 해상도 및 음원 포맷 옵션 지원).',
       en: 'macOS GUI video & audio downloader powered by yt-dlp with custom resolution & audio format options.'
     },
     featured: true,
-    topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube'],
     icon: 'assets/icons/youtubedownloader.png'
   },
   'homebrew-ytdownloader': {
-    category: { ko: 'Homebrew 탭', en: 'Homebrew Tap' },
     description: {
       ko: 'YTDownloader를 위한 Homebrew tap - macOS GUI YTDownloader 간편 포뮬러 설치 지원.',
       en: 'Homebrew tap for YTDownloader - simplified formula installation for macOS GUI YTDownloader.'
     },
     featured: true,
-    topics: ['Homebrew', 'Tap', 'Ruby', 'yt-dlp'],
     icon: 'assets/icons/homebrew-ytdownloader.svg'
   },
   'TuistProjectMaker': {
-    category: { ko: 'CLI 도구', en: 'CLI Tool' },
     description: {
       ko: '모듈식 iOS 및 macOS 앱 아키텍처 스캐폴딩을 위한 자동화된 Tuist Swift 프로젝트 생성기.',
       en: 'Automated Tuist Swift project generator for scaffolding modular iOS and macOS app architectures.'
     },
     featured: true,
-    topics: ['Swift', 'Tuist', 'Xcode', 'Architecture'],
     icon: 'assets/icons/tuistprojectmaker.svg'
   },
   'clean-arch-checker': {
-    category: { ko: '감사 도구', en: 'Audit Tool' },
     description: {
       ko: '클린 아키텍처 경계 및 레이어 의존성을 검사하고 감사하는 가이드 스크립트 도구.',
       en: 'Architecture compliance checker script for auditing Clean Architecture boundaries & layer dependencies.'
     },
     featured: true,
-    topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter'],
     icon: 'assets/icons/clean-arch-checker.svg'
   },
   'iTorrent': {
-    category: { ko: 'iOS 앱', en: 'iOS App' },
     description: {
       ko: 'iOS 16+ 기기를 위해 Swift로 작성된 기능 풍부한 BitTorrent 클라이언트.',
       en: 'Feature-rich BitTorrent client written in Swift for iOS 16+ devices.'
     },
     featured: false,
-    topics: ['iOS', 'Swift', 'BitTorrent'],
     icon: 'assets/icons/itorrent.svg'
   },
   'LibTorrent-Swift': {
-    category: { ko: '라이브러리', en: 'Library' },
     description: {
       ko: 'C++ libtorrent 라이브러리를 위한 Swift 래퍼 및 통합 레이어.',
       en: 'Swift wrapper and integration layer around the C++ libtorrent library.'
     },
     featured: false,
-    topics: ['Objective-C++', 'Swift', 'libtorrent'],
     icon: 'assets/icons/libtorrent-swift.svg'
   },
   'DesignSystemMake': {
-    category: { ko: '라이브러리', en: 'Library' },
     description: {
       ko: '디자인 시스템 토큰과 컴포넌트를 표준화하고 구축하기 위한 Swift 라이브러리 및 유틸리티 도구.',
       en: 'Swift library and utility tool for creating and standardizing design system tokens and components.'
     },
     featured: false,
-    topics: ['Swift', 'Design-System', 'SwiftUI'],
     icon: 'assets/icons/designsystemmake.png'
   },
   'Grassie': {
-    category: { ko: 'macOS 도구', en: 'macOS Tool' },
     description: {
       ko: '시스템 자동화를 위한 Swift 유틸리티 애플리케이션 및 도구.',
       en: 'Swift utility application and tool for system automation.'
     },
     featured: false,
-    topics: ['Swift', 'macOS'],
     icon: 'assets/icons/grassie.svg'
   }
 };
