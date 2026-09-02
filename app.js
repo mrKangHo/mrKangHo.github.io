@@ -501,7 +501,7 @@ async function searchAppStore(query) {
   }
 }
 
-// Render App Store Portfolio Cards with Screenshots
+// Render App Store Portfolio Cards with Screenshots (Full Width List)
 function renderAppStoreGrid(apps) {
   if (!appstoreContainer) return;
   appstoreContainer.innerHTML = '';
@@ -517,7 +517,9 @@ function renderAppStoreGrid(apps) {
 
     const screenshotsHtml = (app.screenshots && app.screenshots.length > 0) ? `
       <div class="appstore-screenshots-wrapper">
-        <div class="appstore-screenshots-title"><i class="fa-solid fa-mobile-screen-button"></i> ${t.appstoreScreenshots}</div>
+        <div class="appstore-screenshots-title">
+          <i class="fa-solid fa-mobile-screen-button"></i> ${t.appstoreScreenshots} (${app.screenshots.length})
+        </div>
         <div class="appstore-screenshots-scroll">
           ${app.screenshots.map(sUrl => `
             <div class="screenshot-item" onclick="openLightbox('${sUrl}')" title="${escapeHtml(app.name)} Screenshot Preview">
@@ -529,10 +531,10 @@ function renderAppStoreGrid(apps) {
     ` : '';
 
     card.innerHTML = `
-      <div>
-        <div class="appstore-card-header">
-          <img src="${app.icon}" alt="${escapeHtml(app.name)} Icon" class="appstore-icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
-          <div class="appstore-meta">
+      <div class="appstore-card-header">
+        <img src="${app.icon}" alt="${escapeHtml(app.name)} Icon" class="appstore-icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
+        <div class="appstore-meta-header">
+          <div class="appstore-title-area">
             <div class="appstore-badge-row">
               <span class="category-tag appstore-genre">${escapeHtml(app.genre)}</span>
               <span class="appstore-rating-pill" title="${ratingDisplay}${ratingCountStr}"><i class="fa-solid fa-star"></i> ${ratingDisplay}</span>
@@ -540,15 +542,18 @@ function renderAppStoreGrid(apps) {
             <h3 class="appstore-title">${escapeHtml(app.name)}</h3>
             <p class="appstore-developer">${escapeHtml(app.artist)}</p>
           </div>
+          <div class="appstore-action-area">
+            <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn-appstore">
+              <i class="fa-brands fa-apple"></i> <span>${t.appstoreViewBtn}</span>
+            </a>
+          </div>
         </div>
-        <p class="appstore-desc">${escapeHtml(app.description)}</p>
-        ${screenshotsHtml}
       </div>
+      <p class="appstore-desc">${escapeHtml(app.description)}</p>
+      ${screenshotsHtml}
       <div class="appstore-footer">
         <span class="appstore-version">v${escapeHtml(app.version)}</span>
-        <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="btn-appstore">
-          <i class="fa-brands fa-apple"></i> <span>${t.appstoreViewBtn}</span>
-        </a>
+        <span class="appstore-artist-tag">${escapeHtml(app.artist)}</span>
       </div>
     `;
     appstoreContainer.appendChild(card);
