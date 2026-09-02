@@ -7,7 +7,7 @@ const GITHUB_USERNAME = 'mrKangHo';
 const API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 const EXCLUDED_REPOS = ['mrKangHo', 'mrKangHo.github.io'];
 
-// Default Curated App Store Portfolio Apps with Resume Roles, Contributions & Tech Stack
+/// Default Curated App Store Portfolio Apps with Resume Roles, Contributions & Tech Stack
 const DEFAULT_APPSTORE_APPS = [
   // Commercial Work Projects
   {
@@ -19,14 +19,14 @@ const DEFAULT_APPSTORE_APPS = [
     platforms: ['ios'],
     role: '모바일 파트장 (웅진컴퍼스 · 2019.07 - 2025.08)',
     contributions: [
+      'UIKit 기반 화면을 SwiftUI로 전면 전환하는 마이그레이션을 주도하여 전체 화면의 80% 이상을 SwiftUI로 전환',
+      '신규 개발 및 유지보수 상황별 Claude 지침(CLAUDE.md)을 수립하여 SwiftLint를 적용하고, PR 생성 시 lint 위반을 자동 점검하는 CI 체계 구축',
+      'Crashlytics → AI 우선순위 판정 → JIRA 자동 등록 → Slack 알림으로 이어지는 QA 자동화 파이프라인 직접 설계 및 구축',
       'Tuist 도입으로 계층별(Feature/Core/UI) 모듈화 설계 및 전체 빌드 속도 30% 이상 개선',
       'TCA 기반 단방향 상태 관리 도입 및 팀 기술 세미나 주도로 런타임 오류 발생률 대폭 감소',
-      '전사 공통 디자인 시스템 설계 (FlexLayout/PinLayout으로 프레임 드랍 없는 리스트 구현, 신규 UI 구현 시간 40% 단축)',
-      'Crashlytics → AI 우선순위 판정 → JIRA 자동 등록 → Slack 알림으로 이어지는 QA 자동화 파이프라인 직접 설계 및 구축',
-      'PR 생성 시 Claude Code 1차 자동 리뷰 도입, 레거시 기술부채 개선과 신규 기능 개발에 AI 코딩 도구 적극 활용',
-      'Braze, Amplitude, AirBridge 연동으로 데이터 기반 성장 지표 수집 체계 완성'
+      '전사 공통 디자인 시스템 설계로 신규 화면 UI 구현 시간 40% 이상 단축'
     ],
-    techStack: ['Swift', 'TCA', 'Tuist', 'Clean Architecture', 'FlexLayout', 'PinLayout', 'Firebase', 'Claude Code', 'Braze', 'Amplitude'],
+    techStack: ['Swift', 'SwiftUI', 'TCA', 'Tuist', 'SwiftLint', 'Claude Code', 'Firebase', 'Figma'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ff/1c/db/ff1cdb92-6a1f-ac30-64cb-f06574412ef5/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EB%86%80%EC%9D%B4%EC%9D%98%EB%B0%9C%EA%B2%AC/id1440611965',
     genre: '라이프스타일',
@@ -41,6 +41,35 @@ const DEFAULT_APPSTORE_APPS = [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f7/5d/0a/f75d0ab0-fe4e-81bd-2355-29a0271c9e2b/4.png/392x696bb.png',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2b/00/55/2b0055f2-acb0-8fde-109e-73f8e5c34d28/5.png/392x696bb.png',
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8c/22/f8/8c22f8b5-1065-4e60-e3b3-400e00b2eed6/6.png/392x696bb.png'
+    ]
+  },
+  {
+    id: 1440611966,
+    name: '소풍의 발견',
+    artist: 'Woongjin Compass, Co., Ltd.',
+    isPersonal: false,
+    type: 'commercial',
+    platforms: ['ios'],
+    role: 'iOS 리드 (웅진컴퍼스 · 2019.07 - 2025.08)',
+    contributions: [
+      '체험학습 예약부터 귀가까지 책임지는 올인원 서비스의 iOS 개발 리드 및 빠른 시장 출시(Time-to-Market) 달성',
+      'Clean Architecture 도입으로 비즈니스 로직과 프레임워크를 명확히 분리하여 신규 인원 온보딩 기간 단축',
+      '기존 전사 디자인 시스템 자산을 이식해 반복적인 UI 작업을 제거하고 핵심 로직 구현에 자원 집중',
+      'Storyboard/Xib 없이 100% 코드 기반 UI 구성으로 Git 충돌 사전 방지',
+      'Firebase 실시간 데이터 동기화로 끊김 없는 예약 상태 정보 제공, 목표 일정 내 MVP 출시 성공'
+    ],
+    techStack: ['Swift', 'Clean Architecture', 'UIKit', 'Firebase', 'Git'],
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ff/1c/db/ff1cdb92-6a1f-ac30-64cb-f06574412ef5/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EB%86%80%EC%9D%B4%EC%9D%98%EB%B0%9C%EA%B2%AC/id1440611965',
+    genre: '체험학습 / 여가',
+    rating: '5.0',
+    ratingCount: 15,
+    version: '1.2.0',
+    description: '체험학습 예약부터 귀가까지 책임지는 올인원 소풍 & 체험활동 예약 서비스.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/80/96/74/8096742a-d57d-4c14-2ef5-188389553852/1.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2d/cd/61/2dcd61cb-f6f0-2fb4-e123-782cc0244a9e/2.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/44/83/83/4483837e-7dd7-770d-764b-a1857c7a8222/3.png/392x696bb.png'
     ]
   },
   {
@@ -163,7 +192,34 @@ const DEFAULT_APPSTORE_APPS = [
       'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/37/8c/17/378c1766-ed7f-af0a-57e1-e442353f2f01/06.png/392x696bb.png'
     ]
   },
-  // Personal Published Apps by Kangho Lee (Kano)
+  // Personal Published Apps & 1-Person SaaS Startup by Kangho Lee (Kano)
+  {
+    id: 1000000001,
+    name: 'Dotory (도토리) — 화이트라벨 모바일 쇼핑몰 SaaS',
+    artist: 'Dotory · Kano (1인 창업)',
+    isPersonal: true,
+    type: 'personal',
+    platforms: ['ios', 'android'],
+    role: '대표 · 창업자 (1인 개발 · 2026.05 - 운영중)',
+    contributions: [
+      '고객사가 코드 없이 5분 만에 iOS/Android 네이티브 쇼핑몰 앱을 생성하는 화이트라벨 SaaS 단독 기획 · 개발 · 운영',
+      'Flutter 기반 공용 모바일 SDK & 앱 템플릿 구축 및 Codemagic CI/CD로 고객사별 앱 자동 빌드 및 TestFlight / Google Play 자동 배포 파이프라인 구현',
+      'NestJS 마스터/테넌트 API 분리 설계 및 AsyncLocalStorage / PostgreSQL 기반 멀티테넌시 데이터 아키텍처 구축',
+      'Next.js 기반 스튜디오(온보딩/앱설정), CRM 대시보드, 운영자 콘솔, 마케팅 홈페이지 등 4개 프론트엔드 웹 서비스 직접 개발',
+      'Claude Code, Gemini CLI 등 AI 코딩 도구를 실제 개발 워크플로우에 통합하여 1인 개발로 7개 이상 저장소 및 풀스택 서비스 동시 운영'
+    ],
+    techStack: ['Flutter', 'Dart', 'NestJS', 'Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Codemagic', 'Claude Code'],
+    icon: 'https://avatars.githubusercontent.com/u/9712872?v=4',
+    url: 'https://github.com/mrKangHo',
+    genre: '커머스 SaaS / 1인 창업',
+    rating: '5.0',
+    ratingCount: 0,
+    version: '1.0.0',
+    description: '고객사가 코드 없이 5분 만에 iOS/Android 네이티브 쇼핑몰 앱을 생성할 수 있는 화이트라벨 모바일 쇼핑몰 SaaS 플랫폼.',
+    screenshots: [
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fc/7a/02/fc7a0219-0755-4b8a-29b8-94f74fc5e734/01_fridge.png/320x480bb.jpg'
+    ]
+  },
   {
     id: 6801459066,
     name: '오늘의 냉장고',
