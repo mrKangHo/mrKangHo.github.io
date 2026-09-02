@@ -12,73 +12,85 @@ const REPO_ENRICHMENTS = {
     category: 'macOS App',
     description: 'macOS native floating YouTube player with in-app fullscreen, always-on-top, click-through mode and menu bar tray.',
     featured: true,
-    topics: ['macOS', 'Swift', 'SwiftUI', 'YouTube', 'Pip']
+    topics: ['macOS', 'Swift', 'SwiftUI', 'YouTube', 'Pip'],
+    icon: 'assets/icons/floatingtube.png'
   },
   'brew-manager': {
     category: 'macOS App',
     description: 'macOS GUI application for browsing, searching, installing, and updating Homebrew packages with ease.',
     featured: true,
-    topics: ['macOS', 'Swift', 'Homebrew', 'GUI']
+    topics: ['macOS', 'Swift', 'Homebrew', 'GUI'],
+    icon: 'assets/icons/brew-manager.png'
   },
   'youtubeDownloader': {
     category: 'macOS App',
     description: 'macOS GUI video & audio downloader powered by yt-dlp with custom resolution & audio format options.',
     featured: true,
-    topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube']
+    topics: ['macOS', 'Swift', 'yt-dlp', 'YouTube'],
+    icon: 'assets/icons/youtubedownloader.png'
   },
   'homebrew-ytdownloader': {
     category: 'Homebrew Tap',
     description: 'Homebrew tap for YTDownloader - simplified formula installation for macOS GUI YTDownloader.',
     featured: true,
-    topics: ['Homebrew', 'Tap', 'Ruby', 'yt-dlp']
+    topics: ['Homebrew', 'Tap', 'Ruby', 'yt-dlp'],
+    icon: 'assets/icons/homebrew-ytdownloader.svg'
   },
   'TuistProjectMaker': {
     category: 'CLI Tool',
     description: 'Automated Tuist Swift project generator for scaffolding modular iOS and macOS app architectures.',
     featured: true,
-    topics: ['Swift', 'Tuist', 'Xcode', 'Architecture']
+    topics: ['Swift', 'Tuist', 'Xcode', 'Architecture'],
+    icon: 'assets/icons/tuistprojectmaker.svg'
   },
   'clean-arch-checker': {
     category: 'Audit Tool',
     description: 'Architecture compliance checker script for auditing Clean Architecture boundaries & layer dependencies.',
     featured: true,
-    topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter']
+    topics: ['skills', 'JavaScript', 'Clean-Architecture', 'Linter'],
+    icon: 'assets/icons/clean-arch-checker.svg'
   },
   'iTorrent': {
     category: 'iOS App',
     description: 'Feature-rich BitTorrent client written in Swift for iOS 16+ devices.',
     featured: false,
-    topics: ['iOS', 'Swift', 'BitTorrent']
+    topics: ['iOS', 'Swift', 'BitTorrent'],
+    icon: 'assets/icons/itorrent.svg'
   },
   'LibTorrent-Swift': {
     category: 'Library',
     description: 'Swift wrapper and integration layer around the C++ libtorrent library.',
     featured: false,
-    topics: ['Objective-C++', 'Swift', 'libtorrent']
+    topics: ['Objective-C++', 'Swift', 'libtorrent'],
+    icon: 'assets/icons/libtorrent-swift.svg'
   },
   'DesignSystemMake': {
     category: 'Library',
     description: 'Swift library and utility tool for creating and standardizing design system tokens and components.',
     featured: false,
-    topics: ['Swift', 'Design-System', 'SwiftUI']
+    topics: ['Swift', 'Design-System', 'SwiftUI'],
+    icon: 'assets/icons/designsystemmake.png'
   },
   'Grassie': {
     category: 'macOS Tool',
     description: 'Swift utility application and tool for system automation.',
     featured: false,
-    topics: ['Swift', 'macOS']
+    topics: ['Swift', 'macOS'],
+    icon: 'assets/icons/grassie.svg'
   },
   'mrKangHo': {
     category: 'Profile',
     description: 'GitHub profile README configuration and developer background showcase.',
     featured: false,
-    topics: ['Profile', 'README']
+    topics: ['Profile', 'README'],
+    icon: 'https://avatars.githubusercontent.com/u/9712872?v=4'
   },
   'mrKangHo.github.io': {
     category: 'Web App',
     description: 'Personal open source portfolio showcase website built with HTML5, CSS, and GitHub REST API.',
     featured: false,
-    topics: ['GitHub-Pages', 'HTML5', 'CSS', 'JavaScript']
+    topics: ['GitHub-Pages', 'HTML5', 'CSS', 'JavaScript'],
+    icon: 'assets/icons/portfolio.svg'
   }
 };
 
@@ -228,7 +240,8 @@ function processAndSetData(repos) {
         topics: (Array.isArray(repo.topics) && repo.topics.length > 0) ? repo.topics : (enrichment.topics || []),
         homepage: repo.homepage || null,
         featured: enrichment.featured || false,
-        cloneUrl: repo.clone_url || (repo.html_url ? repo.html_url + '.git' : '')
+        cloneUrl: repo.clone_url || (repo.html_url ? repo.html_url + '.git' : ''),
+        icon: enrichment.icon || null
       };
     });
 
@@ -495,6 +508,15 @@ function render() {
   }
 }
 
+function getRepoIcon(repo) {
+  if (repo.icon) return repo.icon;
+  const lang = (repo.language || '').toLowerCase();
+  if (lang.includes('swift')) return 'assets/icons/tuistprojectmaker.svg';
+  if (lang.includes('ruby')) return 'assets/icons/homebrew-ytdownloader.svg';
+  if (lang.includes('javascript') || lang.includes('js')) return 'assets/icons/clean-arch-checker.svg';
+  return 'assets/icons/portfolio.svg';
+}
+
 // Render Featured Projects Section
 function renderFeatured() {
   const featuredRepos = processedRepos.filter(r => r.featured);
@@ -506,14 +528,22 @@ function renderFeatured() {
     
     const langDotClass = getLanguageDotClass(repo.language);
     const topicsHtml = repo.topics.slice(0, 4).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
+    const iconSrc = getRepoIcon(repo);
 
     card.innerHTML = `
       <div>
-        <div class="card-badge-row">
-          <span class="category-tag">${escapeHtml(repo.category)}</span>
-          ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
+        <div class="card-header-row">
+          <div class="card-app-icon">
+            <img src="${iconSrc}" alt="${escapeHtml(repo.name)} App Icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
+          </div>
+          <div class="card-title-group">
+            <div class="card-badge-row">
+              <span class="category-tag">${escapeHtml(repo.category)}</span>
+              ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
+            </div>
+            <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
+          </div>
         </div>
-        <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
         <p class="card-desc">${escapeHtml(repo.description)}</p>
         <div class="topics-row">${topicsHtml}</div>
       </div>
@@ -544,14 +574,22 @@ function createRepoCard(repo) {
   const langDotClass = getLanguageDotClass(repo.language);
   const topicsHtml = repo.topics.slice(0, 3).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
   const formattedDate = repo.updatedAt ? repo.updatedAt.toLocaleDateString('ko-KR', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+  const iconSrc = getRepoIcon(repo);
 
   card.innerHTML = `
     <div>
-      <div class="card-badge-row">
-        <span class="category-tag">${escapeHtml(repo.category)}</span>
-        ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
+      <div class="card-header-row">
+        <div class="card-app-icon">
+          <img src="${iconSrc}" alt="${escapeHtml(repo.name)} App Icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
+        </div>
+        <div class="card-title-group">
+          <div class="card-badge-row">
+            <span class="category-tag">${escapeHtml(repo.category)}</span>
+            ${repo.isFork ? '<span class="topic-pill">Fork</span>' : ''}
+          </div>
+          <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
+        </div>
       </div>
-      <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
       <p class="card-desc">${escapeHtml(repo.description)}</p>
       ${topicsHtml ? `<div class="topics-row">${topicsHtml}</div>` : ''}
     </div>

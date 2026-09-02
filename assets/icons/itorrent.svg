@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg-torrent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg-torrent)"/>
+  <path d="M42 36 V62 C42 74 52 84 64 84 C76 84 86 74 86 62 V36 H72 V62 C72 66 68 70 64 70 C60 70 56 66 56 62 V36 Z" fill="#FFFFFF"/>
+  <path d="M42 36 H56 V48 H42 Z M72 36 H86 V48 H72 Z" fill="#A7F3D0"/>
+  <path d="M64 84 L64 100 M54 92 L64 100 L74 92" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
