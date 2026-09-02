@@ -44,8 +44,8 @@ const DEFAULT_APPSTORE_APPS = [
     ]
   },
   {
-    id: 1440611966,
-    name: '소풍의 발견',
+    id: 6446482198,
+    name: '소풍의발견',
     artist: 'Woongjin Compass, Co., Ltd.',
     isPersonal: false,
     type: 'commercial',
@@ -59,17 +59,18 @@ const DEFAULT_APPSTORE_APPS = [
       'Firebase 실시간 데이터 동기화로 끊김 없는 예약 상태 정보 제공, 목표 일정 내 MVP 출시 성공'
     ],
     techStack: ['Swift', 'Clean Architecture', 'UIKit', 'Firebase', 'Git'],
-    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ff/1c/db/ff1cdb92-6a1f-ac30-64cb-f06574412ef5/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg',
-    url: 'https://apps.apple.com/kr/app/%EB%86%80%EC%9D%B4%EC%9D%98%EB%B0%9C%EA%B2%AC/id1440611965',
-    genre: '체험학습 / 여가',
+    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b2/28/a4/b228a42d-a10d-9ca5-e57d-79768205186a/AppIcon-1x_U007ephone-0-1-0-85-220-0.png/512x512bb.jpg',
+    url: 'https://apps.apple.com/kr/app/%EC%86%8C%ED%92%8D%EC%9D%98%EB%B0%9C%EA%B2%AC/id6446482198',
+    genre: '교육 / 체험학습',
     rating: '5.0',
-    ratingCount: 15,
-    version: '1.2.0',
-    description: '체험학습 예약부터 귀가까지 책임지는 올인원 소풍 & 체험활동 예약 서비스.',
+    ratingCount: 4,
+    version: '1.2.2',
+    description: '소풍의발견은 출발부터 프로그램 진행, 식사, 귀가까지 책임지는 체험학습 올인원 서비스입니다.',
     screenshots: [
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/80/96/74/8096742a-d57d-4c14-2ef5-188389553852/1.png/392x696bb.png',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/2d/cd/61/2dcd61cb-f6f0-2fb4-e123-782cc0244a9e/2.png/392x696bb.png',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/44/83/83/4483837e-7dd7-770d-764b-a1857c7a8222/3.png/392x696bb.png'
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/77/54/f1/7754f13b-1c44-9e36-f156-208a8e5f886d/7f30fdf3-4238-4680-8ddb-344d64c3b78d_ios_U00285.5_U00291.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/a9/39/dc/a939dce9-c08e-0e8b-a773-90e589dfbd3c/1f2d087f-3f58-4f5c-a09c-678898e0f3e5_ios_U00285.5_U00292.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/be/2b/23/be2b23f8-2ac2-93e3-c950-e087ca55dda7/0084a3af-1485-4e16-a2db-7c065b4c2d50_ios_U00285.5_U00293.png/392x696bb.png',
+      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource126/v4/ca/8e/97/ca8e979d-f400-9a1a-a73c-985ee121c39d/113b61c2-5caf-49ac-8373-6e1c09382642_ios_U00285.5_U00294.png/392x696bb.png'
     ]
   },
   {
