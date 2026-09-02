@@ -207,7 +207,7 @@ const DEFAULT_APPSTORE_APPS = [
       '대용량 웹툰 이미지 컷 렌더링 프레임 드랍 최소화, 이미지 메모리 캐싱 모듈 성능 최적화',
       '무료대여권, 매매무(기다리면 무료), 실시간 랭킹 및 취향 템플릿 맞춤 UX 기능 연동'
     ],
-    techStack: ['Swift', 'Objective-C', 'UIKit', 'MVVM', 'SDWebImage', 'REST API'],
+    techStack: ['Swift', 'SwiftUI', 'RxSwift', 'UIKit', 'MVVM', 'REST API'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/be/76/7b/be767bb7-dc2f-fd40-c1fa-82f5e8426b4b/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/%EB%A0%88%EC%A7%84%EC%BD%94%EB%AF%B9%EC%8A%A4-%EC%86%94%EC%A7%81%ED%95%9C-%EC%9E%AC%EB%AF%B8-%EB%8C%80%ED%8F%AD%EB%B0%9C/id664973122',
     genre: '도서 / 웹툰',
@@ -235,7 +235,7 @@ const DEFAULT_APPSTORE_APPS = [
       'M&A, IPO, 자금조달 등 금융 자본시장 데이터 파싱 및 비동기 실시간 기사 렌더링 최적화',
       '사용자 친화적 기사 스크랩, 모바일 인터페이스 및 백그라운드 푸시 알림 연동'
     ],
-    techStack: ['Swift', 'UIKit', 'MVVM', 'REST API', 'Firebase'],
+    techStack: ['Swift', 'SwiftUI', 'MVVM', 'REST API', 'Firebase'],
     icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d9/73/82/d973825d-47f3-cf82-9028-8f1a7af406dd/AppIcon-0-0-1x_U007ephone-0-1-85-220.jpeg/512x512bb.jpg',
     url: 'https://apps.apple.com/kr/app/investchosun/id1574689419',
     genre: '뉴스',
