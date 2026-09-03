@@ -1489,11 +1489,13 @@ function render() {
 
 function getRepoIcon(repo) {
   if (repo.icon) return repo.icon;
-  const lang = (repo.language || '').toLowerCase();
-  if (lang.includes('swift')) return 'assets/icons/tuistprojectmaker.svg';
-  if (lang.includes('ruby')) return 'assets/icons/homebrew-ytdownloader.svg';
-  if (lang.includes('javascript') || lang.includes('js')) return 'assets/icons/clean-arch-checker.svg';
-  return 'assets/icons/portfolio.svg';
+  // Automatically check GitHub Raw URL for docs/icon.png
+  return `https://raw.githubusercontent.com/mrKangHo/${repo.name}/main/docs/icon.png`;
+}
+
+// Helper to generate onerror attribute for GitHub Raw image fallback
+function getRepoIconOnError(repoName) {
+  return `if (this.src.includes('docs/icon.png')) { this.src='https://raw.githubusercontent.com/mrKangHo/${repoName}/main/assets/icon.png'; } else if (this.src.includes('assets/icon.png')) { this.src='https://raw.githubusercontent.com/mrKangHo/${repoName}/main/icon.png'; } else { this.onerror=null; this.src='assets/icons/portfolio.svg'; }`;
 }
 
 // Render Featured Projects Section
@@ -1517,7 +1519,7 @@ function renderFeatured() {
       <div>
         <div class="card-header-row">
           <div class="card-app-icon">
-            <img src="${iconSrc}" alt="${escapeHtml(repo.name)} App Icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
+            <img src="${iconSrc}" alt="${escapeHtml(repo.name)} App Icon" loading="lazy" onerror="${getRepoIconOnError(repo.name)}">
           </div>
           <div class="card-title-group">
             <div class="card-badge-row">
@@ -1566,7 +1568,7 @@ function createRepoCard(repo) {
     <div>
       <div class="card-header-row">
         <div class="card-app-icon">
-          <img src="${iconSrc}" alt="${escapeHtml(repo.name)} App Icon" loading="lazy" onerror="this.onerror=null; this.src='assets/icons/portfolio.svg';">
+          <img src="${iconSrc}" alt="${escapeHtml(repo.name)} App Icon" loading="lazy" onerror="${getRepoIconOnError(repo.name)}">
         </div>
         <div class="card-title-group">
           <div class="card-badge-row">
