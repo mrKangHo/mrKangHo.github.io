@@ -541,7 +541,7 @@ const REPO_ENRICHMENTS = {
       en: 'Native macOS app for backing up, syncing, and managing AI Agent Skills across Claude Code, Cursor, Gemini CLI, etc.'
     },
     featured: true,
-    icon: 'assets/icons/portfolio.svg'
+    icon: 'assets/icons/skillarchive.png'
   }
 };
 
