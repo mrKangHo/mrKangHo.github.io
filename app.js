@@ -534,6 +534,14 @@ const REPO_ENRICHMENTS = {
     },
     featured: false,
     icon: 'assets/icons/grassie.svg'
+  },
+  'SkillArchive': {
+    description: {
+      ko: 'macOS 네이티브 AI 에이전트 스킬(Skills) 백업, 동기화 및 멀티 에이전트 자동 관리 애플리케이션.',
+      en: 'Native macOS app for backing up, syncing, and managing AI Agent Skills across Claude Code, Cursor, Gemini CLI, etc.'
+    },
+    featured: true,
+    icon: 'assets/icons/portfolio.svg'
   }
 };
 
@@ -1188,7 +1196,10 @@ function processAndSetData(repos) {
         fullName: repo.full_name || repo.name || '',
         htmlUrl: repo.html_url || `https://github.com/${GITHUB_USERNAME}/${repo.name}`,
         category: getCategoryFromRepo(repo, enrichment),
-        description: enrichment.description || repo.description || { ko: '설명이 없습니다.', en: 'No description provided.' },
+        description: enrichment.description || repo.description || { 
+          ko: `${repo.name} 오픈소스 프로젝트입니다.`, 
+          en: `Open source project ${repo.name}.` 
+        },
         language: repo.language || (topicsList[0] ? topicsList[0] : 'Other'),
         stars: typeof repo.stargazers_count === 'number' ? repo.stargazers_count : 0,
         forks: typeof repo.forks_count === 'number' ? repo.forks_count : 0,
