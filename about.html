@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kano — 개발 철학 & 생각들 (About & Mindset)</title>
+  <meta name="description" content="11년차 iOS 개발자이자 1인 창업가 이강호(Kano)의 개발에 임하는 생각과 나만의 엔지니어링 철학">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kano — 개발 철학 & 생각들">
+  <meta property="og:description" content="기술을 대하는 태도, 지속 가능한 코드, 시스템 자동화, 그리고 1인 창업가로서의 개발 철학">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/9712872?v=4">
+
+  <!-- Google Fonts: Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom styles for About / Philosophy Page */
+    .philosophy-hero {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.5rem;
+      background: rgba(19, 25, 41, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .philosophy-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-indigo), var(--accent-blue), transparent);
+    }
+
+    .philosophy-quote {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 1.25rem;
+      word-break: keep-all;
+    }
+
+    .philosophy-author {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .philosophy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .philosophy-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-num-badge {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #818cf8;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .card-philosophy-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      word-break: keep-all;
+    }
+
+    .card-philosophy-title i {
+      color: #60a5fa;
+    }
+
+    .card-philosophy-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .card-philosophy-text p {
+      margin-bottom: 1rem;
+    }
+
+    .card-philosophy-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid #6366f1;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+      color: #cbd5e1;
+    }
+
+    .mindset-footer-cta {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.08) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: var(--radius-lg);
+      margin-bottom: 3rem;
+    }
+
+    .cta-heading {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="nav-avatar">
+        <span class="nav-title">Kano</span>
+        <span class="nav-tag">About & Mindset</span>
+      </a>
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switcher" id="lang-switcher">
+          <button type="button" class="lang-btn" data-lang-switch="ko" title="한국어로 전환">KO</button>
+          <button type="button" class="lang-btn" data-lang-switch="en" title="Switch to English">EN</button>
+        </div>
+
+        <a href="index.html" class="nav-btn">
+          <i class="fa-solid fa-code"></i> <span>오픈소스</span>
+        </a>
+
+        <a href="portfolio.html" class="nav-btn nav-btn-appstore">
+          <i class="fa-brands fa-app-store-ios"></i> <span>포트폴리오</span>
+        </a>
+
+        <a href="about.html" class="nav-btn active" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; border-color: rgba(99, 102, 241, 0.4);">
+          <i class="fa-solid fa-heart-pulse"></i> <span>개발 철학</span>
+        </a>
+
+        <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-btn">
+          <i class="fa-brands fa-github"></i> <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Profile Hero Section -->
+    <header class="hero-section" style="margin-bottom: 2rem;">
+      <div class="hero-header-row">
+        <div class="hero-profile-card">
+          <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Profile Picture" class="hero-avatar">
+          <div class="hero-profile-info">
+            <div class="status-pill">
+              <span class="status-dot"></span> <span>Engineering Philosophy & Mindset</span>
+            </div>
+            <h1 class="hero-name">Kano <span class="username">(@mrKangHo)</span></h1>
+            <div class="hero-bio">
+              <p class="bio-text"><i class="fa-brands fa-apple"></i> 11년 동안 축적해 온 나의 개발에 대한 관점과 나만의 엔지니어링 철학</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <span class="metric-val">11th</span>
+            <span class="metric-lbl">Years Experience</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-val">Simplicity</span>
+            <span class="metric-lbl">Core Value</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-val">Solo Founder</span>
+            <span class="metric-lbl">Execution Power</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Philosophy Hero Quote -->
+    <section class="philosophy-hero">
+      <div class="philosophy-quote">
+        "소프트웨어는 단순한 코드가 아니라, 사람의 소중한 시간을 아껴주는 따뜻한 도구이어야 합니다."
+      </div>
+      <div class="philosophy-author">
+        <span>— 11년차 iOS 개발자 & 1인 창업가 이강호 (Kano)</span>
+      </div>
+    </section>
+
+    <!-- 5 Core Engineering Mindset Essays -->
+    <section class="philosophy-grid">
+
+      <!-- Mindset 1 -->
+      <article class="philosophy-card">
+        <span class="card-num-badge">01. USER & TIME</span>
+        <h2 class="card-philosophy-title">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <span>기술보다 먼저 사용자와 동료의 '시간'을 생각합니다</span>
+        </h2>
+        <div class="card-philosophy-text">
+          <p>
+            개발의 본질은 화려한 기술 스택을 자랑하는 데 있지 않다고 믿습니다. 진정한 가치는 이 서비스가 **사용자의 삶에서 얼마나 소중한 시간을 아껴주고 편리함을 주는가**에 있습니다.
+          </p>
+          <p>
+            또한, 내가 작성한 코드는 훗날 함께 일할 동료 개발자의 시간을 아껴주는 수단이어야 합니다. 읽기 명확한 코드, 직관적인 구조, 과도한 오버엔지니어링(Over-engineering)이 없는 단순함을 유지할 때 비로소 제품과 팀 모두가 행복할 수 있습니다.
+          </p>
+          <div class="highlight-box">
+            "어떤 기능을 만들든 '사용자가 더 쉽게 사용할 수 있는가?', '동료가 이 코드를 읽을 때 스트레스를 받지 않는가?'를 가장 먼저 질문합니다."
+          </div>
+        </div>
+      </article>
+
+      <!-- Mindset 2 -->
+      <article class="philosophy-card">
+        <span class="card-num-badge">02. SUSTAINABILITY & SIMPLICITY</span>
+        <h2 class="card-philosophy-title">
+          <i class="fa-solid fa-leaf"></i>
+          <span>완벽한 정답보다 지속 가능한 유연함을 추구합니다</span>
+        </h2>
+        <div class="card-philosophy-text">
+          <p>
+            처음부터 100% 완벽한 설계나 변하지 않는 정답 코드는 존재하지 않습니다. 시장 상황과 비즈니스 요구사항은 끊임없이 변화하기 때문입니다.
+          </p>
+          <p>
+            제가 추구하는 아키텍처는 **'언제든 손쉽게 가꾸고 바꿀 수 있는 유연함'**입니다. 거대한 구조를 한 번에 만들기보다, 지금 필요한 가장 명확한 최소 형태(YAGNI - You Aren't Gonna Need It)로 시작하여 지속적으로 마이그레이션하고 다듬어 나가는 개발 방식을 선호합니다.
+          </p>
+        </div>
+      </article>
+
+      <!-- Mindset 3 -->
+      <article class="philosophy-card">
+        <span class="card-num-badge">03. SYSTEM & AUTOMATION</span>
+        <h2 class="card-philosophy-title">
+          <i class="fa-solid fa-robot"></i>
+          <span>품질은 사람이 아닌 '시스템과 자동화'로 유지합니다</span>
+        </h2>
+        <div class="card-philosophy-text">
+          <p>
+            인간의 집중력과 기억력에는 분명한 한계가 있습니다. 좋은 개발 환경은 사람의 주의력이나 실수를 탓하는 것이 아니라, **실수가 일어날 수 없는 안전한 시스템을 만드는 것**입니다.
+          </p>
+          <p>
+            반복적인 빌드·배포(CI/CD), 코드 스타일 검사(SwiftLint), 런타임 오류 감지 및 자동 알림 파이프라인(Crashlytics-AI-Slack), AI 1차 리뷰 등을 프로세스화합니다. 번거롭고 반복되는 작업은 도구와 AI에 맡기고, 사람은 비즈니스 논의, UX 고민, 그리고 창의적인 문제 해결에 집중할 수 있는 문화를 만듭니다.
+          </p>
+        </div>
+      </article>
+
+      <!-- Mindset 4 -->
+      <article class="philosophy-card">
+        <span class="card-num-badge">04. BOUNDLESS EXECUTION</span>
+        <h2 class="card-philosophy-title">
+          <i class="fa-solid fa-rocket"></i>
+          <span>스스로 한계를 정하지 않는 1인 창업가의 도전 정신</span>
+        </h2>
+        <div class="card-philosophy-text">
+          <p>
+            스스로를 'iOS 개발자'라는 하나의 틀에 가두지 않습니다. 서비스의 성장을 위해 필요하다면 기획, 백엔드, 프론트엔드, 인프라, 비즈니스 영역까지 도망치지 않고 끝까지 깊게 파고들어 결실을 맺습니다.
+          </p>
+          <p>
+            화이트라벨 모바일 쇼핑몰 SaaS `Dotory`를 1인 풀스택으로 기획부터 구축·운영해 낸 경험은 저에게 기술적 한계를 뛰어넘어 **'서비스 전체를 엔드투엔드로 책임지는 넓은 시야와 강한 오너십'**을 안겨주었습니다.
+          </p>
+          <div class="highlight-box">
+            "새로운 도구를 배우는 것을 즐기며, AI 시대의 흐름을 빠르게 내재화하여 끝까지 실행하고 완성해 냅니다."
+          </div>
+        </div>
+      </article>
+
+      <!-- Mindset 5 -->
+      <article class="philosophy-card">
+        <span class="card-num-badge">05. TRANSPARENCY & GROWTH</span>
+        <h2 class="card-philosophy-title">
+          <i class="fa-solid fa-comments"></i>
+          <span>좋은 개발자는 좋은 질문을 던지는 파트너입니다</span>
+        </h2>
+        <div class="card-philosophy-text">
+          <p>
+            기능 요구사항을 단순히 받아적어 구현하는 작업자가 아니라, "왜 이 기능이 사용자에게 필요한가?", "더 간결하고 좋은 방법은 없을까?"를 끊임없이 던지고 대화하는 파트너가 되고자 합니다.
+          </p>
+          <p>
+            솔직하고 투명한 소통, 서로에 대한 존중, 그리고 실패를 두려워하지 않고 함께 배우며 성장하는 팀 문화를 가장 소중하게 생각합니다.
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Mindset Footer CTA -->
+    <div class="mindset-footer-cta">
+      <h3 class="cta-heading">함께 가치 있는 서비스를 만들 준비가 되어 있습니다</h3>
+      <p class="cta-desc">오픈소스 저장소 코드와 실무 프로젝트 포트폴리오를 함께 확인해 보세요.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="index.html" class="btn-appstore" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);">
+          <i class="fa-solid fa-code"></i> <span>오픈소스 저장소 보기</span>
+        </a>
+        <a href="portfolio.html" class="btn-appstore" style="background: #0071e3;">
+          <i class="fa-brands fa-app-store-ios"></i> <span>실무 포트폴리오 보기</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-subtle); color: var(--text-muted); font-size: 0.85rem;">
+      <p>&copy; 2026 Kano (mrKangHo). <span id="footer-rights">All rights reserved.</span></p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
