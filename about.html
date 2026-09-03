@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kano — 개발 철학 & 생각들 (About & Mindset)</title>
-  <meta name="description" content="11년차 iOS 개발자이자 1인 창업가 이강호(Kano)의 개발에 임하는 생각과 나만의 엔지니어링 철학">
+  <title>Kano — About Me & 11년 엔지니어링 궤적</title>
+  <meta name="description" content="11년차 iOS 개발자이자 1인 창업가 이강호(Kano)의 개발 가치관, 핵심 기술 스택 맵 및 11년 엔지니어링 궤적 타임라인">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kano — 개발 철학 & 생각들">
-  <meta property="og:description" content="기술을 대하는 태도, 지속 가능한 코드, 시스템 자동화, 그리고 1인 창업가로서의 개발 철학">
+  <meta property="og:title" content="Kano — About Me & 11년 엔지니어링 궤적">
+  <meta property="og:description" content="기술을 대하는 태도, 핵심 기술 역량 맵, 그리고 11년 엔지니어링 타임라인">
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/9712872?v=4">
 
   <!-- Google Fonts: Inter, JetBrains Mono -->
@@ -139,6 +139,192 @@
       color: #cbd5e1;
     }
 
+    /* Section Header */
+    .section-header {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Tech Competency Map */
+    .tech-map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .tech-map-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+      transition: all 0.25s ease;
+    }
+
+    .tech-map-card:hover {
+      border-color: rgba(99, 102, 241, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .tech-group-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .tech-badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-badge {
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    .tech-badge.highlight {
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border-color: rgba(99, 102, 241, 0.3);
+      font-weight: 600;
+    }
+
+    /* Vertical Timeline */
+    .timeline-container {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 0.65rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: linear-gradient(180deg, #6366f1 0%, rgba(99, 102, 241, 0.2) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.25rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 0.25rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 3px solid #6366f1;
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    }
+
+    .timeline-item.active .timeline-dot {
+      background: #6366f1;
+      border-color: #818cf8;
+      box-shadow: 0 0 14px #6366f1;
+    }
+
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+    }
+
+    .timeline-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-company {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .timeline-period {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #818cf8;
+      background: rgba(99, 102, 241, 0.1);
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .timeline-role {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .timeline-highlights {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .timeline-highlights li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .timeline-highlights li:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-highlights li::before {
+      content: '•';
+      position: absolute;
+      left: 0.25rem;
+      color: #6366f1;
+      font-weight: bold;
+    }
+
     .mindset-footer-cta {
       text-align: center;
       padding: 3rem 2rem;
@@ -160,6 +346,51 @@
       font-size: 1rem;
       margin-bottom: 1.5rem;
     }
+
+    /* Mobile Responsive Adjustments for About Page */
+    @media (max-width: 768px) {
+      .philosophy-hero {
+        padding: 2rem 1rem 1.5rem;
+      }
+      .philosophy-quote {
+        font-size: 1.15rem;
+        line-height: 1.55;
+      }
+      .philosophy-card {
+        padding: 1.35rem;
+      }
+      .card-philosophy-title {
+        font-size: 1.15rem;
+      }
+      .card-philosophy-text {
+        font-size: 0.92rem;
+      }
+      .tech-map-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .timeline-container {
+        padding-left: 1.25rem;
+      }
+      .timeline-container::before {
+        left: 0.45rem;
+      }
+      .timeline-dot {
+        left: -1.35rem;
+        width: 0.85rem;
+        height: 0.85rem;
+        top: 0.2rem;
+      }
+      .timeline-card {
+        padding: 1.15rem;
+      }
+      .timeline-company {
+        font-size: 1.05rem;
+      }
+      .timeline-period {
+        font-size: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -170,7 +401,7 @@
       <a href="index.html" class="nav-brand">
         <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="nav-avatar">
         <span class="nav-title">Kano</span>
-        <span class="nav-tag">About & Mindset</span>
+        <span class="nav-tag">About Me</span>
       </a>
       <div class="nav-actions">
         <!-- Language Switcher -->
@@ -183,12 +414,12 @@
           <i class="fa-solid fa-code"></i> <span>오픈소스</span>
         </a>
 
-        <a href="portfolio.html" class="nav-btn nav-btn-appstore">
-          <i class="fa-brands fa-app-store-ios"></i> <span>포트폴리오</span>
-        </a>
-
         <a href="about.html" class="nav-btn active" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; border-color: rgba(99, 102, 241, 0.4);">
           <i class="fa-solid fa-user"></i> <span>About Me</span>
+        </a>
+
+        <a href="portfolio.html" class="nav-btn nav-btn-appstore">
+          <i class="fa-brands fa-app-store-ios"></i> <span>포트폴리오</span>
         </a>
 
         <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-btn">
@@ -208,11 +439,11 @@
           <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Profile Picture" class="hero-avatar">
           <div class="hero-profile-info">
             <div class="status-pill">
-              <span class="status-dot"></span> <span>Engineering Philosophy & Mindset</span>
+              <span class="status-dot"></span> <span>Engineering Mindset & 11 Years Journey</span>
             </div>
             <h1 class="hero-name">Kano <span class="username">(@mrKangHo)</span></h1>
             <div class="hero-bio">
-              <p class="bio-text"><i class="fa-brands fa-apple"></i> 11년 동안 축적해 온 나의 개발에 대한 관점과 나만의 엔지니어링 철학</p>
+              <p class="bio-text"><i class="fa-brands fa-apple"></i> 11년 동안 축적해 온 나의 개발에 대한 관점, 기술 맵 & 경력 궤적</p>
             </div>
           </div>
         </div>
@@ -340,6 +571,187 @@
         </div>
       </article>
 
+    </section>
+
+    <!-- SECTION 2: Tech Competency Map -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fa-solid fa-layer-group" style="color: #818cf8;"></i>
+          <span>핵심 기술 역량 지점 (Tech Competency Map)</span>
+        </h2>
+        <p class="section-subtitle">11년 동안 검증해 온 iOS 네이티브, 아키텍처 모듈화, 풀스택 및 AI 개발 역량분류</p>
+      </div>
+
+      <div class="tech-map-grid">
+
+        <!-- Group 1 -->
+        <div class="tech-map-card">
+          <div class="tech-group-title">
+            <i class="fa-brands fa-apple" style="color: #60a5fa;"></i>
+            <span>iOS & Apple Native</span>
+          </div>
+          <div class="tech-badge-container">
+            <span class="tech-badge highlight">SwiftUI</span>
+            <span class="tech-badge highlight">Swift</span>
+            <span class="tech-badge">UIKit</span>
+            <span class="tech-badge">Objective-C</span>
+            <span class="tech-badge">macOS App</span>
+            <span class="tech-badge">Combine</span>
+            <span class="tech-badge">CoreData</span>
+          </div>
+        </div>
+
+        <!-- Group 2 -->
+        <div class="tech-map-card">
+          <div class="tech-group-title">
+            <i class="fa-solid fa-cubes-stacked" style="color: #a78bfa;"></i>
+            <span>Architecture & Quality</span>
+          </div>
+          <div class="tech-badge-container">
+            <span class="tech-badge highlight">TCA</span>
+            <span class="tech-badge highlight">Tuist</span>
+            <span class="tech-badge">Clean Architecture</span>
+            <span class="tech-badge">MVVM</span>
+            <span class="tech-badge">SwiftLint</span>
+            <span class="tech-badge highlight">Codemagic CI/CD</span>
+          </div>
+        </div>
+
+        <!-- Group 3 -->
+        <div class="tech-map-card">
+          <div class="tech-group-title">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: #34d399;"></i>
+            <span>Fullstack & AI Workflows</span>
+          </div>
+          <div class="tech-badge-container">
+            <span class="tech-badge highlight">Flutter</span>
+            <span class="tech-badge highlight">NestJS</span>
+            <span class="tech-badge">Next.js</span>
+            <span class="tech-badge">TypeScript</span>
+            <span class="tech-badge">PostgreSQL</span>
+            <span class="tech-badge">Prisma</span>
+            <span class="tech-badge highlight">Claude Code</span>
+          </div>
+        </div>
+
+        <!-- Group 4 -->
+        <div class="tech-map-card">
+          <div class="tech-group-title">
+            <i class="fa-solid fa-gears" style="color: #f472b6;"></i>
+            <span>Operations & Tools</span>
+          </div>
+          <div class="tech-badge-container">
+            <span class="tech-badge">Firebase</span>
+            <span class="tech-badge">Crashlytics</span>
+            <span class="tech-badge">SQLite</span>
+            <span class="tech-badge">JIRA / Slack AI Automation</span>
+            <span class="tech-badge">Figma</span>
+            <span class="tech-badge">Git & GitHub</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: 11-Year Journey & Milestones Timeline -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fa-solid fa-timeline" style="color: #38bdf8;"></i>
+          <span>11년 엔지니어링 궤적 (11-Year Journey & Milestones)</span>
+        </h2>
+        <p class="section-subtitle">2011년부터 현재까지 이어진 기술 도전과 서비스 배포 운영의 기록</p>
+      </div>
+
+      <div class="timeline-container">
+
+        <!-- Timeline 1 -->
+        <div class="timeline-item active">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-company">Dotory (도토리)</span>
+              <span class="timeline-period">2026.05 ~ 현재</span>
+            </div>
+            <div class="timeline-role">대표 · 창업자 (1인 창업 풀스택 구축)</div>
+            <ul class="timeline-highlights">
+              <li>1인 창업가가 코드 없이 5분 만에 iOS/Android 쇼핑몰 앱을 자동 생성하는 화이트라벨 SaaS 플랫폼 단독 기획·개발</li>
+              <li>NestJS(API), Next.js(스튜디오/CRM), Flutter(SDK), PostgreSQL(멀티테넌시), Codemagic(CI/CD) 전 스택 1인 개발</li>
+              <li>Claude Code / Gemini CLI AI 기반 워크플로우로 1인 운영 속도 및 가독성 극대화</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Timeline 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-company">웅진컴퍼스</span>
+              <span class="timeline-period">2019.07 ~ 2025.08</span>
+            </div>
+            <div class="timeline-role">IT개발팀 차장 · 모바일 파트 리더 (정규직)</div>
+            <ul class="timeline-highlights">
+              <li>'놀이의 발견', '소풍의 발견' iOS 파트 리더로서 모듈화 아키텍처 및 상태 관리 의사결정 총괄</li>
+              <li>UIKit 레거시 화면을 SwiftUI로 전환하는 전면 마이그레이션 주도</li>
+              <li>Tuist 모듈화 도입(빌드속도 30%+ 향상), TCA 단방향 상태관리 세미나 주도, 전사 공통 디자인 시스템 구축</li>
+              <li>Crashlytics-AI-JIRA-Slack 자동 오류 제보 파이프라인 및 SwiftLint/PR 자동 점검 CI 체계 수립</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Timeline 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-company">페타즈</span>
+              <span class="timeline-period">2016.06 ~ 2018.09</span>
+            </div>
+            <div class="timeline-role">개발팀 과장 · 모바일 파트 리더 (정규직)</div>
+            <ul class="timeline-highlights">
+              <li>TV조선, 하나멤버스/하나톡, 잼스터, 이밥차 등 다수 서비스 iOS 개발 리드</li>
+              <li>하나멤버스/하나톡 대규모 금융 앱 MVVM 도입 및 코드 리뷰 문화 전파</li>
+              <li>TV조선 SMR 커스텀 동영상 광고 플레이어 설계/구현 및 이밥차 Objective-C ➔ Swift 점진 마이그레이션</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Timeline 4 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-company">㈜미플즈</span>
+              <span class="timeline-period">2015.05 ~ 2016.05</span>
+            </div>
+            <div class="timeline-role">모바일개발팀 선임연구원 (정규직)</div>
+            <ul class="timeline-highlights">
+              <li>국내 최대 커피 플랫폼 스타벅스 리뉴얼 프로젝트 iOS 개발</li>
+              <li>수만 명 동시 접속 환경에서 렌더링 성능 최적화 및 UIViewController ➔ MVVM 재구조화</li>
+              <li>사이렌 오더·리워드 결제/주문 데이터 정합성을 위한 네트워크 예외 처리 강화</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Timeline 5 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-company">위즈윈디지털</span>
+              <span class="timeline-period">2011.12 ~ 2013.03</span>
+            </div>
+            <div class="timeline-role">개발팀 주임연구원 (정규직)</div>
+            <ul class="timeline-highlights">
+              <li>이베이(옥션) 큐레이션 서비스 Gift Picker 및 CJ제일제당 CJ Mas 배송 사원 사내 시스템 iOS 개발</li>
+              <li>SQLite 로컬 퍼스트 동기화 전략으로 네트워크 음영 지역에서도 안정적인 오프라인 데이터 동기화 구현</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- Mindset Footer CTA -->

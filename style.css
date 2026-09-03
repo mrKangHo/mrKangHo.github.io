@@ -1015,21 +1015,80 @@ body {
 .hidden { display: none !important; }
 .mt-3 { margin-top: 0.85rem; }
 
-/* Responsive */
+/* Comprehensive Mobile Responsive Styles */
 @media (max-width: 768px) {
+  .nav-container {
+    padding: 0.6rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .nav-brand {
+    gap: 0.5rem;
+  }
+  .nav-title {
+    font-size: 0.9rem;
+  }
+  .nav-actions {
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  .nav-btn {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8rem;
+    gap: 0.3rem;
+    white-space: nowrap;
+  }
+  .shortcut-hint {
+    display: none !important;
+  }
+
+  .container {
+    padding: 1.25rem 1rem 3rem;
+  }
+  .hero-section {
+    padding: 1.35rem 1rem;
+  }
+  .hero-header-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
   .hero-profile-card {
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   .hero-avatar {
-    width: 88px;
-    height: 88px;
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+  }
+  .hero-name {
+    font-size: 1.3rem;
+  }
+  .hero-bio .bio-text {
+    font-size: 0.88rem;
+    line-height: 1.5;
   }
   .hero-metrics {
-    gap: 1rem;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 0.85rem 0.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
   }
   .metric-divider {
     display: none;
+  }
+  .metric-val {
+    font-size: 0.95rem;
+  }
+  .metric-lbl {
+    font-size: 0.68rem;
   }
   .toolbar-controls {
     flex-direction: column;
@@ -1037,6 +1096,19 @@ body {
   }
   .segment-tabs {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .portfolio-type-filter {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.3rem;
+    flex-wrap: nowrap;
+  }
+  .segment-btn {
+    white-space: nowrap;
+    padding: 0.42rem 0.85rem;
+    font-size: 0.82rem;
+    flex-shrink: 0;
   }
   .footer-inner {
     flex-direction: column;
@@ -1048,13 +1120,50 @@ body {
 }
 
 @media (max-width: 520px) {
+  .nav-tag {
+    display: none;
+  }
   .hero-profile-card {
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.85rem;
   }
   .hero-avatar {
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
+  }
+  .hero-name {
+    font-size: 1.18rem;
+  }
+  .appstore-card {
+    padding: 1.15rem;
+  }
+  .appstore-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .appstore-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  .appstore-title {
+    font-size: 1.1rem;
+  }
+  .appstore-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+  .appstore-footer .btn-appstore,
+  .appstore-footer .btn-playstore {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .screenshot-item {
+    height: 210px;
   }
 }
 

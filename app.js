@@ -19,7 +19,7 @@ const DEFAULT_APPSTORE_APPS = [
     platforms: ['ios'],
     role: '모바일 파트장 (웅진컴퍼스 · 2019.07 - 2025.08)',
     contributions: [
-      'UIKit 기반 화면을 SwiftUI로 전면 전환하는 마이그레이션을 주도하여 전체 화면의 80% 이상을 SwiftUI로 전환',
+      'UIKit 기반 화면을 SwiftUI로 전환하는 전면 마이그레이션 주도',
       '신규 개발 및 유지보수 상황별 Claude 지침(CLAUDE.md)을 수립하여 SwiftLint를 적용하고, PR 생성 시 lint 위반을 자동 점검하는 CI 체계 구축',
       'Crashlytics → AI 우선순위 판정 → JIRA 자동 등록 → Slack 알림으로 이어지는 QA 자동화 파이프라인 직접 설계 및 구축',
       'Tuist 도입으로 계층별(Feature/Core/UI) 모듈화 설계 및 전체 빌드 속도 30% 이상 개선',
