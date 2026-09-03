@@ -17,7 +17,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: '모바일 파트장 (웅진컴퍼스 · 2019.07 - 2025.08)',
+    role: '모바일 파트 리더 (웅진컴퍼스 · 2019.07 - 2025.08)',
     contributions: [
       'UIKit 기반 화면을 SwiftUI로 전환하는 전면 마이그레이션 주도',
       '신규 개발 및 유지보수 상황별 Claude 지침(CLAUDE.md)을 수립하여 SwiftLint를 적용하고, PR 생성 시 lint 위반을 자동 점검하는 CI 체계 구축',
@@ -50,7 +50,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: 'iOS 리드 (웅진컴퍼스 · 2019.07 - 2025.08)',
+    role: '모바일 파트 리더 (웅진컴퍼스 · 2019.07 - 2025.08)',
     contributions: [
       '체험학습 예약부터 귀가까지 책임지는 올인원 서비스의 iOS 개발 리드 및 빠른 시장 출시(Time-to-Market) 달성',
       'Clean Architecture 도입으로 비즈니스 로직과 프레임워크를 명확히 분리하여 신규 인원 온보딩 기간 단축',
@@ -80,7 +80,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: '모바일 파트장 (페타즈 · 2016.06 - 2018.09)',
+    role: '모바일 파트 리더 (페타즈 · 2016.06 - 2018.09)',
     contributions: [
       'Objective-C / Swift 기반 대규모 금융 서비스에 MVVM 아키텍처 전면 도입 및 비즈니스 로직 결합도 감소',
       'GitHub 기반 코드 리뷰 프로세스 주도 및 팀 코딩 컨벤션 통일로 코드 품질 및 개발 생산성 향상',
@@ -110,7 +110,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: '모바일 파트장 (페타즈 · 2016.06 - 2018.09)',
+    role: '모바일 파트 리더 (페타즈 · 2016.06 - 2018.09)',
     contributions: [
       'SMR 광고 시스템을 통합한 커스텀 동영상 플레이어 직접 설계/구현 (자체 광고 제어권 및 수익 모델 확보)',
       'MVVM 아키텍처 도입으로 데이터 흐름 정형화 및 UI-비즈니스 로직 결합도 감소',
@@ -139,7 +139,7 @@ const DEFAULT_APPSTORE_APPS = [
     isPersonal: false,
     type: 'commercial',
     platforms: ['ios'],
-    role: '모바일 파트장 (페타즈 · 2016.06 - 2018.09)',
+    role: '모바일 파트 리더 (페타즈 · 2016.06 - 2018.09)',
     contributions: [
       '실시간 뉴스 생방송 온에어 & 뉴스 클립 스트리밍 최적화 동영상 플레이어 구조 통합',
       '정치, 경제, 사회 등 분야별 뉴스 실시간 데이터 처리 및 네트워크 예외 처리 강화',
