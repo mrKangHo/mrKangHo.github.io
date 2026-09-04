@@ -95,6 +95,11 @@
 
     <!-- Blog Posts Grid -->
     <main>
+      <!-- Empty State (Shown when 0 posts exist) -->
+      <div id="blog-empty-state" style="display: none; text-align: center; padding: 4.5rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); margin-bottom: 3.5rem;">
+        <h2 style="font-size: 1.35rem; font-weight: 700; color: var(--text-primary); margin: 0; word-break: keep-all;">등록된 포스팅이 없습니다</h2>
+      </div>
+
       <section class="blog-grid">
 
         <!-- Article Card 1 -->
@@ -121,6 +126,18 @@
 
       </section>
     </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const cards = document.querySelectorAll(".blog-card");
+        const emptyState = document.getElementById("blog-empty-state");
+        const grid = document.querySelector(".blog-grid");
+        if (!cards || cards.length === 0) {
+          if (grid) grid.style.display = "none";
+          if (emptyState) emptyState.style.display = "block";
+        }
+      });
+    </script>
 
     <!-- Footer -->
     <footer class="footer" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-subtle); color: var(--text-muted); font-size: 0.85rem;">
