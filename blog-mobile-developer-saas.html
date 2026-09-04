@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>모바일 개발자가 왜 갑자기 saas를 만들었지? — Kano Tech Blog</title>
+  <meta name="description" content="11년차 모바일 파트 리더 이강호(Kano)가 인스타그램에서 접한 어느 쇼핑몰 사장님의 억울한 사연에서 시작해, 1인 풀스택 SaaS Dotory를 런칭하기까지의 깊이 있는 기술과 문제 해결 스토리">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://github.com/mrKangHo.png" type="image/png">
+
+  <!-- Google Fonts: Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="nav-avatar">
+        <span class="nav-title">Kano</span>
+        <span class="nav-tag">Blog</span>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="nav-btn">
+          <i class="fa-solid fa-code"></i> <span>오픈소스</span>
+        </a>
+
+        <a href="about.html" class="nav-btn">
+          <i class="fa-solid fa-user"></i> <span>About Me</span>
+        </a>
+
+        <a href="portfolio.html" class="nav-btn nav-btn-appstore">
+          <i class="fa-brands fa-app-store-ios"></i> <span>포트폴리오</span>
+        </a>
+
+        <a href="blog.html" class="nav-btn active" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; border-color: rgba(99, 102, 241, 0.4);">
+          <i class="fa-solid fa-newspaper"></i> <span>블로그</span>
+        </a>
+
+        <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-btn">
+          <i class="fa-brands fa-github"></i> <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article Container -->
+  <div class="container" style="padding-top: 2rem;">
+
+    <a href="blog.html" class="article-nav-back">
+      <i class="fa-solid fa-arrow-left"></i> 블로그 목록으로 돌아가기
+    </a>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="blog-card-meta" style="justify-content: center; margin-bottom: 1rem;">
+        <span class="blog-category-badge architecture">SaaS & Story</span>
+        <span class="blog-date">2026.09.04</span>
+        <span class="blog-read-time">8 min read</span>
+      </div>
+      <h1 class="article-title">모바일 개발자가 왜 갑자기 saas를 만들었지?</h1>
+      <p class="article-subtitle">
+        "해야지, 해야지" 다짐만 하던 11년차 개발자가 인스타그램에서 만난 어느 쇼핑몰 사장님의 억울한 사연, 그리고 1인 풀스택 SaaS 'Dotory'로 세상을 바꾼 이야기
+      </p>
+      <div class="article-meta-row">
+        <div class="blog-author">
+          <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="blog-author-img">
+          <span>작성자: 이강호 (Kano — 모바일 파트 리더 & Solo Founder)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Body Content -->
+    <main class="article-content">
+      <p>
+        "오랫동안 모바일 개발자로 지내다 보니 다른 분야의 기술 습득도 필요하겠다..."
+      </p>
+      <p>
+        11년 차 모바일 파트 리더로 일하며 항상 마음 한구석에 자리 잡고 있던 생각이었습니다. iOS 네이티브 앱 개발부터 SwiftUI, 모듈화 아키텍처까지 모바일 영역은 누구보다 자신 있었지만, <strong>"내가 만든 앱이 동작하는 백엔드 인프라와 서비스 전체의 구조를 100% 내 손으로 다루어보고 싶다"</strong>는 갈증은 늘 존재했습니다.
+      </p>
+      <p>
+        하지만 매번 "언젠간 꼭 해봐야지, 해야지"라는 다짐만 무한히 반복될 뿐, 바쁜 일상 속에서 실제 행동으로 이어지지 못하고 연차만 쌓여가고 있었습니다.
+      </p>
+      <p>
+        그러던 2026년 4월 즈음, 단순히 "언젠가 해야지"라는 다짐을 넘어 실제 행동으로 옮기게 된 결정적인 계기를 마주하게 되었습니다.
+      </p>
+
+      <h2><i class="fa-solid fa-comments" style="color: #ec4899;"></i> 1. 인스타그램 피드에서 마주친 어느 쇼핑몰 사장님의 이야기</h2>
+      <p>
+        어느 날 밤, 여느 때처럼 인스타그램을 둘러보던 중 한 쇼핑몰 대표님의 긴 장문의 피드를 보게 되었습니다. 내용인즉슨 이러했습니다.
+      </p>
+      <p>
+        자사 브랜드의 모바일 앱을 갖는 것이 오랜 꿈이었던 사장님은 힘들게 모은 수천만 원의 거금을 들여 외주 개발사에 앱 제작을 맡겼습니다. 하지만 앱이 완성될 즈음, <strong>외주 개발사가 갑자기 폐업</strong>을 선언해 버린 것이었습니다.
+      </p>
+      <p>
+        더 억울한 것은, 외주사가 온갖 이런저런 핑계를 대며 <strong>단 한 줄의 소스코드조차 전달해주지 않은 채 결국 연락을 끊어버렸다는 사실</strong>이었습니다.
+      </p>
+      <div class="article-callout" style="border-left-color: #ef4444; background: rgba(239, 68, 68, 0.08);">
+        <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
+        "버그 하나를 고치려 해도 추가 비용을 요구받거나, 외주사가 사라지면 앱스토어 업데이트조차 못 한 채 애써 만든 앱을 포기해야 하는 현실. 코딩을 모르는 비개발자 대표님이 외주사의 핑계와 정보 비대칭성 속에서 무력하게 상처받는 모습을 보았습니다."
+      </div>
+      <p>
+        오랫동안 모바일 개발자로 일해온 입장에서 참 많은 안타까움과 씁쓸함이 남는 사연이었습니다. 그리고 스스로에게 조용히 질문을 던지게 되었습니다.
+      </p>
+      <div class="article-callout" style="border-left-color: #6366f1; background: rgba(99, 102, 241, 0.08);">
+        <i class="fa-solid fa-quote-left"></i>
+        <strong>"왜 외주 업체의 횡포와 폐업 위험에 사장님들이 인질로 잡혀야 할까? 사장님이 직접 웹사이트에서 클릭 몇 번으로 5분 만에 앱을 생성하고, 원할 때 소스코드까지 온전히 다운로드할 수 있는 플랫폼이 있다면 어떨까?"</strong>
+      </div>
+
+      <h2><i class="fa-solid fa-lightbulb" style="color: #10b981;"></i> 2. 획기적인 패러다임 전환: Dotory SaaS의 탄생</h2>
+      <p>
+        이 억울함을 해결하겠다는 열망은 화이트라벨 모바일 쇼핑몰 SaaS <strong>Dotory (도토리)</strong>의 탄생으로 이어졌습니다. 제가 정의한 패러다임 전환의 핵심은 크게 3가지였습니다:
+      </p>
+      
+      <h3>① 마우스 클릭 5분 노코드(No-Code) 앱 생성</h3>
+      <p>
+        외주 개발사와 몇 달간 대화하며 고통받을 필요가 없습니다. 웹 스튜디오에서 마우스 클릭만으로 디자인 테마와 상품 카테고리를 설정하면, 5분 만에 iOS 및 Android 앱이 자동으로 생성되고 배포되는 환경을 구축했습니다.
+      </p>
+
+      <h3>② 락인(Lock-in) 없는 소스코드 무료 다운로드 권한 제공 ⭐ [핵심 차별점]</h3>
+      <p>
+        기존의 대다수 SaaS 서비스는 사용자를 묶어두기 위해 소스코드를 절대 제공하지 않습니다. 하지만 Dotory는 <strong>"사장님이 원할 때 언제든 자신의 앱 소스코드를 Zip 파일로 직접 다운로드"</strong>받을 수 있게 설계했습니다. 
+      </p>
+      <p>
+        외주사가 사라지거나 서비스가 중단되더라도, 사장님 본인의 소스코드는 영구히 자산으로 지킬 수 있는 **진정한 고객 중심의 자율성**을 보장한 것입니다.
+      </p>
+
+      <h3>③ 외주 개발비 대비 획기적으로 저렴한 비용 구조</h3>
+      <p>
+        초기 외주 비용으로 수천만 원을 들일 필요 없이, 월 구독 형태로 획기적으로 저렴한 비용만 내면 유지보수와 운영이 모두 해결되도록 비즈니스 구조를 혁신했습니다.
+      </p>
+
+      <h2><i class="fa-solid fa-gears" style="color: #3b82f6;"></i> 3. "해야지 해야지" 하던 생각을 불태운 1인 풀스택 도전</h2>
+      <p>
+        타인의 진짜 문제를 해결하겠다는 명확한 명분이 생기자, "언젠간 배워야지"라며 미루어두었던 풀스택 기술 습득은 밤을 새워도 피곤하지 않은 열정으로 바뀌었습니다.
+      </p>
+
+      <div class="article-callout" style="border-left-color: #818cf8; background: rgba(99, 102, 241, 0.05);">
+        <i class="fa-solid fa-code"></i> <strong>Dotory를 완성한 1인 풀스택 아키텍처:</strong>
+        <br>• <strong>Cross-Platform Mobile SDK</strong>: Flutter (단 하나의 코드베이스로 iOS/Android 즉시 생성)
+        <br>• <strong>Backend API Server</strong>: NestJS + TypeScript (수백 개 쇼핑몰 데이터를 완전 격리하는 멀티테넌시 아키텍처)
+        <br>• <strong>Admin Studio & CRM</strong>: Next.js + React + Tailwind CSS
+        <br>• <strong>Database</strong>: PostgreSQL + Prisma ORM
+        <br>• <strong>Cloud CI/CD Build Engine</strong>: Codemagic CLI (마우스 클릭 시 클라우드에서 IPA/APK 자동 빌드)
+        <br>• <strong>Productivity Acceleration</strong>: Claude Code AI 에이전트 연동 기반 커스텀 개발 워크플로우
+      </div>
+
+      <h2><i class="fa-solid fa-trophy" style="color: #f59e0b;"></i> 4. SaaS 런칭이 깨우쳐 준 개발자로서의 진짜 성장</h2>
+      <p>
+        SaaS를 혼자 기획부터 배포, 운영까지 총괄하며 깨달은 가장 큰 결실은 단순히 새로운 프레임워크나 기술을 배웠다는 것에 있지 않습니다.
+      </p>
+      <p>
+        모바일 단말기라는 좁은 화면을 넘어 **'전체 시스템 아키텍처를 설계하는 혜안'**과, 기술을 비즈니스 성과로 바꾸는 **'비즈니스의 언어'**를 완성했다는 점입니다.
+      </p>
+      <p>
+        이제는 단순한 모바일 개발자를 넘어, 백엔드/프론트엔드/인프라 간의 병목을 명확히 진단하고 팀원들을 지휘하며 사업적 가치를 창출할 수 있는 **'개발 총괄 리더 / CTO'**로서의 자신감을 갖추게 되었습니다.
+      </p>
+
+      <h2><i class="fa-solid fa-heart" style="color: #ec4899;"></i> 마치며: 모바일 개발자가 SaaS를 만든 단 하나의 이유</h2>
+      <p>
+        '모바일 개발자가 왜 갑자기 SaaS를 만들었을까?'라는 질문에 대한 저의 답변은 결국 하나로 귀결됩니다.
+      </p>
+      <p>
+        외주 개발사의 폐업과 소스코드 인질극 속에서 눈물 흘리던 쇼핑몰 사장님의 억울함을 목격했을 때, <strong>"더 이상 기술을 모른다는 이유로 비개발자 대표님들이 불합리하게 피해를 입는 일은 없어야 한다"</strong>는 강한 확신이 들었기 때문입니다.
+      </p>
+      <p>
+        외주사의 횡포나 위험 없이, 누구나 마우스 클릭 5분 만에 자신의 앱을 만들고 소스코드까지 온전히 소유할 수 있는 세상을 만드는 것. 그 진짜 문제를 해결하기 위해 시작된 Dotory 서비스와 저의 도전은 앞으로도 멈추지 않고 계속될 것입니다.
+      </p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-subtle); color: var(--text-muted); font-size: 0.85rem;">
+      <p>&copy; 2026 Kano (mrKangHo). All rights reserved.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

@@ -81,7 +81,7 @@
 
         <div class="hero-metrics">
           <div class="metric-item">
-            <span class="metric-val">0</span>
+            <span class="metric-val">1</span>
             <span class="metric-lbl">Articles</span>
           </div>
           <div class="metric-divider"></div>
@@ -93,17 +93,33 @@
       </div>
     </header>
 
-    <!-- Empty State -->
+    <!-- Blog Posts Grid -->
     <main>
-      <div style="text-align: center; padding: 4.5rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); margin-bottom: 3.5rem;">
-        <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: #818cf8; font-size: 1.6rem;">
-          <i class="fa-solid fa-pen-to-square"></i>
-        </div>
-        <h2 style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.65rem; word-break: keep-all;">등록된 포스팅이 없습니다</h2>
-        <p style="font-size: 1rem; color: var(--text-secondary); max-width: 520px; margin: 0 auto; line-height: 1.6; word-break: keep-all;">
-          조만간 강호님의 깊이 있는 기술 아티클과 리더십 이야기로 채워질 예정입니다.
-        </p>
-      </div>
+      <section class="blog-grid">
+
+        <!-- Article Card 1 -->
+        <a href="blog-mobile-developer-saas.html" class="blog-card">
+          <div>
+            <div class="blog-card-meta">
+              <span class="blog-category-badge architecture">SaaS & Story</span>
+              <span class="blog-date">2026.09.04</span>
+              <span class="blog-read-time">5 min read</span>
+            </div>
+            <h2 class="blog-card-title">모바일 개발자가 왜 갑자기 saas를 만들었지?</h2>
+            <p class="blog-card-excerpt">
+              인스타그램에서 접한 어느 쇼핑몰 사장님의 억울한 사연에서 시작해, 마우스 클릭 5분 앱 생성과 소스코드 다운로드 권한까지 제공하는 1인 풀스택 SaaS 'Dotory'를 런칭하기까지의 진짜 문제 해결 이야기
+            </p>
+          </div>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="blog-author-img">
+              <span>Kano (이강호)</span>
+            </div>
+            <span class="blog-read-more">읽기 <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+
+      </section>
     </main>
 
     <!-- Footer -->
