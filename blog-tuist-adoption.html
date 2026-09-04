@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuist 모듈화를 실무 서비스에 안전하게 도입하는 3단계 전략 — Kano Tech Blog</title>
+  <meta name="description" content="기술 강연 탐구부터 토이 프로젝트 사전 검증, 사내 세미나 전파를 거쳐 실무 앱의 빌드 속도를 30%+ 향상시킨 신기술 도입 프로세스">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://github.com/mrKangHo.png" type="image/png">
+
+  <!-- Google Fonts: Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="nav-avatar">
+        <span class="nav-title">Kano</span>
+        <span class="nav-tag">Blog</span>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="nav-btn">
+          <i class="fa-solid fa-code"></i> <span>오픈소스</span>
+        </a>
+
+        <a href="about.html" class="nav-btn">
+          <i class="fa-solid fa-user"></i> <span>About Me</span>
+        </a>
+
+        <a href="portfolio.html" class="nav-btn nav-btn-appstore">
+          <i class="fa-brands fa-app-store-ios"></i> <span>포트폴리오</span>
+        </a>
+
+        <a href="blog.html" class="nav-btn active" style="background: rgba(99, 102, 241, 0.2); color: #818cf8; border-color: rgba(99, 102, 241, 0.4);">
+          <i class="fa-solid fa-newspaper"></i> <span>블로그</span>
+        </a>
+
+        <a href="https://github.com/mrKangHo" target="_blank" rel="noopener noreferrer" class="nav-btn">
+          <i class="fa-brands fa-github"></i> <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article Container -->
+  <div class="container" style="padding-top: 2rem;">
+
+    <a href="blog.html" class="article-nav-back">
+      <i class="fa-solid fa-arrow-left"></i> 블로그 목록으로 돌아가기
+    </a>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="blog-card-meta" style="justify-content: center; margin-bottom: 1rem;">
+        <span class="blog-category-badge architecture">Tuist & Architecture</span>
+        <span class="blog-date">2026.09.04</span>
+        <span class="blog-read-time">5 min read</span>
+      </div>
+      <h1 class="article-title">Tuist 모듈화를 실무 서비스에 안전하게 도입하는 3단계 전략</h1>
+      <p class="article-subtitle">
+        기술 탐구부터 토이 프로젝트 사전 검증, 사내 세미나 전파를 거쳐 실무 앱의 빌드 속도를 30%+ 향상시킨 신기술 도입 노하우
+      </p>
+      <div class="article-meta-row">
+        <div class="blog-author">
+          <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="blog-author-img">
+          <span>작성자: 이강호 (Kano — 모바일 파트 리더)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Body Content -->
+    <main class="article-content">
+      <p>
+        개발자로서 항상 학습하고 배움의 자세를 유지하는 것은 매우 중요합니다. 하지만 새로운 기술을 실무 서비스에 도입할 때는 기술적 매력과 함께 리스크 관리, 그리고 팀원들의 공감대가 반드시 수반되어야 합니다.
+      </p>
+      <p>
+        이번 아티클에서는 외부 기술 블로그와 컨퍼런스에서 접했던 <strong>Tuist(Xcode 프로젝트 생성 및 모듈화 도구)</strong>를 개인 토이 프로젝트로 사전 검증하고, 사내 세미나를 통해 팀에 도입했던 3단계 프로세스를 정리합니다.
+      </p>
+
+      <h2><i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i> 1. 동기: 왜 Xcode 프로젝트 모듈화(Tuist)가 필요했는가?</h2>
+      <p>
+        프로젝트 규모가 커짐에 따라 `.xcodeproj` 파일의 Git 충돌(Conflict)과 기하급수적으로 늘어나는 빌드 시간은 모바일 파트 전체의 개발 생산성을 저해하는 주요 요소였습니다.
+      </p>
+      <p>
+        그러던 중 외부 컨퍼런스와 기술 세미나에서 Tuist를 알게 되었고, Swift 코드로 Xcode 프로젝트 구조를 정의하고 모듈화할 수 있다는 매력에 깊이 매료되었습니다.
+      </p>
+
+      <h2><i class="fa-solid fa-vial" style="color: #6366f1;"></i> 2. 1단계: 토이 프로젝트를 통한 사전 검증과 난관 극복</h2>
+      <p>
+        실무 코드베이스에 즉시 적용하는 것은 위험 부담이 큽니다. 따라서 가벼운 **개인 토이 프로젝트**를 새로 생성하여 Tuist를 직접 세팅하기 시작했습니다.
+      </p>
+      <div class="article-callout">
+        <i class="fa-solid fa-quote-left"></i>
+        "초기 세팅 과정에서 의존성 링킹 오류, 릴리즈 빌드 스크립트 충돌 등 여러 난관을 겪었지만, 공식 문서와 디버깅을 거치며 끝끝내 모든 문제를 해결하고 기술의 실체를 완전히 내재화했습니다."
+      </div>
+      <p>
+        토이 프로젝트를 통해 Tuist의 장단점과 엣지 케이스를 사전에 파악했기 때문에, 실무 도입 시 발생할 수 있는 시행착오를 미리 80% 이상 제거할 수 있었습니다.
+      </p>
+
+      <h2><i class="fa-solid fa-users-rectangle" style="color: #10b981;"></i> 3. 2단계: 사내 세미나 개최와 팀 얼라인먼트</h2>
+      <p>
+        기술 학습이 끝난 후, 혼자 적용하는 것이 아니라 모바일 파트 팀원 전체를 대상으로 **사내 세미나**를 개최했습니다.
+      </p>
+      <ul>
+        <li><strong>Why Tuist?</strong>: 기존 `.xcodeproj` Git 충돌의 원인과 해결책 제시</li>
+        <li><strong>Live Demo</strong>: 토이 프로젝트로 검증한 모듈 생성 및 프로젝트 빌드 시연</li>
+        <li><strong>Best Practices</strong>: 팀 내 공통 모듈 구조 정의 및 Q&A 진행</li>
+      </ul>
+      <p>
+        세미나를 통해 팀원들의 공감대를 형성하였고, 팀원들 역시 새로운 기술에 대한 부담감 대신 빌드 속도 개선에 대한 기대감을 갖게 되었습니다.
+      </p>
+
+      <h2><i class="fa-solid fa-chart-line" style="color: #3b82f6;"></i> 4. 3단계: 실무 서비스 성공적 도입과 성과</h2>
+      <p>
+        사전 검증과 세미나를 거친 후, 실제 운영 중인 서비스 앱에 점진적으로 Tuist 모듈화를 적용했습니다.
+      </p>
+      <div class="article-callout" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.08);">
+        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+        <strong>주요 성과:</strong>
+        <br>1. 모듈 간 캡슐화를 통한 깔끔한 아키텍처 수립
+        <br>2. Xcode 프로젝트 Git 충돌 0건 달성
+        <br>3. 캐시 모듈 활용을 통한 <strong>팀 전체 빌드 속도 30%+ 향상</strong>
+      </div>
+
+      <h2><i class="fa-solid fa-flag" style="color: #ec4899;"></i> 마치며</h2>
+      <p>
+        새로운 기술을 실무에 도입하는 과정은 단지 '기술 습득'에서 끝나지 않습니다. **탐구 ➔ 토이 프로젝트 사전 검증 ➔ 사내 세미나 공유 ➔ 실무 적용**으로 이어지는 체계적인 접근법이야말로 팀과 서비스 모두가 안전하게 성장하는 길입니다.
+      </p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-subtle); color: var(--text-muted); font-size: 0.85rem;">
+      <p>&copy; 2026 Kano (mrKangHo). All rights reserved.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
