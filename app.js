@@ -542,6 +542,15 @@ const REPO_ENRICHMENTS = {
     },
     featured: true,
     icon: 'assets/icons/skillarchive.png'
+  },
+  'Canopy': {
+    description: {
+      ko: 'Pixabay 고화질 자연 영상을 실제 데스크톱 배경으로 재생하는 macOS 네이티브 메뉴바 라이브 배경화면 앱 (다중 모니터 & Retina 지원).',
+      en: 'macOS native menu-bar live wallpaper app that plays looping nature footage from Pixabay (Multi-display & Retina support).'
+    },
+    featured: true,
+    icon: 'assets/icons/canopy.png',
+    topics: ['macOS', 'Swift', 'SwiftUI', 'Live-Wallpaper', 'Pixabay']
   }
 };
 
@@ -564,7 +573,7 @@ let rawReposData = [];
 let processedRepos = [];
 let currentFilter = 'all';
 let currentSearch = '';
-let includeForks = true;
+let includeForks = false;
 let currentSort = 'updated';
 let isFallbackActive = false;
 
@@ -981,8 +990,8 @@ function initEvents() {
       if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
       currentFilter = 'all';
       filterBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === 'all'));
-      includeForks = true;
-      if (toggleForks) toggleForks.checked = true;
+      includeForks = false;
+      if (toggleForks) toggleForks.checked = false;
       currentSort = 'updated';
       if (sortSelect) sortSelect.value = 'updated';
       render();
@@ -998,6 +1007,7 @@ function setLanguage(lang) {
   if (processedRepos.length > 0) {
     updateStats(processedRepos);
     render();
+    syncReadmeDescriptions(processedRepos, currentLang);
   }
   if (appstoreContainer) {
     fetchFeaturedAppStoreApps();
@@ -1175,6 +1185,145 @@ function formatTopicCategory(topic) {
   return topic.split(/[-_]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 
+// Extract lead paragraph / intro from README markdown
+function extractReadmeLead(markdown, lang = 'ko', repoName = '') {
+  if (!markdown) return '';
+
+  let targetText = markdown;
+  if (lang === 'ko') {
+    const koCount = (markdown.match(/[\uac00-\ud7af]/g) || []).length;
+    if (koCount < 15) return ''; // Not a Korean README
+    if (/##\s*.*한국어/i.test(markdown)) {
+      const parts = markdown.split(/##\s*.*한국어.*/i);
+      if (parts[1]) targetText = parts[1].split(/\n##\s/)[0];
+    }
+  } else if (lang === 'en') {
+    if (/##\s*.*English/i.test(markdown)) {
+      const parts = markdown.split(/##\s*.*English.*/i);
+      if (parts[1]) targetText = parts[1].split(/\n##\s/)[0];
+    }
+  }
+
+  // Strip HTML comments, badges, tags
+  let text = targetText
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)/g, '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ');
+
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+
+  for (const line of lines) {
+    // Skip language selector / navigation lines
+    if (/^(\[?[^\]|·•]+\]?\([^)]+\)\s*([|·•]\s*)?)+$/i.test(line)) continue;
+    if (/^(Languages?|언어)?\s*:?\s*(\[?[^\]|·•]+\]?\([^)]+\)\s*([|·•]\s*)?)+$/i.test(line)) continue;
+    if (/^(English|한국어|日本語|中文)(\s*[·|•]\s*(English|한국어|日本語|中文))+$/i.test(line)) continue;
+    if (/^[-=*_]{3,}$/.test(line)) continue;
+
+    const isHeader = /^#+/.test(line);
+
+    let clean = line
+      .replace(/^>\s*/, '')
+      .replace(/^#+\s*/, '')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/\*([^*]+)\*/g, '$1')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    // Skip repo title lines
+    const lowerClean = clean.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const lowerRepo = (repoName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (lowerClean === lowerRepo || lowerClean.startsWith(lowerRepo + 'v1') || 
+        (isHeader && lowerClean.includes(lowerRepo) && lowerClean.length < lowerRepo.length + 35)) {
+      continue;
+    }
+
+    // Skip standard section headers or install commands
+    if (/^(features?|requirements?|install(ation)?|structure|building|license|quick\s*start|기능|핵심\s*기능|요구\s*사항|설치|설치\s*방법|구성|빌드|라이선스|빠른\s*시작)/i.test(clean)) {
+      continue;
+    }
+    if (/^(brew\s+install|git\s+clone|npm\s+install|npx\s+)/i.test(clean)) {
+      continue;
+    }
+
+    if (lang === 'ko' && !/[\uac00-\ud7af]/.test(clean)) {
+      continue;
+    }
+
+    if (clean.length >= 15) {
+      return clean;
+    }
+  }
+
+  return '';
+}
+
+function getCachedReadmeDescription(repoName, lang) {
+  try {
+    const raw = localStorage.getItem(`readme_desc_${repoName}_${lang}`);
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
+        return data.text;
+      }
+    }
+  } catch (_) {}
+  return null;
+}
+
+async function fetchReadmeDescription(repo, lang) {
+  const cached = getCachedReadmeDescription(repo.name, lang);
+  if (cached) return cached;
+
+  const branch = repo.defaultBranch || 'main';
+  const rawBase = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/${branch}`;
+  const candidates = lang === 'ko' 
+    ? ['README.ko.md', 'README.md'] 
+    : ['README.en.md', 'README.md'];
+
+  for (const filename of candidates) {
+    try {
+      const res = await fetch(`${rawBase}/${filename}`);
+      if (res.ok) {
+        const markdown = await res.text();
+        const lead = extractReadmeLead(markdown, lang, repo.name);
+        if (lead) {
+          try {
+            localStorage.setItem(`readme_desc_${repo.name}_${lang}`, JSON.stringify({
+              text: lead,
+              timestamp: Date.now()
+            }));
+          } catch (_) {}
+          return lead;
+        }
+      }
+    } catch (_) {}
+  }
+
+  return '';
+}
+
+async function syncReadmeDescriptions(repos, lang) {
+  if (!Array.isArray(repos) || repos.length === 0) return;
+
+  repos.forEach(async (repo) => {
+    const lead = await fetchReadmeDescription(repo, lang);
+    if (lead) {
+      if (typeof repo.description === 'object' && repo.description !== null) {
+        repo.description[lang] = lead;
+      } else {
+        repo.description = { [lang]: lead };
+      }
+      document.querySelectorAll(`[data-repo-desc="${repo.name}"]`).forEach(el => {
+        el.textContent = lead;
+      });
+    }
+  });
+}
+
 // Process raw GitHub API items and enrich metadata
 function processAndSetData(repos) {
   try {
@@ -1187,19 +1336,27 @@ function processAndSetData(repos) {
     rawReposData = filteredRaw;
 
     processedRepos = filteredRaw.map(repo => {
-      const enrichment = REPO_ENRICHMENTS[repo.name] || {};
+      const enrichmentKey = Object.keys(REPO_ENRICHMENTS).find(k => k.toLowerCase() === (repo.name || '').toLowerCase());
+      const enrichment = (enrichmentKey ? REPO_ENRICHMENTS[enrichmentKey] : null) || {};
       const topicsList = (Array.isArray(repo.topics) && repo.topics.length > 0) ? repo.topics : (enrichment.topics || []);
       
+      const baseDesc = enrichment.description || (typeof repo.description === 'string' ? { ko: repo.description, en: repo.description } : repo.description) || { 
+        ko: `${repo.name} 오픈소스 프로젝트입니다.`, 
+        en: `Open source project ${repo.name}.` 
+      };
+      const descObj = typeof baseDesc === 'object' ? { ...baseDesc } : { ko: String(baseDesc), en: String(baseDesc) };
+      const cachedKo = getCachedReadmeDescription(repo.name, 'ko');
+      if (cachedKo) descObj.ko = cachedKo;
+      const cachedEn = getCachedReadmeDescription(repo.name, 'en');
+      if (cachedEn) descObj.en = cachedEn;
+
       return {
         id: repo.id || Math.random(),
         name: repo.name || 'unnamed',
         fullName: repo.full_name || repo.name || '',
         htmlUrl: repo.html_url || `https://github.com/${GITHUB_USERNAME}/${repo.name}`,
         category: getCategoryFromRepo(repo, enrichment),
-        description: enrichment.description || repo.description || { 
-          ko: `${repo.name} 오픈소스 프로젝트입니다.`, 
-          en: `Open source project ${repo.name}.` 
-        },
+        description: descObj,
         language: repo.language || (topicsList[0] ? topicsList[0] : 'Other'),
         stars: typeof repo.stargazers_count === 'number' ? repo.stargazers_count : 0,
         forks: typeof repo.forks_count === 'number' ? repo.forks_count : 0,
@@ -1210,12 +1367,14 @@ function processAndSetData(repos) {
         homepage: repo.homepage || null,
         featured: enrichment.featured || false,
         cloneUrl: repo.clone_url || (repo.html_url ? repo.html_url + '.git' : ''),
-        icon: enrichment.icon || null
+        icon: enrichment.icon || null,
+        defaultBranch: repo.default_branch || 'main'
       };
     });
 
     updateStats(processedRepos);
     render();
+    syncReadmeDescriptions(processedRepos, currentLang);
   } catch (err) {
     console.error('Error processing repositories:', err);
     if (!isFallbackActive) useFallbackData();
@@ -1355,6 +1514,32 @@ function useFallbackData() {
       fork: false,
       updated_at: '2026-08-05T00:00:00Z',
       topics: ['Swift', 'macOS']
+    },
+    {
+      id: 11,
+      name: 'SkillArchive',
+      full_name: 'mrKangHo/SkillArchive',
+      html_url: 'https://github.com/mrKangHo/SkillArchive',
+      description: 'Native macOS app for backing up, syncing, and managing AI Agent Skills.',
+      language: 'Swift',
+      stargazers_count: 0,
+      forks_count: 0,
+      fork: false,
+      updated_at: '2026-09-04T00:00:00Z',
+      topics: ['macOS', 'Swift', 'SwiftUI', 'Skills']
+    },
+    {
+      id: 12,
+      name: 'Canopy',
+      full_name: 'mrKangHo/Canopy',
+      html_url: 'https://github.com/mrKangHo/Canopy',
+      description: 'macOS native menu-bar live wallpaper app that plays looping nature footage from Pixabay.',
+      language: 'Swift',
+      stargazers_count: 0,
+      forks_count: 0,
+      fork: false,
+      updated_at: '2026-09-05T00:00:00Z',
+      topics: ['macOS', 'Swift', 'SwiftUI', 'Live-Wallpaper']
     }
   ];
 
@@ -1529,7 +1714,7 @@ function renderFeatured() {
             <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
           </div>
         </div>
-        <p class="card-desc">${escapeHtml(descStr)}</p>
+        <p class="card-desc" data-repo-desc="${escapeHtml(repo.name)}">${escapeHtml(descStr)}</p>
         <div class="topics-row">${topicsHtml}</div>
       </div>
       <div class="card-meta-bar">
@@ -1578,7 +1763,7 @@ function createRepoCard(repo) {
           <a href="${repo.htmlUrl}" target="_blank" rel="noopener noreferrer" class="card-title-link">${escapeHtml(repo.name)}</a>
         </div>
       </div>
-      <p class="card-desc">${escapeHtml(descStr)}</p>
+      <p class="card-desc" data-repo-desc="${escapeHtml(repo.name)}">${escapeHtml(descStr)}</p>
       ${topicsHtml ? `<div class="topics-row">${topicsHtml}</div>` : ''}
     </div>
     <div class="card-meta-bar">

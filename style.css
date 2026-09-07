@@ -1819,6 +1819,12 @@ body {
   border-color: rgba(251, 146, 60, 0.3);
 }
 
+.blog-category-badge.opensource {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
 .blog-date {
   color: var(--text-muted);
   font-family: var(--font-mono);
