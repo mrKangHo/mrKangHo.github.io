@@ -453,28 +453,28 @@ const TRANSLATIONS = {
   }
 };
 
-// Curated metadata enrichment for repos (Bilingual)
+// Curated metadata enrichment for repos (Bilingual, synchronized with docs/introduce.md)
 const REPO_ENRICHMENTS = {
   'FloatingTube': {
     description: {
-      ko: 'macOS 네이티브 플로팅 유튜브 플레이어 (인앱 전체화면, 최상단 고정, 클릭 투과 모드 및 메뉴바 트레이 지원).',
-      en: 'macOS native floating YouTube player with in-app fullscreen, always-on-top, click-through mode and menu bar tray.'
+      ko: '작업 화면을 가리지 않고 최상단에 상시 고정되어 유튜브를 감상할 수 있는 macOS 전용 초경량 플로팅 플레이어입니다. 창 맞춤 인앱 전체화면, 마우스 관통 모드, 상단 메뉴바 트레이 제어를 통해 완벽한 멀티태스킹 환경을 제공합니다.',
+      en: 'Ultra-lightweight macOS floating YouTube player that stays on top without blocking your workflow. Features window-confined fullscreen, mouse click-through mode, and menu bar tray control.'
     },
     featured: true,
     icon: 'assets/icons/floatingtube.png'
   },
   'brew-manager': {
     description: {
-      ko: 'Homebrew 패키지를 편리하게 탐색, 검색, 설치 및 업데이트할 수 있는 macOS GUI 애플리케이션.',
-      en: 'macOS GUI application for browsing, searching, installing, and updating Homebrew packages with ease.'
+      ko: 'Homebrew 패키지를 App Store 스타일의 직관적인 그래픽 인터페이스에서 탐색, 설치 및 관리할 수 있는 macOS 네이티브 앱입니다. 10개 카테고리별 인기 패키지 탐색, 실시간 검색, 원클릭 패키지 업데이트를 지원합니다.',
+      en: 'Native macOS app for browsing, installing, and managing Homebrew packages in an App Store-style GUI with 10 smart categories, real-time search, and 1-click batch updates.'
     },
     featured: true,
     icon: 'assets/icons/brew-manager.png'
   },
   'youtubeDownloader': {
     description: {
-      ko: 'yt-dlp 기반의 macOS GUI 비디오 & 오디오 다운로더 (사용자 정의 해상도 및 음원 포맷 옵션 지원).',
-      en: 'macOS GUI video & audio downloader powered by yt-dlp with custom resolution & audio format options.'
+      ko: 'yt-dlp 기반의 강력하고 직관적인 macOS 네이티브 유튜브 동영상 및 오디오 다운로더입니다. URL 붙여넣기만으로 다양한 화질 선택, 실시간 다운로드 진행률 및 속도 표시, 일시정지 및 이어받기를 지원합니다.',
+      en: 'Powerful and intuitive macOS native YouTube video & audio downloader powered by yt-dlp. Features custom resolution/format selection, live progress & speed tracking, and resume support.'
     },
     featured: true,
     icon: 'assets/icons/youtubedownloader.png'
@@ -489,16 +489,16 @@ const REPO_ENRICHMENTS = {
   },
   'TuistProjectMaker': {
     description: {
-      ko: '모듈식 iOS 및 macOS 앱 아키텍처 스캐폴딩을 위한 자동화된 Tuist Swift 프로젝트 생성기.',
-      en: 'Automated Tuist Swift project generator for scaffolding modular iOS and macOS app architectures.'
+      ko: '클린 아키텍처(Domain/Data/Presentation) 기반의 Tuist iOS 프로젝트를 마법사 방식으로 자동 스캐폴딩하는 macOS GUI 도구입니다. SwiftUI/UIKit 및 MVVM/TCA 패턴 지원과 계층 간 의존성 주입(DI Container) 코드를 전자동으로 구성합니다.',
+      en: 'macOS GUI wizard tool that scaffolds Tuist-based Clean Architecture iOS projects. Features SwiftUI/UIKit & MVVM/TCA selection with automatic DI Container wiring.'
     },
     featured: true,
     icon: 'assets/icons/tuistprojectmaker.svg'
   },
   'clean-arch-checker': {
     description: {
-      ko: '클린 아키텍처 경계 및 레이어 의존성을 검사하고 감사하는 가이드 스크립트 도구.',
-      en: 'Architecture compliance checker script for auditing Clean Architecture boundaries & layer dependencies.'
+      ko: 'AI 코딩 에이전트와 연동하여 모바일 및 크로스플랫폼 프로젝트의 클린 아키텍처 및 의존성 규칙을 자동 점검하는 스킬입니다. 레이어 오염 및 의존성 역전 원칙(DIP) 위반을 탐색하여 건강도 리포트를 제공하고 자동 리팩토링을 지원합니다.',
+      en: 'AI agent skill package that automatically audits Clean Architecture & DIP compliance across mobile/cross-platform projects, providing health scoring and automated refactoring.'
     },
     featured: true,
     icon: 'assets/icons/clean-arch-checker.svg'
@@ -521,36 +521,45 @@ const REPO_ENRICHMENTS = {
   },
   'DesignSystemMake': {
     description: {
-      ko: '디자인 시스템 토큰과 컴포넌트를 표준화하고 구축하기 위한 Swift 라이브러리 및 유틸리티 도구.',
-      en: 'Swift library and utility tool for creating and standardizing design system tokens and components.'
+      ko: 'W3C DTCG 표준 및 Figma Variables API와 연동되는 macOS 네이티브 디자인 시스템 토큰 스튜디오입니다. 색상, 타이포그래피, 스페이싱 등 디자인 토큰을 시각적으로 관리하고 iOS, Web, Android 코드로 즉시 내보냅니다.',
+      en: 'macOS native design system token studio synced with W3C DTCG standards and Figma Variables API, exporting tokens directly to iOS (Swift), Web (CSS), and Android.'
     },
-    featured: false,
+    featured: true,
     icon: 'assets/icons/designsystemmake.png'
   },
   'Grassie': {
     description: {
-      ko: '시스템 자동화를 위한 Swift 유틸리티 애플리케이션 및 도구.',
-      en: 'Swift utility application and tool for system automation.'
+      ko: 'macOS 상단 메뉴바에서 실시간으로 깃허브 잔디 격자와 연속 커밋(Streak)을 모니터링할 수 있는 네이티브 앱입니다. 최근 9일 커밋 상태를 반영하는 3x3 동적 상태바 아이콘과 유려한 Liquid Glass UI를 제공합니다.',
+      en: 'Native macOS menu-bar app for real-time GitHub contribution grid & streak tracking. Features dynamic 3x3 status bar icon rendering recent 9 days and a liquid frosted glass UI.'
     },
-    featured: false,
+    featured: true,
     icon: 'assets/icons/grassie.svg'
   },
   'SkillArchive': {
     description: {
-      ko: 'macOS 네이티브 AI 에이전트 스킬(Skills) 백업, 동기화 및 멀티 에이전트 자동 관리 애플리케이션.',
-      en: 'Native macOS app for backing up, syncing, and managing AI Agent Skills across Claude Code, Cursor, Gemini CLI, etc.'
+      ko: 'Mac에 설치된 다양한 AI 코딩 에이전트들의 스킬(SKILL.md)을 통합 백업하고 동기화하는 macOS 네이티브 앱입니다. 흩어져 있는 에이전트 스킬들을 자동 탐색하여 표준 저장소로 관리하고 원클릭 설치 및 배포를 지원합니다.',
+      en: 'Native macOS app that automatically scans, backs up, and synchronizes Agent Skills (SKILL.md) across Claude Code, Antigravity, Cursor, and Codex into a canonical store.'
     },
     featured: true,
     icon: 'assets/icons/skillarchive.png'
   },
   'Canopy': {
     description: {
-      ko: 'Pixabay 고화질 자연 영상을 실제 데스크톱 배경으로 재생하는 macOS 네이티브 메뉴바 라이브 배경화면 앱 (다중 모니터 & Retina 지원).',
-      en: 'macOS native menu-bar live wallpaper app that plays looping nature footage from Pixabay (Multi-display & Retina support).'
+      ko: 'Pixabay의 고화질 자연 영상을 실제 macOS 데스크톱 라이브 배경화면으로 루프 재생하는 메뉴바 앱입니다. 다중 모니터별 개별 영상 지정, 배터리 절전 모드 연동 및 4K 레티나 선명도를 완벽 지원합니다.',
+      en: 'macOS menu-bar live wallpaper app that plays looping Pixabay nature footage on actual desktop background with multi-display, retina clarity, and battery awareness.'
     },
     featured: true,
     icon: 'assets/icons/canopy.png',
     topics: ['macOS', 'Swift', 'SwiftUI', 'Live-Wallpaper', 'Pixabay']
+  },
+  'Fleet': {
+    description: {
+      ko: 'GitHub 저장소들의 방치일(D+XX)을 추적하고 할 일 메모를 AI 에이전트 CLI와 연동하는 macOS 네이티브 앱입니다. 저장소별 백로그 관리부터 Claude Code, Antigravity 등 에이전트 자동 작업 실행까지 원클릭으로 지원합니다.',
+      en: 'Native macOS app for tracking GitHub repository stale days (D+XX) and managing todo backlogs with 1-click execution for Claude Code, Antigravity, and AI Agent CLIs.'
+    },
+    featured: true,
+    icon: 'assets/icons/fleet.png',
+    topics: ['macOS', 'Swift', 'SwiftUI', 'AI-Agent', 'GitHub']
   }
 };
 
