@@ -1016,7 +1016,7 @@ function setLanguage(lang) {
   if (processedRepos.length > 0) {
     updateStats(processedRepos);
     render();
-    syncReadmeDescriptions(processedRepos, currentLang);
+    syncIntroduceDescriptions(processedRepos, currentLang);
   }
   if (appstoreContainer) {
     fetchFeaturedAppStoreApps();
@@ -1194,85 +1194,10 @@ function formatTopicCategory(topic) {
   return topic.split(/[-_]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 
-// Extract lead paragraph / intro from README markdown
-function extractReadmeLead(markdown, lang = 'ko', repoName = '') {
-  if (!markdown) return '';
-
-  let targetText = markdown;
-  if (lang === 'ko') {
-    const koCount = (markdown.match(/[\uac00-\ud7af]/g) || []).length;
-    if (koCount < 15) return ''; // Not a Korean README
-    if (/##\s*.*한국어/i.test(markdown)) {
-      const parts = markdown.split(/##\s*.*한국어.*/i);
-      if (parts[1]) targetText = parts[1].split(/\n##\s/)[0];
-    }
-  } else if (lang === 'en') {
-    if (/##\s*.*English/i.test(markdown)) {
-      const parts = markdown.split(/##\s*.*English.*/i);
-      if (parts[1]) targetText = parts[1].split(/\n##\s/)[0];
-    }
-  }
-
-  // Strip HTML comments, badges, tags
-  let text = targetText
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)/g, '')
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-    .replace(/<br\s*\/?>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ');
-
-  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
-
-  for (const line of lines) {
-    // Skip language selector / navigation lines
-    if (/^(\[?[^\]|·•]+\]?\([^)]+\)\s*([|·•]\s*)?)+$/i.test(line)) continue;
-    if (/^(Languages?|언어)?\s*:?\s*(\[?[^\]|·•]+\]?\([^)]+\)\s*([|·•]\s*)?)+$/i.test(line)) continue;
-    if (/^(English|한국어|日本語|中文)(\s*[·|•]\s*(English|한국어|日本語|中文))+$/i.test(line)) continue;
-    if (/^[-=*_]{3,}$/.test(line)) continue;
-
-    const isHeader = /^#+/.test(line);
-
-    let clean = line
-      .replace(/^>\s*/, '')
-      .replace(/^#+\s*/, '')
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-      .replace(/\*\*([^*]+)\*\*/g, '$1')
-      .replace(/\*([^*]+)\*/g, '$1')
-      .replace(/`([^`]+)`/g, '$1')
-      .replace(/\s+/g, ' ')
-      .trim();
-
-    // Skip repo title lines
-    const lowerClean = clean.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const lowerRepo = (repoName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    if (lowerClean === lowerRepo || lowerClean.startsWith(lowerRepo + 'v1') || 
-        (isHeader && lowerClean.includes(lowerRepo) && lowerClean.length < lowerRepo.length + 35)) {
-      continue;
-    }
-
-    // Skip standard section headers or install commands
-    if (/^(features?|requirements?|install(ation)?|structure|building|license|quick\s*start|기능|핵심\s*기능|요구\s*사항|설치|설치\s*방법|구성|빌드|라이선스|빠른\s*시작)/i.test(clean)) {
-      continue;
-    }
-    if (/^(brew\s+install|git\s+clone|npm\s+install|npx\s+)/i.test(clean)) {
-      continue;
-    }
-
-    if (lang === 'ko' && !/[\uac00-\ud7af]/.test(clean)) {
-      continue;
-    }
-
-    if (clean.length >= 15) {
-      return clean;
-    }
-  }
-
-  return '';
-}
-
-function getCachedReadmeDescription(repoName, lang) {
+// Fetch introduce.md / introduce.en.md directly from repository docs/ directory (Standard Guideline 3)
+function getCachedIntroduceDescription(repoName, lang) {
   try {
-    const raw = localStorage.getItem(`readme_desc_${repoName}_${lang}`);
+    const raw = localStorage.getItem(`intro_desc_${repoName}_${lang}`);
     if (raw) {
       const data = JSON.parse(raw);
       if (Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
@@ -1283,30 +1208,30 @@ function getCachedReadmeDescription(repoName, lang) {
   return null;
 }
 
-async function fetchReadmeDescription(repo, lang) {
-  const cached = getCachedReadmeDescription(repo.name, lang);
+async function fetchIntroduceDescription(repo, lang) {
+  const cached = getCachedIntroduceDescription(repo.name, lang);
   if (cached) return cached;
 
   const branch = repo.defaultBranch || 'main';
-  const rawBase = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/${branch}`;
+  const rawBase = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/${branch}/docs`;
   const candidates = lang === 'ko' 
-    ? ['README.ko.md', 'README.md'] 
-    : ['README.en.md', 'README.md'];
+    ? ['introduce.md', 'introduce.ko.md'] 
+    : ['introduce.en.md', 'introduce.md'];
 
   for (const filename of candidates) {
     try {
       const res = await fetch(`${rawBase}/${filename}`);
       if (res.ok) {
-        const markdown = await res.text();
-        const lead = extractReadmeLead(markdown, lang, repo.name);
-        if (lead) {
+        let text = await res.text();
+        text = text.trim();
+        if (text && text.length > 10) {
           try {
-            localStorage.setItem(`readme_desc_${repo.name}_${lang}`, JSON.stringify({
-              text: lead,
+            localStorage.setItem(`intro_desc_${repo.name}_${lang}`, JSON.stringify({
+              text,
               timestamp: Date.now()
             }));
           } catch (_) {}
-          return lead;
+          return text;
         }
       }
     } catch (_) {}
@@ -1315,19 +1240,19 @@ async function fetchReadmeDescription(repo, lang) {
   return '';
 }
 
-async function syncReadmeDescriptions(repos, lang) {
+async function syncIntroduceDescriptions(repos, lang) {
   if (!Array.isArray(repos) || repos.length === 0) return;
 
   repos.forEach(async (repo) => {
-    const lead = await fetchReadmeDescription(repo, lang);
-    if (lead) {
+    const text = await fetchIntroduceDescription(repo, lang);
+    if (text) {
       if (typeof repo.description === 'object' && repo.description !== null) {
-        repo.description[lang] = lead;
+        repo.description[lang] = text;
       } else {
-        repo.description = { [lang]: lead };
+        repo.description = { [lang]: text };
       }
       document.querySelectorAll(`[data-repo-desc="${repo.name}"]`).forEach(el => {
-        el.textContent = lead;
+        el.textContent = text;
       });
     }
   });
@@ -1349,14 +1274,17 @@ function processAndSetData(repos) {
       const enrichment = (enrichmentKey ? REPO_ENRICHMENTS[enrichmentKey] : null) || {};
       const topicsList = (Array.isArray(repo.topics) && repo.topics.length > 0) ? repo.topics : (enrichment.topics || []);
       
-      const baseDesc = enrichment.description || (typeof repo.description === 'string' ? { ko: repo.description, en: repo.description } : repo.description) || { 
+      const enrichmentDesc = enrichment.description ? { ...enrichment.description } : null;
+      const ghDesc = (repo.description && repo.description.trim()) ? { ko: repo.description, en: repo.description } : null;
+      const fallbackDesc = { 
         ko: `${repo.name} 오픈소스 프로젝트입니다.`, 
         en: `Open source project ${repo.name}.` 
       };
-      const descObj = typeof baseDesc === 'object' ? { ...baseDesc } : { ko: String(baseDesc), en: String(baseDesc) };
-      const cachedKo = getCachedReadmeDescription(repo.name, 'ko');
+
+      const descObj = enrichmentDesc || ghDesc || fallbackDesc;
+      const cachedKo = getCachedIntroduceDescription(repo.name, 'ko');
       if (cachedKo) descObj.ko = cachedKo;
-      const cachedEn = getCachedReadmeDescription(repo.name, 'en');
+      const cachedEn = getCachedIntroduceDescription(repo.name, 'en');
       if (cachedEn) descObj.en = cachedEn;
 
       return {
@@ -1383,7 +1311,7 @@ function processAndSetData(repos) {
 
     updateStats(processedRepos);
     render();
-    syncReadmeDescriptions(processedRepos, currentLang);
+    syncIntroduceDescriptions(processedRepos, currentLang);
   } catch (err) {
     console.error('Error processing repositories:', err);
     if (!isFallbackActive) useFallbackData();
@@ -1399,7 +1327,7 @@ function useFallbackData() {
       name: 'FloatingTube',
       full_name: 'mrKangHo/FloatingTube',
       html_url: 'https://github.com/mrKangHo/FloatingTube',
-      description: 'macOS native floating YouTube player with in-app fullscreen, always-on-top, click-through mode and menu bar tray.',
+      description: '작업 화면을 가리지 않고 최상단에 상시 고정되어 유튜브를 감상할 수 있는 macOS 전용 초경량 플로팅 플레이어입니다. 창 맞춤 인앱 전체화면, 마우스 관통 모드, 상단 메뉴바 트레이 제어를 통해 완벽한 멀티태스킹 환경을 제공합니다.',
       language: 'Swift',
       stargazers_count: 1,
       forks_count: 0,
@@ -1412,7 +1340,7 @@ function useFallbackData() {
       name: 'brew-manager',
       full_name: 'mrKangHo/brew-manager',
       html_url: 'https://github.com/mrKangHo/brew-manager',
-      description: 'macOS GUI app for browsing, searching, installing, and updating Homebrew packages with ease.',
+      description: 'Homebrew 패키지를 App Store 스타일의 직관적인 그래픽 인터페이스에서 탐색, 설치 및 관리할 수 있는 macOS 네이티브 앱입니다. 10개 카테고리별 인기 패키지 탐색, 실시간 검색, 원클릭 패키지 업데이트를 지원합니다.',
       language: 'Swift',
       stargazers_count: 0,
       forks_count: 0,
@@ -1425,7 +1353,7 @@ function useFallbackData() {
       name: 'youtubeDownloader',
       full_name: 'mrKangHo/youtubeDownloader',
       html_url: 'https://github.com/mrKangHo/youtubeDownloader',
-      description: 'macOS GUI video & audio downloader powered by yt-dlp with custom format options.',
+      description: 'yt-dlp 기반의 강력하고 직관적인 macOS 네이티브 유튜브 동영상 및 오디오 다운로더입니다. URL 붙여넣기만으로 다양한 화질 선택, 실시간 다운로드 진행률 및 속도 표시, 일시정지 및 이어받기를 지원합니다.',
       language: 'Swift',
       stargazers_count: 0,
       forks_count: 0,
@@ -1438,7 +1366,7 @@ function useFallbackData() {
       name: 'homebrew-ytdownloader',
       full_name: 'mrKangHo/homebrew-ytdownloader',
       html_url: 'https://github.com/mrKangHo/homebrew-ytdownloader',
-      description: 'Homebrew tap for YTDownloader (macOS GUI for yt-dlp).',
+      description: 'YTDownloader를 위한 Homebrew tap - macOS GUI YTDownloader 간편 포뮬러 설치 지원.',
       language: 'Ruby',
       stargazers_count: 0,
       forks_count: 0,
@@ -1451,7 +1379,7 @@ function useFallbackData() {
       name: 'TuistProjectMaker',
       full_name: 'mrKangHo/TuistProjectMaker',
       html_url: 'https://github.com/mrKangHo/TuistProjectMaker',
-      description: 'Automated Tuist Swift project generator for scaffolding modular iOS and macOS architectures.',
+      description: '클린 아키텍처(Domain/Data/Presentation) 기반의 Tuist iOS 프로젝트를 마법사 방식으로 자동 스캐폴딩하는 macOS GUI 도구입니다. SwiftUI/UIKit 및 MVVM/TCA 패턴 지원과 계층 간 의존성 주입(DI Container) 코드를 전자동으로 구성합니다.',
       language: 'Swift',
       stargazers_count: 1,
       forks_count: 0,
@@ -1464,7 +1392,7 @@ function useFallbackData() {
       name: 'clean-arch-checker',
       full_name: 'mrKangHo/clean-arch-checker',
       html_url: 'https://github.com/mrKangHo/clean-arch-checker',
-      description: 'Codebase analysis tool to inspect and audit Clean Architecture compliance across layers.',
+      description: 'AI 코딩 에이전트와 연동하여 모바일 및 크로스플랫폼 프로젝트의 클린 아키텍처 및 의존성 규칙을 자동 점검하는 스킬입니다. 레이어 오염 및 의존성 역전 원칙(DIP) 위반을 탐색하여 건강도 리포트를 제공하고 자동 리팩토링을 지원합니다.',
       language: 'JavaScript',
       stargazers_count: 0,
       forks_count: 0,
@@ -1477,7 +1405,7 @@ function useFallbackData() {
       name: 'iTorrent',
       full_name: 'mrKangHo/iTorrent',
       html_url: 'https://github.com/mrKangHo/iTorrent',
-      description: 'Feature-rich BitTorrent client written in Swift for iOS 16+.',
+      description: 'iOS 16+ 기기를 위해 Swift로 작성된 기능 풍부한 BitTorrent 클라이언트.',
       language: 'Swift',
       stargazers_count: 0,
       forks_count: 0,
@@ -1490,7 +1418,7 @@ function useFallbackData() {
       name: 'LibTorrent-Swift',
       full_name: 'mrKangHo/LibTorrent-Swift',
       html_url: 'https://github.com/mrKangHo/LibTorrent-Swift',
-      description: 'Swift wrapper around libtorrent C++ library.',
+      description: 'C++ libtorrent 라이브러리를 위한 Swift 래퍼 및 통합 레이어.',
       language: 'Objective-C++',
       stargazers_count: 0,
       forks_count: 0,
@@ -1503,7 +1431,7 @@ function useFallbackData() {
       name: 'DesignSystemMake',
       full_name: 'mrKangHo/DesignSystemMake',
       html_url: 'https://github.com/mrKangHo/DesignSystemMake',
-      description: 'Swift library for building consistent design system components.',
+      description: 'W3C DTCG 표준 및 Figma Variables API와 연동되는 macOS 네이티브 디자인 시스템 토큰 스튜디오입니다. 색상, 타이포그래피, 스페이싱 등 디자인 토큰을 시각적으로 관리하고 iOS, Web, Android 코드로 즉시 내보냅니다.',
       language: 'Swift',
       stargazers_count: 0,
       forks_count: 0,
@@ -1516,7 +1444,7 @@ function useFallbackData() {
       name: 'Grassie',
       full_name: 'mrKangHo/Grassie',
       html_url: 'https://github.com/mrKangHo/Grassie',
-      description: 'Swift utility application repository.',
+      description: 'macOS 상단 메뉴바에서 실시간으로 깃허브 잔디 격자와 연속 커밋(Streak)을 모니터링할 수 있는 네이티브 앱입니다. 최근 9일 커밋 상태를 반영하는 3x3 동적 상태바 아이콘과 유려한 Liquid Glass UI를 제공합니다.',
       language: 'Swift',
       stargazers_count: 0,
       forks_count: 0,
@@ -1529,7 +1457,7 @@ function useFallbackData() {
       name: 'SkillArchive',
       full_name: 'mrKangHo/SkillArchive',
       html_url: 'https://github.com/mrKangHo/SkillArchive',
-      description: 'Native macOS app for backing up, syncing, and managing AI Agent Skills.',
+      description: 'Mac에 설치된 다양한 AI 코딩 에이전트들의 스킬(SKILL.md)을 통합 백업하고 동기화하는 macOS 네이티브 앱입니다. 흩어져 있는 에이전트 스킬들을 자동 탐색하여 표준 저장소로 관리하고 원클릭 설치 및 배포를 지원합니다.',
       language: 'Swift',
       stargazers_count: 0,
       forks_count: 0,
@@ -1542,13 +1470,26 @@ function useFallbackData() {
       name: 'Canopy',
       full_name: 'mrKangHo/Canopy',
       html_url: 'https://github.com/mrKangHo/Canopy',
-      description: 'macOS native menu-bar live wallpaper app that plays looping nature footage from Pixabay.',
+      description: 'Pixabay의 고화질 자연 영상을 실제 macOS 데스크톱 라이브 배경화면으로 루프 재생하는 메뉴바 앱입니다. 다중 모니터별 개별 영상 지정, 배터리 절전 모드 연동 및 4K 레티나 선명도를 완벽 지원합니다.',
       language: 'Swift',
       stargazers_count: 0,
       forks_count: 0,
       fork: false,
       updated_at: '2026-09-05T00:00:00Z',
       topics: ['macOS', 'Swift', 'SwiftUI', 'Live-Wallpaper']
+    },
+    {
+      id: 13,
+      name: 'Fleet',
+      full_name: 'mrKangHo/Fleet',
+      html_url: 'https://github.com/mrKangHo/Fleet',
+      description: 'GitHub 저장소들의 방치일(D+XX)을 추적하고 할 일 메모를 AI 에이전트 CLI와 연동하는 macOS 네이티브 앱입니다. 저장소별 백로그 관리부터 Claude Code, Antigravity 등 에이전트 자동 작업 실행까지 원클릭으로 지원합니다.',
+      language: 'Swift',
+      stargazers_count: 0,
+      forks_count: 0,
+      fork: false,
+      updated_at: '2026-09-08T00:00:00Z',
+      topics: ['macOS', 'Swift', 'SwiftUI', 'AI-Agent', 'GitHub']
     }
   ];
 
