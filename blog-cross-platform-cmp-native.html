@@ -361,6 +361,56 @@
         <li><strong>하자보수 리스크 극소화:</strong> 납품 후 "안드로이드랑 아이폰에서 동작 규칙이 미세하게 달라요"라는 기능 불일치 클레임이 원천 차단되어, 사후 하자보수 비용으로 인한 프로젝트 적자 위험을 방어할 수 있습니다.</li>
       </ul>
 
+      <h2><i class="fa-solid fa-scale-balanced" style="color: #f59e0b;"></i> 7. 솔직하게 짚어보는 KMP + Native의 단점, 그리고 그럼에도 채택한 이유</h2>
+      <p>
+        세상에 장점만 존재하는 기술은 없습니다. KMP + Native 구조 역시 실무에서 마주하는 분명한 허들과 단점들이 존재합니다. 솔직하게 이를 짚어보겠습니다:
+      </p>
+
+      <h3>단점 ①: UI 코드를 플랫폼별로 2번 작성해야 하는 공수</h3>
+      <p>
+        Flutter나 React Native는 단 한 번의 UI 작성으로 양대 플랫폼 화면을 끝냅니다. 하지만 KMP + Native는 Presentation Layer를 순수 네이티브로 두기 때문에, <strong>Android(Jetpack Compose)와 iOS(SwiftUI) 각각 뷰 코드를 2벌 작성해야 합니다.</strong>
+      </p>
+      <p>
+        단순 화면 개수가 수십, 수백 개에 달하는 대규모 뷰 중심 프로젝트라면, 화면을 그리는 절대적인 시간 자체가 크로스 플랫폼보다 더 소요되는 것은 명백한 사실입니다.
+      </p>
+
+      <h3>단점 ②: 초기 빌드 툴링 세팅과 Kotlin-Swift Interop 장벽</h3>
+      <p>
+        Android Studio와 Xcode 두 개발 환경을 모두 세팅하고, Gradle 빌드와 SPM(Swift Package Manager) 또는 CocoaPods 연동을 구성하는 초기 환경 설정 난이도가 다소 높습니다.
+      </p>
+      <p>
+        또한 Kotlin의 <code>Coroutines / StateFlow</code>, <code>sealed interface</code> 등을 Swift에서 자연스럽게 소비하기 위해서는 SKIE나 KMP-NativeCoroutines 같은 브리지 플러그인의 도움을 받거나 래퍼 코드가 필요하여, 처음 도입할 때의 러닝 커브가 존재합니다.
+      </p>
+
+      <div class="article-callout" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.08);">
+        <i class="fa-solid fa-check-double" style="color: #10b981;"></i>
+        <strong>"그렇다면 이런 단점들이 명확한데도 왜 나는 KMP + Native를 최종 채택했을까?"</strong>
+        <br><br>
+        결론부터 말하자면, <strong>"초기에 감수해야 하는 단점들에 비해, 장기적으로 얻는 안정성과 유지보수의 장점이 비교할 수 없을 만큼 압도적으로 크기 때문"</strong>이었습니다.
+      </div>
+
+      <h3>이 단점들을 상쇄하고도 남는 결정적 이유 3가지:</h3>
+      <ul>
+        <li>
+          <strong>실제 개발 시간의 80%는 UI가 아니라 '비즈니스 로직과 데이터'에서 발생한다:</strong><br>
+          경험이 쌓인 모바일 개발자라면 모두 공감할 것입니다. 서비스 개발에서 진짜 버그가 터지고 야근을 부르는 부분은 예쁜 버튼을 배치하는 UI 작업이 아니라, <strong>복잡한 결제/주문 로직, API 응답 캐싱, 로컬 DB 트랜잭션, 토큰 갱신, 예외 처리</strong>입니다.<br>
+          현대의 선언형 UI(Compose/SwiftUI) 덕분에 화면 그리는 시간은 전체 개발 공수의 20~30%에 불과합니다. 가장 무겁고 위험한 70~80%의 비즈니스 로직을 KMP로 단일화했기 때문에, UI를 두 번 짜는 수고로움은 충분히 감수할 만한 작은 비용에 불과합니다.
+        </li>
+        <li>
+          <strong>초기 세팅 비용은 1회성이지만, 런타임 안정성은 영구적이다:</strong><br>
+          Gradle 연동이나 Kotlin-Swift 인터옵 같은 툴링 허들은 <strong>프로젝트 초기에 딱 한 번만 제대로 세팅해두면 끝나는 1회성 비용</strong>입니다.<br>
+          반면 Flutter/RN의 서드파티 플러그인 충돌, OS 업데이트마다 터지는 빌드 에러, 메모리 릭과 GC 랙은 <strong>서비스가 운영되는 내내 영구적으로 개발자를 괴롭히는 기술 부채</strong>입니다. 1회성 세팅 비용을 치르고 영구적인 안정성을 사는 것이 훨씬 남는 장사였습니다.
+        </li>
+        <li>
+          <strong>크로스 플랫폼의 '가짜 네이티브' 수정 비용보다 UI를 네이티브로 짜는 게 훨씬 빠르다:</strong><br>
+          Flutter나 RN에서 OS 특유의 미세한 스크롤 저항감, 햅틱 피드백, Dynamic Island, 백그라운드 위치 추적 등을 억지로 구현하느라 수많은 시간을 삽질해 본 분들이라면 압니다.<br>
+          차라리 SwiftUI와 Compose로 깔끔하게 공식 문서를 보며 네이티브 코드를 짜는 것이, 크로스 플랫폼 플러그인을 뒤적거리며 플랫폼 채널을 뚫는 것보다 <strong>실제로는 훨씬 빠르고 스트레스가 적습니다.</strong>
+        </li>
+      </ul>
+      <p>
+        결국 <strong>"감당 가능한 작은 단점(UI 개별 구현, 초기 세팅)을 내어주고, 감당하기 힘든 치명적인 위험(런타임 크래시, 메모리 저하, 로직 불일치 버그)을 완벽히 방어할 수 있다"</strong>는 점에서, KMP + Native는 현존하는 가장 영리하고 실용적인 투자였습니다.
+      </p>
+
       <h2><i class="fa-solid fa-flag-checkered" style="color: #3b82f6;"></i> 마치며: 은총알은 없다, 그러나 가장 단단한 선택</h2>
       <p>
         소프트웨어 개발에 모든 상황을 완벽하게 만족시키는 은총알은 존재하지 않습니다.
