@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>양대 플랫폼(iOS/Android)을 지원하는 최선의 방법? — Kano Tech Blog</title>
-  <meta name="description" content="11년차 모바일 파트 리더 이강호(Kano)가 전하는 양대 플랫폼 지원 전략. Flutter와 React Native의 한계를 넘어 Data/Domain은 CMP(KMP)로 일원화하고 Presentation은 각 OS Native로 구축하는 가장 단단한 아키텍처 이야기.">
+  <meta name="description" content="모바일 개발자 이강호(Kano)가 실무에서 치열하게 고민한 양대 플랫폼 지원 전략. Flutter와 React Native의 한계를 넘어 Data/Domain은 KMP로 일원화하고 Presentation은 각 OS Native로 구축하는 가장 단단한 아키텍처 이야기.">
 
   <!-- Favicon -->
   <link rel="icon" href="https://github.com/mrKangHo.png" type="image/png">
@@ -70,12 +70,12 @@
       </div>
       <h1 class="article-title">양대 플랫폼(iOS/Android)을 지원하는 최선의 방법?</h1>
       <p class="article-subtitle">
-        "하나의 코드로 두 마리 토끼를 잡으려다 마주치는 한계, 그리고 내가 'CMP(Data/Domain) + Native(Presentation)' 조합을 선택한 이유"
+        "하나의 코드로 두 마리 토끼를 잡으려다 마주치는 한계, 그리고 내가 'KMP(Data/Domain) + Native(Presentation)' 조합을 선택한 이유"
       </p>
       <div class="article-meta-row">
         <div class="blog-author">
           <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="blog-author-img">
-          <span>작성자: 이강호 (Kano — 모바일 파트 리더)</span>
+          <span>작성자: 이강호 (Kano — 모바일 개발자)</span>
         </div>
       </div>
     </header>
@@ -83,16 +83,16 @@
     <!-- Article Body Content -->
     <main class="article-content">
       <p>
-        "이번 신규 프로젝트, iOS랑 안드로이드 둘 다 빠르게 내야 하는데 어떤 기술 스택으로 가야 할까요?"
+        "이번 신규 프로젝트, iOS랑 안드로이드 둘 다 빠르게 내야 하는데 어떤 기술 스택으로 가야 할까?"
       </p>
       <p>
-        모바일 서비스를 기획하고 개발하는 팀이라면 누구나 마주하는 가장 오래되고도 치열한 질문입니다. 비즈니스의 빠른 시장 검증을 위해서는 iOS와 Android 양대 플랫폼을 모두 지원해야 하지만, 현실의 개발 리소스(인력, 시간, 예산)는 언제나 한정되어 있기 때문입니다.
+        모바일 서비스를 만드는 개발자라면 누구나 한 번쯤 밤잠을 설치며 고민해보았을 질문입니다. 비즈니스의 빠른 시장 검증을 위해서는 iOS와 Android 양대 플랫폼을 모두 지원해야 하지만, 혼자 혹은 소수의 인원으로 두 OS를 각각 처음부터 개발하는 것은 비용과 시간 면에서 너무나 큰 부담이기 때문입니다.
       </p>
       <p>
-        이때 자연스럽게 가장 먼저 검토되는 선택지가 바로 <strong>Flutter</strong>나 <strong>React Native</strong> 같은 크로스 플랫폼 프레임워크입니다. "하나의 코드베이스로 두 플랫폼을 동시에 지원할 수 있다"는 약속은 프로덕트 매니저와 엔지니어 모두에게 거부하기 힘든 달콤한 유혹입니다.
+        이때 자연스럽게 가장 먼저 손이 가는 선택지가 바로 <strong>Flutter</strong>나 <strong>React Native</strong> 같은 크로스 플랫폼 프레임워크입니다. "하나의 코드베이스로 두 플랫폼을 동시에 지원할 수 있다"는 약속은 개발자에게 거부하기 힘든 달콤한 유혹입니다.
       </p>
       <p>
-        하지만 11년간 다양한 규모의 모바일 프로덕트를 만들고 이끌며 깨달은 것은, <strong>모든 은총알(Silver Bullet)에는 반드시 대가가 따른다는 점</strong>이었습니다.
+        하지만 현업에서 직접 부딪히며 앱을 개발하고 유지보수하면서 깨달은 것은, <strong>모든 은총알(Silver Bullet)에는 반드시 현실적인 대가가 따른다는 점</strong>이었습니다.
       </p>
 
       <div class="article-callout" style="border-left-color: #6366f1; background: rgba(99, 102, 241, 0.08);">
@@ -102,17 +102,17 @@
 
       <h2><i class="fa-solid fa-layer-group" style="color: #60a5fa;"></i> 1. 크로스 플랫폼(Flutter, RN): 분명한 장점과 현실적인 한계</h2>
       <p>
-        Flutter와 React Native는 현대 소프트웨어 생태계에 지대한 공헌을 한 훌륭한 도구들입니다. 저 역시 빠른 MVP 검증이나 SaaS 프로젝트에서 적극적으로 활용해 보았고, 그 생산성에 감탄하기도 했습니다.
+        Flutter와 React Native는 현대 소프트웨어 생태계에 지대한 공헌을 한 훌륭한 도구들입니다. 저 역시 빠른 MVP 검증이나 1인 프로젝트에서 적극적으로 활용해 보았고, 특유의 빠른 개발 생산성에 감탄하기도 했습니다.
       </p>
       
       <h3>장점: 압도적인 출시 속도와 단일 코드베이스</h3>
       <ul>
         <li><strong>Write Once, Run Everywhere:</strong> UI부터 비즈니스 로직까지 하나의 언어(Dart 또는 JS/TS)로 작성하여 두 플랫폼에 즉시 빌드할 수 있습니다.</li>
-        <li><strong>동일한 출시 사이클:</strong> iOS 팀과 Android 팀의 기능 배포 일정 차이(스펙 갭)가 사라지고, 소규모 팀으로도 빠른 초기 피봇이 가능합니다.</li>
+        <li><strong>동일한 개발 사이클:</strong> 두 플랫폼 간의 기능 배포 일정 차이가 사라지고, 적은 인력으로도 빠르게 프로토타입을 완성할 수 있습니다.</li>
       </ul>
 
       <p>
-        하지만 서비스의 규모가 커지고, 복잡한 사용자 인터랙션과 고도화된 시스템 기능이 요구되는 프로덕션 단계에 들어서면 다음과 같은 <strong>구조적 병목</strong>에 직면하게 됩니다.
+        하지만 서비스의 규모가 커지고, 복잡한 사용자 인터랙션과 고도화된 시스템 기능이 요구되는 단계에 들어서면 다음과 같은 <strong>구조적 한계</strong>를 체감하게 됩니다.
       </p>
 
       <h3>한계 ①: 무거운 메모리 풋프린트와 런타임 오버헤드</h3>
@@ -120,56 +120,71 @@
         크로스 플랫폼 앱은 순수 네이티브 앱에 비해 기본 메모리 사용량이 필연적으로 높습니다.
       </p>
       <ul>
-        <li><strong>Flutter:</strong> 앱 바이너리 내에 Dart 가상머신(VM)과 자체 그래픽 렌더링 엔진(Skia / Impeller)을 통째로 패키징합니다. 텍스트 몇 줄만 있는 빈 화면을 띄우더라도 기본적으로 상당한 메모리를 점유하며, 복잡한 대량 리스트 스크롤이나 대용량 이미지 처리 시 가비지 컬렉터(GC) 동작에 따른 미세한 프레임 드랍(Micro-jank)을 완전히 피하기 어렵습니다.</li>
+        <li><strong>Flutter:</strong> 앱 바이너리 내에 Dart 가상머신(VM)과 자체 그래픽 렌더링 엔진(Skia / Impeller)을 통째로 패키징합니다. 텍스트 몇 줄만 있는 빈 화면을 띄우더라도 기본적으로 상당한 메모리를 점유하며, 복잡한 대량 리스트 스크롤이나 대용량 이미지 처리 시 가비지 컬렉터(GC) 동작에 따른 미세한 프레임 드랍(Micro-jank)이 발생하기 쉽습니다.</li>
         <li><strong>React Native:</strong> JavaScript 런타임(Hermes 등) 구동 오버헤드와 JS-Native 간의 비동기 통신(또는 JSI) 비용으로 인해 CPU 연산과 메모리 압박이 가중되며, 이는 배터리 소모와 기기 발열로 직결됩니다.</li>
       </ul>
 
       <h3>한계 ②: '가짜 네이티브'의 장벽과 OS 고유 기능 지원의 지연</h3>
       <p>
-        Apple과 Google은 매년 WWDC와 Google I/O를 통해 최신 OS 기능과 혁신적인 인터페이스를 발표합니다:
+        Apple과 Google은 매년 WWDC와 Google I/O를 통해 각 OS만의 혁신적인 신기능을 쏟아냅니다:
       </p>
       <ul>
         <li><strong>iOS:</strong> Dynamic Island, Live Activities, 락스크린 위젯, ProMotion(120Hz) 가변 주사율, 정교한 햅틱 엔진, Apple Intelligence API</li>
         <li><strong>Android:</strong> Material You 동적 테마, 예측 뒤로가기(Predictive Back), 세분화된 포그라운드 서비스 및 배터리 최적화 정책</li>
       </ul>
       <p>
-        크로스 플랫폼은 이 혁신을 <strong>Day 1에 온전히 흡수하지 못합니다.</strong> 제3자 오픈소스 플러그인이 업데이트되기를 마냥 기다려야 하거나, 결국 각 플랫폼에 맞춰 <code>MethodChannel</code>이나 네이티브 브리지를 직접 작성해야 합니다.
+        크로스 플랫폼은 이 혁신을 <strong>Day 1에 온전히 흡수하지 못합니다.</strong> 제3자 오픈소스 플러그인이 나오기를 마냥 기다려야 하거나, 결국 각 플랫폼에 맞춰 <code>MethodChannel</code>이나 네이티브 브리지를 직접 작성해야 합니다.
       </p>
       <div class="article-callout" style="border-left-color: #ef4444; background: rgba(239, 68, 68, 0.08);">
         <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i>
-        "결국 네이티브 기능을 쓰기 위해 각 OS 코드를 따로 짜고 있다면, '하나의 코드로 개발한다'는 크로스 플랫폼의 본래 약속은 어디로 간 것일까요? 배보다 배꼽이 더 커지는 상황이 발생하는 것입니다."
+        "결국 네이티브 기능을 쓰기 위해 각 OS 코드를 따로 짜고 있다면, '하나의 코드로 개발한다'는 크로스 플랫폼의 본래 약속은 어디로 간 것일까요? 배보다 배꼽이 더 커지는 딜레마에 빠지게 됩니다."
       </div>
 
-      <h2><i class="fa-solid fa-bullseye" style="color: #10b981;"></i> 2. 내가 선택한 해답: CMP(KMP) + Native 하이브리드 전략</h2>
+      <h2><i class="fa-solid fa-bullseye" style="color: #10b981;"></i> 2. 내가 선택한 해답: KMP + Native 하이브리드 전략</h2>
       <p>
-        양대 플랫폼을 지원하면서 우리가 진정으로 원했던 가치는 무엇이었을까요?
+        양대 플랫폼을 지원하면서 개발자인 우리가 진정으로 원했던 가치는 무엇이었을까요?
       </p>
       <p>
         "서로 다른 두 OS의 화면(UI)을 억지로 붕어빵 찍듯 똑같이 만드는 것"이 아니었습니다. 진짜 우리가 해결하고 싶었던 비효율은 <strong>"네트워크 통신, 로컬 DB 캐싱, 비즈니스 검증 규칙, 데이터 가공 로직을 iOS와 Android에서 두 번씩 따로 구현하고 버그를 맞추는 고통"</strong>이었습니다.
       </p>
       <p>
-        그래서 저는 가장 균형 잡히고 단단한 조합으로 <strong>CMP(Compose Multiplatform / KMP) + Native</strong> 전략을 채택했습니다.
+        그래서 저는 가장 균형 잡히고 단단한 조합으로 <strong>KMP (Kotlin Multiplatform) + Native</strong> 전략을 채택했습니다.
       </p>
 
       <div class="article-callout" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.08);">
         <i class="fa-solid fa-cube" style="color: #10b981;"></i>
         <strong>핵심 아키텍처 원칙:</strong>
-        <br>• <strong>Data Layer & Domain Layer:</strong> CMP (Kotlin Multiplatform)로 100% 공유
+        <br>• <strong>Data Layer & Domain Layer:</strong> KMP (Kotlin Multiplatform)로 100% 공유
         <br>• <strong>Presentation Layer:</strong> 각 OS의 순수 네이티브(Jetpack Compose & SwiftUI)로 구현
       </div>
 
+      <div class="article-callout" style="border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.08);">
+        <i class="fa-solid fa-lightbulb" style="color: #f59e0b;"></i>
+        <strong>💡 잠깐! KMP와 CMP, 무엇이 다르고 어떤 표현이 맞을까?</strong>
+        <p style="margin-top: 0.5rem; margin-bottom: 0.5rem; color: #e2e8f0;">
+          많은 분들이 <strong>KMP</strong>와 <strong>CMP</strong>를 혼용해서 사용하곤 합니다:
+        </p>
+        <ul style="margin-bottom: 0;">
+          <li><strong>KMP (Kotlin Multiplatform):</strong> JetBrains가 만든 <strong>코어 기술/플랫폼</strong>입니다. 로직, 데이터 레이어, 네트워크, DB 등 비즈니스 코드를 Kotlin으로 작성하고 플랫폼별 네이티브 바이너리로 직접 컴파일합니다.</li>
+          <li><strong>CMP (Compose Multiplatform):</strong> KMP 기반 위에서 동작하는 <strong>선언형 UI 프레임워크</strong>입니다. 화면(UI)까지 Compose 코드로 통일해서 렌더링하고 싶을 때 사용하는 기술입니다.</li>
+        </ul>
+        <p style="margin-top: 0.65rem; margin-bottom: 0; color: #cbd5e1;">
+          👉 <strong>결론:</strong> 우리가 취하는 아키텍처는 화면(UI)을 공통 캔버스에 그리는 것이 아니라 <strong>각 OS 고유의 네이티브(SwiftUI / Jetpack Compose)</strong>로 구현하고, Data와 Domain 로직만 공유하는 구조이므로 공식적으로 가장 정확한 표현은 <strong>KMP + Native</strong>입니다!
+        </p>
+      </div>
+
       <p>
-        왜 이 조합일까요? 코틀린 멀티플랫폼(KMP/CMP)은 별도의 가상머신이나 자바스크립트 엔진을 띄우지 않습니다.
+        왜 이 조합일까요? 코틀린 멀티플랫폼(KMP)은 별도의 가상머신이나 자바스크립트 엔진을 띄우지 않습니다.
       </p>
       <p>
-        Android에서는 네이티브 <strong>JVM 바이트코드</strong>로, iOS에서는 LLVM 컴파일러를 통해 순수 <strong>Objective-C/Swift 바이너리 프레임워크(<code>.xcframework</code>)</strong>로 직접 빌드됩니다. 런타임 통신 브리지도 없고, 불필요한 메모리 낭비도 전혀 없는 <strong>진짜 네이티브 코드</strong>로 동작합니다.
+        Android에서는 네이티브 <strong>JVM 바이트코드</strong>로, iOS에서는 LLVM 컴파일러를 통해 순수 <strong>Objective-C/Swift 바이너리 프레임워크(<code>.xcframework</code>)</strong>로 직접 빌드됩니다. 런타임 통신 브리지도 없고, 불필요한 메모리 낭비도 전혀 없는 <strong>진짜 네이티브 바이너리</strong>로 동작합니다.
       </p>
 
       <h2><i class="fa-solid fa-sitemap" style="color: #818cf8;"></i> 3. 계층별 구현: Clean Architecture를 멀티플랫폼에 녹이다</h2>
 
       <div class="architecture-box">
         <div class="architecture-box-header" style="color: #c084fc;">
-          <i class="fa-solid fa-layer-group"></i> 모바일 CMP + Native 계층 구조 아키텍처
+          <i class="fa-solid fa-layer-group"></i> 모바일 KMP + Native 계층 구조 아키텍처
         </div>
         <pre><code>┌─────────────────────────────────────────────────────────────┐
 │                 PRESENTATION LAYER (NATIVE)                 │
@@ -179,19 +194,19 @@
 └──────────────────────────────┬──────────────────────────────┘
                                │ StateFlow / ObservableObject
 ┌──────────────────────────────▼──────────────────────────────┐
-│                  DOMAIN LAYER (CMP / SHARED)                 │
+│                  DOMAIN LAYER (KMP / SHARED)                 │
 │   • UseCases (인증, 결제, 장바구니, 데이터 검증 로직)           │
 │   • Domain Models & State Machine (MVI / Redux)             │
 │   • 플랫폼 간 비즈니스 규칙 정합성 100% 일치                 │
 ├─────────────────────────────────────────────────────────────┤
-│                   DATA LAYER (CMP / SHARED)                  │
+│                   DATA LAYER (KMP / SHARED)                  │
 │   • Network Client: Ktor Client (HTTP / WebSocket)          │
 │   • Local Storage: SQLDelight / Room KMP                    │
 │   • DTO Mapping & Repository Implementations                │
 └─────────────────────────────────────────────────────────────┘</code></pre>
       </div>
 
-      <h3>① Data & Domain: CMP로 완벽 일원화</h3>
+      <h3>① Data & Domain: KMP로 완벽 일원화</h3>
       <ul>
         <li><strong>네트워크 및 캐싱:</strong> <code>Ktor</code>와 <code>SQLDelight / Room KMP</code>를 활용하여 API 통신 및 로컬 캐싱 엔진을 단일 코드로 구축합니다.</li>
         <li><strong>도메인 정책:</strong> 유효성 검사, 결제 할인율 계산, 상태 머신(State Machine) 등 비즈니스 핵심 규칙을 하나의 코드로 관리합니다.</li>
@@ -202,12 +217,12 @@
       <ul>
         <li><strong>Android (Jetpack Compose):</strong> Google의 최신 디자인 시스템(Material 3), 빠른 리컴포지션, Android 시스템 백버튼 및 제스처에 최적화된 화면을 구현합니다.</li>
         <li><strong>iOS (SwiftUI):</strong> Apple의 Human Interface Guidelines(HIG)를 충실히 반영한 네이티브 네비게이션, Dynamic Island, 실시간 활동(Live Activities), 잠금화면 위젯 등을 단 한 줄의 타협 없이 완벽하게 연동합니다.</li>
-        <li><strong>상태 구독:</strong> CMP 공통 모듈에서 방출되는 Kotlin의 <code>StateFlow</code>를 Android에서는 <code>collectAsStateWithLifecycle()</code>로, iOS에서는 Swift의 <code>AsyncSequence</code>나 <code>@Published</code> 래퍼를 통해 손쉽게 네이티브 상태로 바인딩합니다.</li>
+        <li><strong>상태 구독:</strong> KMP 공통 모듈에서 방출되는 Kotlin의 <code>StateFlow</code>를 Android에서는 <code>collectAsStateWithLifecycle()</code>로, iOS에서는 Swift의 <code>AsyncSequence</code>나 <code>@Published</code> 래퍼를 통해 손쉽게 네이티브 상태로 바인딩합니다.</li>
       </ul>
 
       <h2><i class="fa-solid fa-table-list" style="color: #f59e0b;"></i> 4. 기술 스택 종합 비교</h2>
       <p>
-        각 접근 방식의 실질적인 트레이드오프를 표로 비교해 보면 CMP + Native 조합의 강점이 더욱 선명하게 드러납니다.
+        각 접근 방식의 실질적인 트레이드오프를 표로 비교해 보면 KMP + Native 조합의 강점이 더욱 선명하게 드러납니다.
       </p>
 
       <div class="article-table-container">
@@ -217,7 +232,7 @@
               <th>비교 항목</th>
               <th>Flutter / React Native</th>
               <th>Full Native (각각 개발)</th>
-              <th>CMP + Native (채택)</th>
+              <th>KMP + Native (채택)</th>
             </tr>
           </thead>
           <tbody>
@@ -252,48 +267,53 @@
               <td><strong>100% 순수 네이티브 사용성 보장</strong></td>
             </tr>
             <tr>
-              <td><strong>팀 협업 및 확장성</strong></td>
-              <td>특정 프레임워크 전담 엔지니어 필요</td>
-              <td>iOS/Android 팀 완전 이원화</td>
-              <td><strong>네이티브 엔지니어 역량 극대화 & 공유</strong></td>
+              <td><strong>개발자 경험 및 협업</strong></td>
+              <td>특정 프레임워크 전담 학습 필요</td>
+              <td>iOS/Android 개발 분리</td>
+              <td><strong>네이티브 전문성 유지 & 로직 공유</strong></td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2><i class="fa-solid fa-people-roof" style="color: #ec4899;"></i> 5. 모바일 파트 리더로서 느낀 실무 현장의 이점</h2>
+      <h2><i class="fa-solid fa-code-commit" style="color: #ec4899;"></i> 5. 한 명의 개발자로서 실무에서 체감한 현실적인 이점</h2>
       <p>
-        이 아키텍처를 실무에 도입했을 때 가장 만족스러웠던 부분은 기술적 수치를 넘어 <strong>팀의 문화와 엔지니어링 만족도</strong>였습니다.
+        이 아키텍처를 실제로 적용하며 개발자로서 가장 크게 체감한 부분은 기술적 수치뿐 아니라 <strong>개발 만족도와 유지보수의 편안함</strong>이었습니다.
       </p>
       
-      <h3>① 네이티브 개발자의 전문성과 자부심 유지</h3>
+      <h3>① 네이티브 개발자로서의 전문성과 개발 재미 유지</h3>
       <p>
-        크로스 플랫폼 전환을 시도할 때 네이티브 엔지니어들이 겪는 가장 큰 좌절은 "수년간 쌓아온 OS 전문성이 무의미해지는 느낌"입니다. 하지만 CMP + Native 구조에서는 Android 엔지니어는 Jetpack Compose의 고도화에 집중하고, iOS 엔지니어는 SwiftUI와 Apple 에코시스템의 최신 기술을 마음껏 펼칠 수 있습니다.
+        크로스 플랫폼 도구로 넘어갔을 때 개발자로서 가장 답답했던 순간은 "내가 알고 있는 OS의 깊이 있는 최신 기능들을 프레임워크의 한계 때문에 온전히 써먹지 못할 때"였습니다. 반면 KMP + Native 구조에서는 Android에서는 Jetpack Compose의 모던한 기능을 마음껏 활용하고, iOS에서는 SwiftUI와 최신 Apple 생태계 기술을 타협 없이 깊이 파고들 수 있습니다.
       </p>
 
-      <h3>② Kotlin과 Swift의 환상적인 시너지</h3>
+      <h3>② Kotlin과 Swift의 놀라운 시너지</h3>
       <p>
-        현대의 Kotlin과 Swift는 언어적 문법과 패러다임이 놀라울 정도로 닮아 있습니다. 또한 Jetpack Compose와 SwiftUI 역시 선언형 UI(Declarative UI)라는 동일한 사상을 공유합니다.
+        현대의 Kotlin과 Swift는 문법적 구조와 언어 철학이 놀라울 정도로 닮아 있습니다. 또한 Jetpack Compose와 SwiftUI 역시 선언형 UI(Declarative UI)라는 동일한 패러다임을 공유합니다.
       </p>
       <p>
-        덕분에 iOS 개발자가 Kotlin으로 작성된 Domain 로직을 읽고 PR 리뷰를 남기는 데 진입장벽이 거의 없으며, 모바일 파트 전체가 하나의 언어로 아키텍처를 논의하는 진정한 의미의 '원팀(One Team)'이 완성됩니다.
+        덕분에 iOS 개발자가 Kotlin으로 작성된 Domain UseCase 코드를 읽고 수정하는 데 진입장벽이 거의 없으며, 혼자 개발하더라도 두 플랫폼 사이의 컨텍스트 스위칭 비용이 획기적으로 줄어듭니다.
+      </p>
+
+      <h3>③ 비즈니스 변경에 흔들리지 않는 단단한 구조</h3>
+      <p>
+        API 스펙이 바뀌거나 결제/인증 등의 핵심 비즈니스 룰이 변경되었을 때, 공통 모듈의 코드를 한 번 수정하고 테스트를 돌리면 iOS와 Android 양쪽 모두에 완벽하게 일치된 로직이 즉시 배포됩니다. "안드로이드에서는 수정했는데 iOS는 깜빡했다"는 실수가 구조적으로 불가능해집니다.
       </p>
 
       <h2><i class="fa-solid fa-flag-checkered" style="color: #3b82f6;"></i> 마치며: 은총알은 없다, 그러나 가장 단단한 선택</h2>
       <p>
-        소프트웨어 엔지니어링에 모든 상황을 만족시키는 완벽한 은총알은 존재하지 않습니다.
+        소프트웨어 개발에 모든 상황을 완벽하게 만족시키는 은총알은 존재하지 않습니다.
       </p>
       <p>
-        1~2주 안에 빠르게 반응을 살펴봐야 하는 초단기 토이 프로젝트나, OS 고유 기능이 거의 필요 없는 단순 조회용 뷰어 앱이라면 Flutter나 React Native가 여전히 훌륭한 선택지가 될 수 있습니다.
+        1~2주 안에 빠르게 시장 반응을 테스트해야 하는 극초기 토이 프로젝트나, OS 고유 기능이 거의 필요 없는 단순 정적 뷰어 앱이라면 Flutter나 React Native가 여전히 빠르고 훌륭한 선택지가 될 수 있습니다.
       </p>
       <p>
-        하지만 여러분의 프로덕트가 <strong>장기적으로 성장해야 하고, 수많은 유저에게 단 1ms의 딜레이도 없는 쾌적한 네이티브 경험을 선사해야 하며, 복잡한 비즈니스 로직을 안전하고 견고하게 유지보수해야 한다면</strong> 이야기는 달라집니다.
+        하지만 내가 만드는 서비스가 <strong>장기적으로 운영되어야 하고, 유저에게 단 1ms의 버벅임도 없는 쾌적한 네이티브 경험을 주어야 하며, 복잡한 비즈니스 로직을 안전하게 지켜내야 한다면</strong> 이야기는 달라집니다.
       </p>
       <p>
-        <strong>"Data와 Domain은 CMP로 단단하게 묶고, Presentation은 각 OS의 순수 네이티브로 유연하게 펼친다."</strong>
+        <strong>"Data와 Domain은 KMP로 단단하게 묶고, Presentation은 각 OS의 순수 네이티브로 유연하게 펼친다."</strong>
       </p>
       <p>
-        양대 플랫폼 지원이라는 영원한 숙제 앞에서, 이 조합이야말로 모바일 개발의 생산성과 완성도를 둘 다 놓치지 않는 <strong>가장 단단하고 우아한 최선의 해답</strong>이라고 자신 있게 추천합니다.
+        양대 플랫폼 지원이라는 영원한 숙제 앞에서, 이 조합이야말로 모바일 개발의 생산성과 네이티브의 완성도를 모두 놓치지 않는 <strong>가장 단단하고 우아한 최선의 해답</strong>이라고 생각합니다.
       </p>
     </main>
 
