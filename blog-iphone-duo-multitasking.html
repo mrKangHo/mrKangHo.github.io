@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iPhone Duo는 왜 멀티태스킹이 2개만 지원하는지 — Kano Tech Blog</title>
-  <meta name="description" content="듀얼 스크린 iPhone Duo의 멀티태스킹이 왜 2개 앱으로 제한되는지, 배터리·발열·UI 철학 관점에서 풀어보는 풍자적 테크 분석.">
+  <title>iPhone Duo는 왜 멀티태스킹이 제한적일까? — Kano Tech Blog</title>
+  <meta name="description" content="커버 화면과 내부 화면의 화면 비율 1:1.4, 그리고 일관적인 사용자 경험. 갤럭시와 달리 왜 iPhone Duo는 멀티태스킹을 2개로 제한하는지 뜯어보는 분석.">
 
   <!-- Favicon -->
   <link rel="icon" href="https://github.com/mrKangHo.png" type="image/png">
@@ -68,11 +68,12 @@
         <span class="blog-date">2026.10.02</span>
         <span class="blog-read-time">4 min read</span>
       </div>
-      <h1 class="article-title">iPhone Duo는 왜<br>멀티태스킹이 2개만 지원하는지</h1>
+      <h1 class="article-title">iPhone Duo는 왜<br>멀티태스킹이 제한적일까?</h1>
       <p class="article-subtitle">
         "화면이 두 개인데 왜 앱은 두 개만?"<br>
-        듀얼 스크린 iPhone Duo의 제한적인 멀티태스킹 뒤에 숨겨진 이유를 배터리, 발열, 그리고 UI 철학의 관점에서 뜯어봅니다.
+        커버 화면과 내부 화면의 비율 1:1.4, 그리고 일관적인 사용자 경험. 제한적인 멀티태스킹 뒤에 숨겨진 이유를 뜯어봅니다.
       </p>
+      <img src="https://www.apple.com/v/iphone-duo/b/images/overview/shared-features/siri_ai_hero__c59xcl4s2n2a_large_2x.jpg" alt="iPhone Duo Siri AI" style="width: 100%; border-radius: 12px; margin-top: 1.5rem;">
       <div class="article-meta-row">
         <div class="blog-author">
           <img src="https://avatars.githubusercontent.com/u/9712872?v=4" alt="Kano Avatar" class="blog-author-img">
@@ -84,74 +85,58 @@
     <!-- Article Body Content -->
     <main class="article-content">
       <p>
-        듀얼 스크린을 단 iPhone Duo가 등장했을 때, 사람들의 첫 반응은 대부분 같았습니다.
+        iPhone Duo의 멀티태스킹이 단 2개 앱으로 제한된다는 사실은, 언뜻 보면 "부족한 스펙"처럼 보일 수 있습니다. 갤럭시 Z 폴드처럼 3개 이상의 앱을 동시에 띄울 수 있는 기기도 있으니까요.
       </p>
       <p>
-        <strong>"화면이 두 개인데, 왜 멀티태스킹은 딱 2개 앱까지만 되는 거야? 4분할은 안 되나?"</strong>
-      </p>
-      <p>
-        노트북처럼 창을 여러 개 띄워놓고 쓰는 시대에, 스마트폰의 멀티태스킹 상한선이 단 2개라는 것은 언뜻 답답하게 느껴질 수 있습니다. 하지만 조금만 안쪽으로 들어가 보면, 그 2개라는 숫자에는 꽤나 현실적인 이유들이 숨어 있습니다.
+        하지만 조금만 화면 비율을 뜯어보면, 그 2개라는 숫자에는 <strong>일관적인 사용자 경험을 지키기 위한 Apple의 설계 의도</strong>가 숨어 있습니다.
       </p>
 
-      <h2><i class="fa-solid fa-battery-half" style="color: #10b981;"></i> 1. 배터리: 화면이 두 개면 전기는 두 배로</h2>
+      <h2><i class="fa-solid fa-up-right-and-down-left-from-center" style="color: #60a5fa;"></i> 1. 커버 화면과 내부 화면, 비율은 1:1.4</h2>
       <p>
-        iPhone Duo의 가장 큰 장점이자 약점은 <strong>2개의 디스플레이</strong>입니다. OLED 패널은 밝게 켜두기만 해도 상당한 전력을 소모하는데, 패널이 하나 더 생기면 소모량은 단순히 2배 가까이 늘어납니다.
+        iPhone Duo의 커버 화면과 내부 화면은 서로 다른 크기지만, 화면 비율은 <strong>1:1.4로 맞춰져</strong> 있습니다. 접었을 때와 펼쳤을 때의 비율이 비슷하기 때문에, 앱을 실행했을 때 레이아웃이 급격하게 깨지거나 다르게 보이지 않습니다.
       </p>
       <p>
-        여기에 앱이 3개, 4개 동시에 살아 움직인다면 어떨까요? 화면 두 개를 렌더링하면서 CPU, GPU까지 분주해지면 점심 전에 배터리가 바닥나는 풍경이 펼쳐질 겁니다.
+        즉, Apple은 처음부터 <strong>"어느 화면에서 열어도 같은 경험을 주는 것"</strong>을 목표로 설계한 것입니다. 멀티태스킹 역시 이 원칙에서 벗어나지 않습니다.
+      </p>
+
+      <div class="article-callout" style="border-left-color: #60a5fa; background: rgba(96, 165, 250, 0.08);">
+        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        <strong>"같은 앱이라면, 커버 화면에서 보나 내부 화면에서 보나 같은 비율과 같은 경험이어야 한다."</strong>
+      </div>
+
+      <h2><i class="fa-solid fa-table-columns" style="color: #10b981;"></i> 2. 2개까지는 일관된 경험, 3개부터는 무너진다</h2>
+      <p>
+        화면을 2분할로 나누면 각 앱은 원래 비율과 비슷한, '온전한 하나의 앱'처럼 보입니다. 하지만 3개 이상으로 나누기 시작하면 이야기가 달라집니다.
+      </p>
+      <p>
+        세 개의 창으로 쪼개진 앱은 더 이상 1:1.4 비율이 아닙니다. 세로로 길쭉하거나 가로로 납작해지고, 앱 입장에서는 처음 보는 이상한 화면 크기가 됩니다. 버튼 간격이 어긋나고, 글자가 겹치고, 레이아웃이 깨지는 문제가 생깁니다.
+      </p>
+      <p>
+        그래서 iPhone Duo는 <strong>멀티태스킹을 2개 앱까지로 제한</strong>함으로써, 어떤 앱을 실행해도 항상 일관된 비율과 레이아웃을 유지하려 하는 것입니다.
+      </p>
+
+      <h2><i class="fa-solid fa-mobile-screen" style="color: #f59e0b;"></i> 3. 갤럭시와의 차이: 유연함 vs 일관성</h2>
+      <p>
+        갤럭시 Z 폴드 시리즈는 3개 이상의 멀티태스킹을 허용합니다. 대신 앱 창 크기가 제각각 달라지고, 같은 앱이라도 어떤 배치로 띄우느냐에 따라 보이는 모습이 달라집니다. <strong>유연함</strong>을 선택한 대신 <strong>일관성</strong>을 일부 포기한 셈입니다.
+      </p>
+      <p>
+        반면 iPhone Duo는 그 반대입니다. 앱 개수를 희생하는 대신, <strong>어떤 상황에서든 같은 비율, 같은 경험</strong>을 보장합니다. 사용자가 멀티태스킹 배치를 고민할 필요 없이, "화면 하나에 앱 하나"라는 단순한 규칙만 따르면 됩니다.
       </p>
 
       <div class="article-callout" style="border-left-color: #10b981; background: rgba(16, 185, 129, 0.08);">
-        <i class="fa-solid fa-battery-quarter"></i>
-        <strong>"앱 2개 제한은 타협이 아니라, 하루 종일 쓸 수 있는 배터리와의 타협점입니다."</strong>
-      </div>
-
-      <h2><i class="fa-solid fa-temperature-high" style="color: #ef4444;"></i> 2. 발열: 접히는 몸에는 쿨링도 접힌다</h2>
-      <p>
-        접이식 기기의 두께는 물리적 한계가 있습니다. 팬도, 넓은 방열판도 넣을 공간이 없습니다. 그런데 멀티태스킹 앱 수가 늘어난다는 것은 CPU와 GPU가 계속해서 높은 클럭으로 깨어 있다는 뜻입니다.
-      </p>
-      <p>
-        실제 사용자들이 불만으로 가장 자주 말하는 것이 <strong>"화면보다 뜨겁다"</strong>는 점입니다. 멀티태스킹을 4개까지 열어두면 듀얼 화면의 장점보다 손에 닿는 열이 먼저 생각나게 될 것입니다. 2개라는 상한선은, 배터리뿐 아니라 <strong>손이 직접 닿는 기기의 온도를 지키는 안전장치</strong>이기도 합니다.
-      </p>
-
-      <h2><i class="fa-solid fa-mobile-screen" style="color: #60a5fa;"></i> 3. UI 철학: 스마트폰은 창이 아니라 카드다</h2>
-      <p>
-        PC의 멀티태스킹은 '창'의 개념입니다. 하지만 Apple의 모바일 UX는 오랫동안 <strong>'한 화면에 한 가지 맥락'</strong>을 핵심 가치로 삼아왔습니다.
-      </p>
-      <p>
-        6인치급 화면을 4분할하면 각 영역은 손가락 하나도 들어가기 힘든 크기가 됩니다. 터치 타겟이 작아지면 오탭도 늘고, 결국 '편하려고 여러 개 띄웠는데 오히려 불편하다'는 결론에 이릅니다.
-      </p>
-      <p>
-        Duo에서 2개 앱만 지원하는 것은 화면 하나당 앱 하나, 즉 <strong>두 개의 화면에 각각 온전한 앱 하나씩</strong>이라는 가장 단순하고 명확한 경험을 의미합니다. 자잘한 창 관리 없이도, 한 손에 쏙 들어오는 두 개의 맥락만 넘나들면 됩니다.
-      </p>
-
-      <h2><i class="fa-solid fa-scale-balanced" style="color: #f59e0b;"></i> 4. 그리고 가장 중요한 것: 가끔은 '2개'가 충분해서</h2>
-      <p>
-        실제로 스마트폰에서 사람들이 동시에 보는 건 대부분 두 가지입니다.
-      </p>
-      <p>
-        - 메모/캘린더를 보면서 메신저 답장하기<br>
-        - 유튜브를 틀어놓고 검색하기<br>
-        - 지도 앱을 보면서 카톡으로 위치 공유하기
-      </p>
-      <p>
-        세 가지 이상을 동시에 '보고' 있어야 하는 상황은 의외로 드뭅니다. 그래서 iPhone Duo의 멀티태스킹 2개 제한은 '부족한 스펙'이라기보다, <strong>실제 사용 패턴에 맞게 잘라낸 선택</strong>에 가깝습니다.
-      </p>
-
-      <div class="article-callout" style="border-left-color: #6366f1; background: rgba(99, 102, 241, 0.08);">
-        <i class="fa-solid fa-lightbulb"></i>
-        <strong>"더 많이 동시에 켜는 게 아니라, 지금 보는 두 개의 화면이 끊기지 않게 유지하는 것. 그게 Duo의 멀티태스킹 철학입니다."</strong>
+        <i class="fa-solid fa-handshake"></i>
+        <strong>"갤럭시가 '더 많이'를 택했다면, iPhone Duo는 '항상 똑같이'를 택했습니다."</strong>
       </div>
 
       <h2><i class="fa-solid fa-compass" style="color: #ec4899;"></i> 마치며: 제한은 불편함이 아니라 설계다</h2>
       <p>
-        배터리, 발열, 터치 영역, 그리고 사용 패턴까지. iPhone Duo가 멀티태스킹을 2개로 제한한 데에는 의도된 이유들이 겹겹이 쌓여 있습니다.
+        커버 화면과 내부 화면의 비율을 1:1.4로 맞추고, 멀티태스킹을 2개 앱으로 제한한 것은 모두 같은 목표를 향합니다. <strong>사용자가 어떤 화면 조합에서 앱을 열어도, 항상 동일하고 예측 가능한 경험을 제공하는 것</strong>입니다.
       </p>
       <p>
-        물론 "더 많은 앱을 더 작게 띄우고 싶다"는 니즈는 분명 존재합니다. 하지만 그 대가로 하루 종일 들고 다녀야 할 스마트폰이 뜨거워지고 금방 닳는다면, 과연 그게 '프로'일까요?
+        3개 이상의 앱을 동시에 띄울 수 있다면 분명 편리한 순간도 있을 것입니다. 하지만 그 대가로 모든 앱의 비율이 제각각 달라지고 레이아웃이 깨진다면, 그건 '프로'가 아니라 '혼란'에 가깝습니다.
       </p>
       <p>
-        스마트폰에서 진짜 중요한 건 <strong>'동시에 몇 개를 켜느냐'가 아니라 '지금 필요한 맥락이 끊김 없이 이어지느냐'</strong>입니다. 듀얼 스크린에 앱 하나씩, 딱 두 개의 화면이 주는 경험이 결국 그 답일지도 모릅니다.
+        iPhone Duo의 제한적인 멀티태스킹은 부족한 기능이 아니라, <strong>일관된 사용자 경험을 끝까지 지키기 위한 의도된 설계</strong>라고 보는 편이 더 정확할 것입니다.
       </p>
     </main>
 
