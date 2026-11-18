@@ -312,34 +312,6 @@ const DEFAULT_APPSTORE_APPS = [
       'assets/dotory/studio_component_editor.png',
       'assets/dotory/mobile_app_final.png'
     ]
-  },
-  {
-    id: 6763481391,
-    name: '오늘의 응가',
-    artist: 'kangho lee',
-    isPersonal: true,
-    type: 'personal',
-    platforms: ['ios'],
-    role: '기획 · 설계 · 개발 100% (개인 서비스)',
-    contributions: [
-      '앱을 열고 단 한 번의 탭으로 1초 만에 오늘의 활동을 기록하는 초고속 인터페이스 구현',
-      '주간/월간 대시보드 통계 및 직관적인 캘린더 시각화를 통해 장 건강 패턴 및 흐름 파악 연동',
-      '복잡한 과정 없는 0-latency 로컬 데이터 퍼스트 구조 설계'
-    ],
-    techStack: ['Swift', 'SwiftUI', 'Firebase', 'Local First'],
-    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/87/79/a8/8779a868-877f-8aab-599a-8fe54d520796/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
-    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EC%9D%91%EA%B0%80/id6763481391',
-    genre: '건강 및 피트니스',
-    rating: '5.0',
-    ratingCount: 1,
-    version: '1.0.0',
-    description: '단 한 번의 탭으로 초고속 기록하는 배변 트래커! 대시보드 통계와 직관적인 캘린더를 통해 나의 장 건강 흐름과 패턴을 한눈에 파악하세요.',
-    screenshots: [
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ea/a1/7f/eaa17f9c-a9b1-7744-e276-783277ae90c4/1.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e8/e0/42/e8e04276-727b-bd7c-6f85-7bf1ff749f28/2.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/af/7b/1d/af7b1d35-1f88-9e91-193b-05267b29e24e/3.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/46/95/f0/4695f035-9777-9450-59c6-45ca1bd980ea/4.png/320x480bb.jpg'
-    ]
   }
 ];
 
