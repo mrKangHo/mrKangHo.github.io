@@ -518,6 +518,14 @@ const REPO_ENRICHMENTS = {
     featured: true,
     icon: 'assets/icons/fleet.png',
     topics: ['macOS', 'Swift', 'SwiftUI', 'AI-Agent', 'GitHub']
+  },
+  'vignette': {
+    description: {
+      ko: '다중 모니터 밝기를 메뉴바에서 조절하고, 클릭 한 번으로 재생 중인 화면만 남기고 나머지 디스플레이를 어둡게 만드는 "무비 모드"를 지원하는 macOS 네이티브 앱입니다. 지원되는 디스플레이에서는 실제 백라이트를 제어하고, 그 외에는 오버레이로 자동 대체됩니다.',
+      en: 'Native macOS menu-bar app for per-display brightness control, with a one-click "Movie Mode" that dims every other display so the one playing something gets full attention. Drives real backlight where supported, falling back to a soft overlay elsewhere.'
+    },
+    featured: true,
+    topics: ['macOS', 'Swift', 'SwiftUI', 'Brightness', 'Menu-Bar']
   }
 };
 
