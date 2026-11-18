@@ -1,40 +1,16 @@
 {
   "apps": [
     {
-      "bundleId": "coke.fourseasoncamera.spring",
-      "id": 6833264142,
-      "name": "봄필름",
-      "artist": "kangho lee",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2b/64/e1/2b64e102-0275-b7f6-2ce6-79a527001c58/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
-      "url": "https://apps.apple.com/kr/app/%EB%B4%84%ED%95%84%EB%A6%84/id6833264142?uo=4",
-      "genre": "Photo & Video",
-      "rating": "N/A",
-      "ratingCount": 0,
-      "version": "1.0.0",
-      "description": "봄필름은 셔터를 누르기 전부터 봄 색감으로 세상을 보여주는 필름 카메라입니다.\n\n봄볕처럼 밝은 노출에 벚꽃 분홍 파스텔과 새싹 연두를 더한 색감입니다. 그림자에는 은은한 분홍을, 하이라이트에는 따스한 빛을 입혀 꽃길과 피크닉, 창가의 오후를 봄날 그대로 담습니다.\n\n■ 미리보기 그대로 찍히는 필터\n• 화면에 보이는 색감이 사진과 동영상에 똑같이 적용됩니다.\n• 필터 세기를 5단계(엄청 약하게 ~ 엄청 강하게)로 고를 수 있고, 지금 장면에 입힌 미리보기로 비교해 고릅니다.\n• 피부 톤은 자연스럽게 지켜 인물도 어색하지 않습니다.\n\n■ 인물 사진\n• 후면 카메라는 깊이 정보로, 전면 카메라는 사람을 인식해 배경을 흐립니다.\n• 조리개 f/1.4~f/16로 흐림 정도를 고르고, 미리보기에서 바로 확인합니다.\n\n■ 구도 안내\n• 수평계와 3분할 교차점으로 피사체 위치를 안내합니다.\n• 얼굴이 잘리거나 머리 위 여백이 좁으면 알려주고, 음식·건물 등 장면에 맞는 촬영 팁을 보여줍니다.\n\n■ 기본 카메라와 같은 품질\n• 기본 카메라와 같은 해상도(24MP, 지원 기기는 48MP)와 HEIF로 저장하고 HDR·위치·촬영 정보를 유지합니다.\n• 동영상은 1080p HEVC로, 필터를 입힌 채 녹화합니다.\n• 줌, 플래시, 타이머, 격자, 비율(4:3·16:9·1:1), 탭 초점·노출 조절을 지원합니다.\n\n■ 더 빠르게 찍기\n• iPhone 16·17의 카메라 컨트롤 버튼으로 줌·필터 세기·조리개를 바꾸고, 볼륨 버튼으로 셔터를 누릅니다.\n• 제어 센터·잠금 화면·동작 버튼에서 바로 앱을 엽니다.\n• Apple Intelligence를 쓸 수 있는 기기에서는 사진에 짧은 설명을 자동으로 넣습니다(기기 안에서만 처리).\n\n■ 개인정보\n• 계정이 필요 없고, 사진과 정보를 어디에도 보내지 않습니다.\n• 사진 앱에는 저장만 하고, 다른 사진은 읽지 않습니다.\n\n봄·여름·가을·겨울, 계절마다 다른 필름 카메라 시리즈 중 봄필름입니다.",
-      "screenshots": [
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/03/0d/9c/030d9c7f-5290-20d8-7f2f-730af8f34c79/01.png/320x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d3/63/68/d36368bc-079e-8b6f-85be-1858dd70b1ed/02.png/320x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/27/a1/d2/27a1d246-4690-c7f6-f0f4-4a31ef24ccd2/03.png/320x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/24/68/01/2468013b-0e53-75db-e1cf-3242bb96d090/04.png/320x480bb.jpg",
-        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1f/47/60/1f47607b-b22f-d494-c936-9934f94330f0/05.png/320x480bb.jpg"
-      ],
-      "releaseDate": "2026-11-17T16:28:33Z",
-      "platforms": [
-        "ios"
-      ]
-    },
-    {
       "bundleId": "coke.fourseasoncamera.summer",
       "id": 6833264126,
       "name": "여름필름",
       "artist": "kangho lee",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e8/a8/86/e8a88675-a8e6-37d3-a1ec-22e089c01ef5/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/99/71/25/99712527-f978-38cb-a0c9-b9cc7225ad59/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
       "url": "https://apps.apple.com/kr/app/%EC%97%AC%EB%A6%84%ED%95%84%EB%A6%84/id6833264126?uo=4",
       "genre": "Photo & Video",
       "rating": "N/A",
       "ratingCount": 0,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "여름필름은 셔터를 누르기 전부터 여름 색감으로 세상을 보여주는 필름 카메라입니다.\n\n선명한 청록 바다와 맑은 하늘을 살린 청량한 색감입니다. 그림자는 시원한 푸른빛으로, 하이라이트는 한낮의 햇살처럼 밝게 담아 바닷가와 수영장, 여행지의 여름을 그대로 남깁니다.\n\n■ 미리보기 그대로 찍히는 필터\n• 화면에 보이는 색감이 사진과 동영상에 똑같이 적용됩니다.\n• 필터 세기를 5단계(엄청 약하게 ~ 엄청 강하게)로 고를 수 있고, 지금 장면에 입힌 미리보기로 비교해 고릅니다.\n• 피부 톤은 자연스럽게 지켜 인물도 어색하지 않습니다.\n\n■ 인물 사진\n• 후면 카메라는 깊이 정보로, 전면 카메라는 사람을 인식해 배경을 흐립니다.\n• 조리개 f/1.4~f/16로 흐림 정도를 고르고, 미리보기에서 바로 확인합니다.\n\n■ 구도 안내\n• 수평계와 3분할 교차점으로 피사체 위치를 안내합니다.\n• 얼굴이 잘리거나 머리 위 여백이 좁으면 알려주고, 음식·건물 등 장면에 맞는 촬영 팁을 보여줍니다.\n\n■ 기본 카메라와 같은 품질\n• 기본 카메라와 같은 해상도(24MP, 지원 기기는 48MP)와 HEIF로 저장하고 HDR·위치·촬영 정보를 유지합니다.\n• 동영상은 1080p HEVC로, 필터를 입힌 채 녹화합니다.\n• 줌, 플래시, 타이머, 격자, 비율(4:3·16:9·1:1), 탭 초점·노출 조절을 지원합니다.\n\n■ 더 빠르게 찍기\n• iPhone 16·17의 카메라 컨트롤 버튼으로 줌·필터 세기·조리개를 바꾸고, 볼륨 버튼으로 셔터를 누릅니다.\n• 제어 센터·잠금 화면·동작 버튼에서 바로 앱을 엽니다.\n• Apple Intelligence를 쓸 수 있는 기기에서는 사진에 짧은 설명을 자동으로 넣습니다(기기 안에서만 처리).\n\n■ 개인정보\n• 계정이 필요 없고, 사진과 정보를 어디에도 보내지 않습니다.\n• 사진 앱에는 저장만 하고, 다른 사진은 읽지 않습니다.\n\n봄·여름·가을·겨울, 계절마다 다른 필름 카메라 시리즈 중 여름필름입니다.",
       "screenshots": [
         "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1e/28/f0/1e28f008-2d6e-3beb-bacd-6bfc3535334d/01.png/320x480bb.jpg",
@@ -49,16 +25,40 @@
       ]
     },
     {
+      "bundleId": "coke.fourseasoncamera.spring",
+      "id": 6833264142,
+      "name": "봄필름",
+      "artist": "kangho lee",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/28/76/7d/28767d46-a145-62a6-eccb-5487d358783c/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "url": "https://apps.apple.com/kr/app/%EB%B4%84%ED%95%84%EB%A6%84/id6833264142?uo=4",
+      "genre": "Photo & Video",
+      "rating": "N/A",
+      "ratingCount": 0,
+      "version": "1.0.1",
+      "description": "봄필름은 셔터를 누르기 전부터 봄 색감으로 세상을 보여주는 필름 카메라입니다.\n\n봄볕처럼 밝은 노출에 벚꽃 분홍 파스텔과 새싹 연두를 더한 색감입니다. 그림자에는 은은한 분홍을, 하이라이트에는 따스한 빛을 입혀 꽃길과 피크닉, 창가의 오후를 봄날 그대로 담습니다.\n\n■ 미리보기 그대로 찍히는 필터\n• 화면에 보이는 색감이 사진과 동영상에 똑같이 적용됩니다.\n• 필터 세기를 5단계(엄청 약하게 ~ 엄청 강하게)로 고를 수 있고, 지금 장면에 입힌 미리보기로 비교해 고릅니다.\n• 피부 톤은 자연스럽게 지켜 인물도 어색하지 않습니다.\n\n■ 인물 사진\n• 후면 카메라는 깊이 정보로, 전면 카메라는 사람을 인식해 배경을 흐립니다.\n• 조리개 f/1.4~f/16로 흐림 정도를 고르고, 미리보기에서 바로 확인합니다.\n\n■ 구도 안내\n• 수평계와 3분할 교차점으로 피사체 위치를 안내합니다.\n• 얼굴이 잘리거나 머리 위 여백이 좁으면 알려주고, 음식·건물 등 장면에 맞는 촬영 팁을 보여줍니다.\n\n■ 기본 카메라와 같은 품질\n• 기본 카메라와 같은 해상도(24MP, 지원 기기는 48MP)와 HEIF로 저장하고 HDR·위치·촬영 정보를 유지합니다.\n• 동영상은 1080p HEVC로, 필터를 입힌 채 녹화합니다.\n• 줌, 플래시, 타이머, 격자, 비율(4:3·16:9·1:1), 탭 초점·노출 조절을 지원합니다.\n\n■ 더 빠르게 찍기\n• iPhone 16·17의 카메라 컨트롤 버튼으로 줌·필터 세기·조리개를 바꾸고, 볼륨 버튼으로 셔터를 누릅니다.\n• 제어 센터·잠금 화면·동작 버튼에서 바로 앱을 엽니다.\n• Apple Intelligence를 쓸 수 있는 기기에서는 사진에 짧은 설명을 자동으로 넣습니다(기기 안에서만 처리).\n\n■ 개인정보\n• 계정이 필요 없고, 사진과 정보를 어디에도 보내지 않습니다.\n• 사진 앱에는 저장만 하고, 다른 사진은 읽지 않습니다.\n\n봄·여름·가을·겨울, 계절마다 다른 필름 카메라 시리즈 중 봄필름입니다.",
+      "screenshots": [
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/03/0d/9c/030d9c7f-5290-20d8-7f2f-730af8f34c79/01.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d3/63/68/d36368bc-079e-8b6f-85be-1858dd70b1ed/02.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/27/a1/d2/27a1d246-4690-c7f6-f0f4-4a31ef24ccd2/03.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/24/68/01/2468013b-0e53-75db-e1cf-3242bb96d090/04.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1f/47/60/1f47607b-b22f-d494-c936-9934f94330f0/05.png/320x480bb.jpg"
+      ],
+      "releaseDate": "2026-11-17T08:00:00Z",
+      "platforms": [
+        "ios"
+      ]
+    },
+    {
       "bundleId": "coke.fourseasoncamera.fall",
       "id": 6833263838,
       "name": "가을필름",
       "artist": "kangho lee",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/50/27/91/50279177-6292-e1ab-5320-3d4cf0def235/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/6d/f2/7b/6df27bf1-d4da-5491-7d80-ab8ad5721b01/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
       "url": "https://apps.apple.com/kr/app/%EA%B0%80%EC%9D%84%ED%95%84%EB%A6%84/id6833263838?uo=4",
       "genre": "Photo & Video",
       "rating": "N/A",
       "ratingCount": 0,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "가을필름은 셔터를 누르기 전부터 가을 색감으로 세상을 보여주는 필름 카메라입니다.\n\n늦은 오후의 햇살 같은 황금빛과 깊은 단풍색을 살린 따뜻한 색감입니다. 그림자에는 차분한 갈색을, 하이라이트에는 호박빛을 입혀 단풍길과 카페, 노을 지는 산책을 가을답게 담습니다.\n\n■ 미리보기 그대로 찍히는 필터\n• 화면에 보이는 색감이 사진과 동영상에 똑같이 적용됩니다.\n• 필터 세기를 5단계(엄청 약하게 ~ 엄청 강하게)로 고를 수 있고, 지금 장면에 입힌 미리보기로 비교해 고릅니다.\n• 피부 톤은 자연스럽게 지켜 인물도 어색하지 않습니다.\n\n■ 인물 사진\n• 후면 카메라는 깊이 정보로, 전면 카메라는 사람을 인식해 배경을 흐립니다.\n• 조리개 f/1.4~f/16로 흐림 정도를 고르고, 미리보기에서 바로 확인합니다.\n\n■ 구도 안내\n• 수평계와 3분할 교차점으로 피사체 위치를 안내합니다.\n• 얼굴이 잘리거나 머리 위 여백이 좁으면 알려주고, 음식·건물 등 장면에 맞는 촬영 팁을 보여줍니다.\n\n■ 기본 카메라와 같은 품질\n• 기본 카메라와 같은 해상도(24MP, 지원 기기는 48MP)와 HEIF로 저장하고 HDR·위치·촬영 정보를 유지합니다.\n• 동영상은 1080p HEVC로, 필터를 입힌 채 녹화합니다.\n• 줌, 플래시, 타이머, 격자, 비율(4:3·16:9·1:1), 탭 초점·노출 조절을 지원합니다.\n\n■ 더 빠르게 찍기\n• iPhone 16·17의 카메라 컨트롤 버튼으로 줌·필터 세기·조리개를 바꾸고, 볼륨 버튼으로 셔터를 누릅니다.\n• 제어 센터·잠금 화면·동작 버튼에서 바로 앱을 엽니다.\n• Apple Intelligence를 쓸 수 있는 기기에서는 사진에 짧은 설명을 자동으로 넣습니다(기기 안에서만 처리).\n\n■ 개인정보\n• 계정이 필요 없고, 사진과 정보를 어디에도 보내지 않습니다.\n• 사진 앱에는 저장만 하고, 다른 사진은 읽지 않습니다.\n\n봄·여름·가을·겨울, 계절마다 다른 필름 카메라 시리즈 중 가을필름입니다.",
       "screenshots": [
         "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5b/2b/c2/5b2bc23a-110f-1901-499f-9c0a94463671/01.png/320x480bb.jpg",
@@ -77,12 +77,12 @@
       "id": 6833263672,
       "name": "겨울필름",
       "artist": "kangho lee",
-      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/5a/8d/f7/5a8df7ac-35cb-9bea-104a-c82f3dfb071e/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b9/b3/6f/b9b36f5c-b5be-1ba2-edb0-624326262242/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
       "url": "https://apps.apple.com/kr/app/%EA%B2%A8%EC%9A%B8%ED%95%84%EB%A6%84/id6833263672?uo=4",
       "genre": "Photo & Video",
       "rating": "N/A",
       "ratingCount": 0,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "겨울필름은 셔터를 누르기 전부터 겨울 색감으로 세상을 보여주는 필름 카메라입니다.\n\n눈 내린 아침처럼 푸르고 차분한 저채도 색감입니다. 그림자에는 깊은 푸른빛을, 하이라이트에는 맑은 눈빛을 입혀 설경과 겨울 거리, 따뜻한 실내의 고요함을 겨울답게 담습니다.\n\n■ 미리보기 그대로 찍히는 필터\n• 화면에 보이는 색감이 사진과 동영상에 똑같이 적용됩니다.\n• 필터 세기를 5단계(엄청 약하게 ~ 엄청 강하게)로 고를 수 있고, 지금 장면에 입힌 미리보기로 비교해 고릅니다.\n• 피부 톤은 자연스럽게 지켜 인물도 어색하지 않습니다.\n\n■ 인물 사진\n• 후면 카메라는 깊이 정보로, 전면 카메라는 사람을 인식해 배경을 흐립니다.\n• 조리개 f/1.4~f/16로 흐림 정도를 고르고, 미리보기에서 바로 확인합니다.\n\n■ 구도 안내\n• 수평계와 3분할 교차점으로 피사체 위치를 안내합니다.\n• 얼굴이 잘리거나 머리 위 여백이 좁으면 알려주고, 음식·건물 등 장면에 맞는 촬영 팁을 보여줍니다.\n\n■ 기본 카메라와 같은 품질\n• 기본 카메라와 같은 해상도(24MP, 지원 기기는 48MP)와 HEIF로 저장하고 HDR·위치·촬영 정보를 유지합니다.\n• 동영상은 1080p HEVC로, 필터를 입힌 채 녹화합니다.\n• 줌, 플래시, 타이머, 격자, 비율(4:3·16:9·1:1), 탭 초점·노출 조절을 지원합니다.\n\n■ 더 빠르게 찍기\n• iPhone 16·17의 카메라 컨트롤 버튼으로 줌·필터 세기·조리개를 바꾸고, 볼륨 버튼으로 셔터를 누릅니다.\n• 제어 센터·잠금 화면·동작 버튼에서 바로 앱을 엽니다.\n• Apple Intelligence를 쓸 수 있는 기기에서는 사진에 짧은 설명을 자동으로 넣습니다(기기 안에서만 처리).\n\n■ 개인정보\n• 계정이 필요 없고, 사진과 정보를 어디에도 보내지 않습니다.\n• 사진 앱에는 저장만 하고, 다른 사진은 읽지 않습니다.\n\n봄·여름·가을·겨울, 계절마다 다른 필름 카메라 시리즈 중 겨울필름입니다.",
       "screenshots": [
         "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ea/3a/9f/ea3a9ff8-388a-bfdd-3f23-17d70435431b/01.png/320x480bb.jpg",
