@@ -1,0 +1,120 @@
+{
+  "apps": [
+    {
+      "bundleId": "com.todayfridge.chef",
+      "id": 6801459066,
+      "name": "냉장고 비우기",
+      "artist": "kangho lee",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/64/19/a9/6419a97d-161e-bc5f-4b34-f00668e5fe7d/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "url": "https://apps.apple.com/kr/app/%EB%83%89%EC%9E%A5%EA%B3%A0-%EB%B9%84%EC%9A%B0%EA%B8%B0/id6801459066?uo=4",
+      "genre": "Lifestyle",
+      "rating": "N/A",
+      "ratingCount": 0,
+      "version": "1.0.1",
+      "description": "\"오늘 저녁, 냉장고에 남은 재료로 뭘 해먹지?\"",
+      "screenshots": [
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8b/b7/af/8bb7af45-5f27-2e84-558c-373d808ed54f/01_fridge.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/0c/3e/d0/0c3ed0b7-5c7f-5764-4579-c282fde16b2b/02_recipes.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/83/4f/50/834f5073-4606-0cdd-d3b3-85377856874a/03_favorites.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/cb/b3/c1/cbb3c13b-7434-b87b-cdc6-1e0fe025e3e2/04_shopping.png/320x480bb.jpg"
+      ],
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.todayfridge.chef&hl=ko&gl=kr"
+    },
+    {
+      "bundleId": "coke.fourseasoncamera.summer",
+      "id": 6833264126,
+      "name": "여름필름",
+      "artist": "kangho lee",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e8/a8/86/e8a88675-a8e6-37d3-a1ec-22e089c01ef5/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "url": "https://apps.apple.com/kr/app/%EC%97%AC%EB%A6%84%ED%95%84%EB%A6%84/id6833264126?uo=4",
+      "genre": "Photo & Video",
+      "rating": "N/A",
+      "ratingCount": 0,
+      "version": "1.0.0",
+      "description": "여름필름은 셔터를 누르기 전부터 여름 색감으로 세상을 보여주는 필름 카메라입니다.",
+      "screenshots": [
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1e/28/f0/1e28f008-2d6e-3beb-bacd-6bfc3535334d/01.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f9/10/68/f910685c-1efd-8740-054a-2729cd736454/02.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/27/f8/6f/27f86f63-d194-6ba3-1ed7-aee08b4f35d0/03.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8c/8e/e5/8c8ee538-4491-9833-fb87-8aba0ea563d2/04.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/db/8d/c3/db8dc349-87b2-f3b1-9f1f-58126bf5026f/05.png/320x480bb.jpg"
+      ],
+      "platforms": [
+        "ios"
+      ]
+    },
+    {
+      "bundleId": "coke.fourseasoncamera.spring",
+      "id": 6833264142,
+      "name": "봄필름",
+      "artist": "kangho lee",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2b/64/e1/2b64e102-0275-b7f6-2ce6-79a527001c58/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "url": "https://apps.apple.com/kr/app/%EB%B4%84%ED%95%84%EB%A6%84/id6833264142?uo=4",
+      "genre": "Photo & Video",
+      "rating": "N/A",
+      "ratingCount": 0,
+      "version": "1.0.0",
+      "description": "봄필름은 셔터를 누르기 전부터 봄 색감으로 세상을 보여주는 필름 카메라입니다.",
+      "screenshots": [
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/03/0d/9c/030d9c7f-5290-20d8-7f2f-730af8f34c79/01.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d3/63/68/d36368bc-079e-8b6f-85be-1858dd70b1ed/02.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/27/a1/d2/27a1d246-4690-c7f6-f0f4-4a31ef24ccd2/03.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/24/68/01/2468013b-0e53-75db-e1cf-3242bb96d090/04.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1f/47/60/1f47607b-b22f-d494-c936-9934f94330f0/05.png/320x480bb.jpg"
+      ],
+      "platforms": [
+        "ios"
+      ]
+    },
+    {
+      "bundleId": "coke.fourseasoncamera.fall",
+      "id": 6833263838,
+      "name": "가을필름",
+      "artist": "kangho lee",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/50/27/91/50279177-6292-e1ab-5320-3d4cf0def235/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "url": "https://apps.apple.com/kr/app/%EA%B0%80%EC%9D%84%ED%95%84%EB%A6%84/id6833263838?uo=4",
+      "genre": "Photo & Video",
+      "rating": "N/A",
+      "ratingCount": 0,
+      "version": "1.0.0",
+      "description": "가을필름은 셔터를 누르기 전부터 가을 색감으로 세상을 보여주는 필름 카메라입니다.",
+      "screenshots": [
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5b/2b/c2/5b2bc23a-110f-1901-499f-9c0a94463671/01.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/11/3d/a0/113da006-a4df-5a53-8a2d-a79d069ba261/02.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/14/e6/cb/14e6cbea-1e6c-bc20-6561-07c208c0be26/03.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/7b/f3/c0/7bf3c0d9-ee3c-9f9d-b75e-4e79a1b81be0/04.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4d/57/c9/4d57c92e-23fd-9508-47fd-d8dda2543275/05.png/320x480bb.jpg"
+      ],
+      "platforms": [
+        "ios"
+      ]
+    },
+    {
+      "bundleId": "coke.fourseasoncamera.winter",
+      "id": 6833263672,
+      "name": "겨울필름",
+      "artist": "kangho lee",
+      "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/5a/8d/f7/5a8df7ac-35cb-9bea-104a-c82f3dfb071e/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg",
+      "url": "https://apps.apple.com/kr/app/%EA%B2%A8%EC%9A%B8%ED%95%84%EB%A6%84/id6833263672?uo=4",
+      "genre": "Photo & Video",
+      "rating": "N/A",
+      "ratingCount": 0,
+      "version": "1.0.0",
+      "description": "겨울필름은 셔터를 누르기 전부터 겨울 색감으로 세상을 보여주는 필름 카메라입니다.",
+      "screenshots": [
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ea/3a/9f/ea3a9ff8-388a-bfdd-3f23-17d70435431b/01.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/89/66/c3/8966c36f-c609-2ad0-cedb-374e56e4c1ee/02.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/5c/ab/eb/5cabeb09-ec23-e7f8-ad16-844847e7fc05/03.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/6f/7b/cf/6f7bcffe-6a78-01bb-8236-af5579e7f8e9/04.png/320x480bb.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/18/52/fb/1852fb73-f031-477d-7635-f301e78b877a/05.png/320x480bb.jpg"
+      ],
+      "platforms": [
+        "ios"
+      ]
+    }
+  ]
+}

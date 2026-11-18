@@ -1,0 +1,11 @@
+{
+  "name": "mrkangho-store-sync",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node sync-stores.mjs"
+  },
+  "dependencies": {
+    "google-play-scraper": "10.1.4"
+  }
+}

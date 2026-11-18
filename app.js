@@ -314,36 +314,6 @@ const DEFAULT_APPSTORE_APPS = [
     ]
   },
   {
-    id: 6801459066,
-    name: '오늘의 냉장고',
-    artist: 'kangho lee',
-    isPersonal: true,
-    type: 'personal',
-    platforms: ['ios', 'android'],
-    role: '기획 · 설계 · 개발 100% (개인 서비스)',
-    contributions: [
-      'React Native 크로스플랫폼 아키텍처 기반으로 iOS 및 Android 단일 코드베이스 고성능 앱 설계',
-      '보관실별(냉장실, 냉동실, 실온) 식재료 유통기한 D-Day 스마트 감지 및 자동 알림 시스템 구축',
-      'Google Gemini AI 셰프 연동으로 보유 식재료 조합 기반 실시간 맞춤 레시피 무한 생성 알고리즘 구현',
-      '조리 시 부족한 재료를 마트 구매 규격 단위(1병, 1팩 등)로 자동 변환하여 원터치 장바구니 담기 및 냉장고 즉시 입고 시스템 설계'
-    ],
-    techStack: ['React Native', 'TypeScript', 'Google Gemini AI', 'Firebase', 'Clean Architecture'],
-    icon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/dd/c1/e4/ddc1e48d-880b-18ed-73cc-edbac37ccabe/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg',
-    url: 'https://apps.apple.com/kr/app/%EC%98%A4%EB%8A%98%EC%9D%98-%EB%83%89%EC%9E%A5%EA%B3%A0/id6801459066',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.todayfridge.chef&hl=ko',
-    genre: '라이프스타일',
-    rating: '5.0',
-    ratingCount: 0,
-    version: '1.0.0',
-    description: '"오늘 저녁, 냉장고에 있는 재료로 뭘 해먹지?" 스마트한 식재료 유통기한 D-Day 관리부터 Google Gemini AI 셰프 기반 맞춤 레시피 추천 및 원터치 장보기까지 해결하는 라이프스타일 서비스.',
-    screenshots: [
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fc/7a/02/fc7a0219-0755-4b8a-29b8-94f74fc5e734/01_fridge.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9b/f5/e6/9bf5e6c4-6d22-d5db-1e74-adf24888802e/02_recipes.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9d/90/7e/9d907e47-50e9-4c64-75dc-088cbabf67f9/03_favorites.png/320x480bb.jpg',
-      'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/41/b1/e6/41b1e655-ccc1-6b37-330b-060b56aa356b/04_shopping.png/320x480bb.jpg'
-    ]
-  },
-  {
     id: 6763481391,
     name: '오늘의 응가',
     artist: 'kangho lee',
@@ -411,7 +381,8 @@ const TRANSLATIONS = {
     appstoreQuickTags: '빠른 탐색:',
     appstoreViewBtn: 'App Store에서 보기',
     appstoreReset: '대표 앱 목록',
-    appstoreScreenshots: 'App Store 스크린샷'
+    appstoreScreenshots: 'App Store 스크린샷',
+    supportedOs: '지원 OS'
   },
   en: {
     statusPill: 'Available for macOS & iOS Projects',
@@ -449,7 +420,22 @@ const TRANSLATIONS = {
     appstoreQuickTags: 'Quick View:',
     appstoreViewBtn: 'View on App Store',
     appstoreReset: 'Show Featured',
-    appstoreScreenshots: 'App Screenshots'
+    appstoreScreenshots: 'App Screenshots',
+    supportedOs: 'Supported OS'
+  }
+};
+
+/// Curated resume details for apps auto-synced from App Store / Google Play (data/store-apps.json), keyed by bundle ID
+const STORE_APP_DETAILS = {
+  'com.todayfridge.chef': {
+    role: '기획 · 설계 · 개발 100% (개인 서비스)',
+    contributions: [
+      'React Native 크로스플랫폼 아키텍처 기반으로 iOS 및 Android 단일 코드베이스 고성능 앱 설계',
+      '보관실별(냉장실, 냉동실, 실온) 식재료 유통기한 D-Day 스마트 감지 및 자동 알림 시스템 구축',
+      'Google Gemini AI 셰프 연동으로 보유 식재료 조합 기반 실시간 맞춤 레시피 무한 생성 알고리즘 구현',
+      '조리 시 부족한 재료를 마트 구매 규격 단위(1병, 1팩 등)로 자동 변환하여 원터치 장바구니 담기 및 냉장고 즉시 입고 시스템 설계'
+    ],
+    techStack: ['React Native', 'TypeScript', 'Google Gemini AI', 'Firebase', 'Clean Architecture']
   }
 };
 
@@ -622,10 +608,46 @@ document.addEventListener('DOMContentLoaded', () => {
   if (appstoreContainer) {
     initAppStoreEvents();
     initPortfolioTypeFilters();
-    renderAppStoreGrid(DEFAULT_APPSTORE_APPS);
+    renderPortfolio();
+    loadStoreApps();
     fetchFeaturedAppStoreApps();
   }
 });
+
+let portfolioBaseApps = DEFAULT_APPSTORE_APPS;
+let storeApps = [];
+
+// Load personal apps synced from App Store / Google Play developer pages (data/store-apps.json)
+async function loadStoreApps() {
+  try {
+    const res = await fetch('data/store-apps.json', { cache: 'no-cache' });
+    const data = await res.json();
+    storeApps = (data.apps || []).map(app => ({
+      ...app,
+      ...(STORE_APP_DETAILS[app.bundleId] || {}),
+      isPersonal: true,
+      type: 'personal'
+    }));
+    renderPortfolio();
+  } catch (err) {
+    console.warn('Store app list load failed', err);
+  }
+}
+
+function renderPortfolio() {
+  const storeIds = new Set(storeApps.map(a => a.id));
+  renderAppStoreGrid([...portfolioBaseApps.filter(a => !storeIds.has(a.id)), ...storeApps]);
+  applyPortfolioTypeFilter();
+}
+
+// Re-apply the selected tab after async re-renders
+function applyPortfolioTypeFilter() {
+  const activeBtn = document.querySelector('#portfolio-type-filters [data-portfolio-type].active');
+  const type = activeBtn ? activeBtn.dataset.portfolioType : 'all';
+  document.querySelectorAll('.appstore-card').forEach(card => {
+    card.style.display = (type === 'all' || card.dataset.portfolioType === type) ? 'flex' : 'none';
+  });
+}
 
 // Initialize Portfolio Type Filters (All | Commercial | Personal)
 function initPortfolioTypeFilters() {
@@ -637,16 +659,7 @@ function initPortfolioTypeFilters() {
     btn.addEventListener('click', () => {
       btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const type = btn.dataset.portfolioType;
-
-      const cards = document.querySelectorAll('.appstore-card');
-      cards.forEach(card => {
-        if (type === 'all' || card.dataset.portfolioType === type) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      applyPortfolioTypeFilter();
     });
   });
 }
@@ -679,7 +692,8 @@ async function fetchFeaturedAppStoreApps() {
         }
         return defaultApp;
       });
-      renderAppStoreGrid(freshApps);
+      portfolioBaseApps = freshApps;
+      renderPortfolio();
     }
   } catch (err) {
     console.warn('Live App Store lookup failed, using pre-cached default data', err);
@@ -862,11 +876,11 @@ function renderAppStoreGrid(apps) {
     } else if (app.isPersonal) {
       platformBadgesHtml += `<span class="category-tag" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3);">개인 프로젝트</span>`;
     }
-    if (app.platforms && app.platforms.includes('ios')) {
-      platformBadgesHtml += `<span class="platform-badge ios"><i class="fa-brands fa-apple"></i> iOS</span>`;
-    }
-    if (app.platforms && app.platforms.includes('android')) {
-      platformBadgesHtml += `<span class="platform-badge android"><i class="fa-brands fa-google-play"></i> Android</span>`;
+    const platformNames = (app.platforms || [])
+      .map(p => ({ ios: 'iOS', android: 'Android' })[p])
+      .filter(Boolean);
+    if (platformNames.length > 0) {
+      platformBadgesHtml += `<span class="platform-badge supported-os">${t.supportedOs}: ${platformNames.join(', ')}</span>`;
     }
 
     let detailsHtml = '';
