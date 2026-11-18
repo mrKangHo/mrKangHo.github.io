@@ -354,7 +354,9 @@ const TRANSLATIONS = {
     appstoreViewBtn: 'App Store에서 보기',
     appstoreReset: '대표 앱 목록',
     appstoreScreenshots: 'App Store 스크린샷',
-    supportedOs: '지원 OS'
+    supportedOs: '지원 OS',
+    showMore: '더보기',
+    showLess: '접기'
   },
   en: {
     statusPill: 'Available for macOS & iOS Projects',
@@ -393,7 +395,9 @@ const TRANSLATIONS = {
     appstoreViewBtn: 'View on App Store',
     appstoreReset: 'Show Featured',
     appstoreScreenshots: 'App Screenshots',
-    supportedOs: 'Supported OS'
+    supportedOs: 'Supported OS',
+    showMore: 'Show more',
+    showLess: 'Show less'
   }
 };
 
@@ -883,7 +887,8 @@ function renderAppStoreGrid(apps) {
           </div>
         </div>
       </div>
-      <p class="appstore-desc">${escapeHtml(app.description)}</p>
+      <p class="appstore-desc collapsed">${escapeHtml(app.description)}</p>
+      <button type="button" class="appstore-desc-toggle" hidden>${t.showMore}</button>
       ${detailsHtml}
       ${screenshotsHtml}
       <div class="appstore-footer">
@@ -892,6 +897,19 @@ function renderAppStoreGrid(apps) {
       </div>
     `;
     appstoreContainer.appendChild(card);
+
+    // Collapse long descriptions behind a "show more" toggle
+    const desc = card.querySelector('.appstore-desc');
+    const toggle = card.querySelector('.appstore-desc-toggle');
+    if (desc.scrollHeight > desc.clientHeight + 1) {
+      toggle.hidden = false;
+      toggle.addEventListener('click', () => {
+        const collapsed = desc.classList.toggle('collapsed');
+        toggle.textContent = collapsed ? t.showMore : t.showLess;
+      });
+    } else {
+      desc.classList.remove('collapsed');
+    }
   });
 }
 

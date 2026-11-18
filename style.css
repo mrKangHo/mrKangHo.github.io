@@ -1450,6 +1450,34 @@ body {
   white-space: pre-line;
 }
 
+.appstore-desc.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.appstore-desc:has(+ .appstore-desc-toggle:not([hidden])) {
+  margin-bottom: 0.4rem;
+}
+
+.appstore-desc-toggle {
+  align-self: flex-start;
+  margin-bottom: 1.25rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #60a5fa;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.appstore-desc-toggle:hover {
+  text-decoration: underline;
+}
+
 .appstore-footer {
   display: flex;
   align-items: center;
