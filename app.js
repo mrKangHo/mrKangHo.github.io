@@ -397,20 +397,6 @@ const TRANSLATIONS = {
   }
 };
 
-/// Curated resume details for apps auto-synced from App Store / Google Play (data/store-apps.json), keyed by bundle ID
-const STORE_APP_DETAILS = {
-  'com.todayfridge.chef': {
-    role: '기획 · 설계 · 개발 100% (개인 서비스)',
-    contributions: [
-      'React Native 크로스플랫폼 아키텍처 기반으로 iOS 및 Android 단일 코드베이스 고성능 앱 설계',
-      '보관실별(냉장실, 냉동실, 실온) 식재료 유통기한 D-Day 스마트 감지 및 자동 알림 시스템 구축',
-      'Google Gemini AI 셰프 연동으로 보유 식재료 조합 기반 실시간 맞춤 레시피 무한 생성 알고리즘 구현',
-      '조리 시 부족한 재료를 마트 구매 규격 단위(1병, 1팩 등)로 자동 변환하여 원터치 장바구니 담기 및 냉장고 즉시 입고 시스템 설계'
-    ],
-    techStack: ['React Native', 'TypeScript', 'Google Gemini AI', 'Firebase', 'Clean Architecture']
-  }
-};
-
 // Curated metadata enrichment for repos (Bilingual, synchronized with docs/introduce.md)
 const REPO_ENRICHMENTS = {
   'FloatingTube': {
@@ -604,7 +590,6 @@ async function loadStoreApps() {
     const data = await res.json();
     storeApps = (data.apps || []).map(app => ({
       ...app,
-      ...(STORE_APP_DETAILS[app.bundleId] || {}),
       isPersonal: true,
       type: 'personal'
     }));
