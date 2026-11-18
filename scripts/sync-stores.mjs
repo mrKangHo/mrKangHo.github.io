@@ -16,12 +16,6 @@ const MAX_SCREENSHOTS = 8;
 
 const OUTPUT_PATH = resolve(dirname(fileURLToPath(import.meta.url)), '../data/store-apps.json');
 
-// 스토어 설명 전문은 카드에 비해 길어서 첫 문단만 요약으로 사용
-function summarize(text, maxLength = 200) {
-  const firstLine = (text || '').split('\n').map(s => s.trim()).find(Boolean) || '';
-  return firstLine.length > maxLength ? `${firstLine.slice(0, maxLength - 1)}…` : firstLine;
-}
-
 async function fetchAppStoreApps() {
   const url = `https://itunes.apple.com/lookup?id=${APP_STORE_ARTIST_ID}&entity=software&country=${COUNTRY}&limit=200`;
   const res = await fetch(url);
@@ -45,7 +39,7 @@ async function fetchAppStoreApps() {
       rating: app.averageUserRating ? app.averageUserRating.toFixed(1) : 'N/A',
       ratingCount: app.userRatingCount || 0,
       version: app.version || '1.0',
-      description: summarize(app.description),
+      description: (app.description || '').trim(),
       screenshots: screenshots.slice(0, MAX_SCREENSHOTS)
     };
   });
@@ -67,7 +61,7 @@ async function fetchPlayStoreApps() {
       rating: app.score ? app.score.toFixed(1) : 'N/A',
       ratingCount: app.ratings || 0,
       version: app.version && app.version !== 'VARY' ? app.version : '1.0',
-      description: summarize(app.summary || app.description),
+      description: (app.description || app.summary || '').trim(),
       screenshots: (app.screenshots || []).slice(0, MAX_SCREENSHOTS)
     };
   }));
