@@ -40,7 +40,8 @@ async function fetchAppStoreApps() {
       ratingCount: app.userRatingCount || 0,
       version: app.version || '1.0',
       description: (app.description || '').trim(),
-      screenshots: screenshots.slice(0, MAX_SCREENSHOTS)
+      screenshots: screenshots.slice(0, MAX_SCREENSHOTS),
+      releaseDate: app.releaseDate
     };
   });
 }
@@ -62,7 +63,9 @@ async function fetchPlayStoreApps() {
       ratingCount: app.ratings || 0,
       version: app.version && app.version !== 'VARY' ? app.version : '1.0',
       description: (app.description || app.summary || '').trim(),
-      screenshots: (app.screenshots || []).slice(0, MAX_SCREENSHOTS)
+      screenshots: (app.screenshots || []).slice(0, MAX_SCREENSHOTS),
+      // Play 출시일(released)은 지역화된 문자열이라 최근 업데이트 시각으로 대체
+      releaseDate: app.updated ? new Date(app.updated).toISOString() : undefined
     };
   }));
 }
@@ -85,7 +88,8 @@ function mergeByBundleId(iosApps, androidApps) {
     const { url, ...rest } = android;
     merged.push({ ...rest, id: android.bundleId, platforms: ['android'], playStoreUrl: url });
   }
-  return merged;
+  // 최신 출시순
+  return merged.sort((a, b) => (b.releaseDate || '').localeCompare(a.releaseDate || ''));
 }
 
 const [iosApps, androidApps] = await Promise.all([fetchAppStoreApps(), fetchPlayStoreApps()]);
